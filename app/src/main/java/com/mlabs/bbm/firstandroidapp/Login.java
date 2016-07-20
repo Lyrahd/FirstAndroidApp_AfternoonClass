@@ -34,6 +34,12 @@ protected void onCreate(Bundle savedInstanceState) {
             if (!isValidEmail(email) || !isValidPassword(pass)) {
                 editText.setError("Invalid Email or Password");
 
+
+            }
+            else
+            {
+                Intent i =new Intent (Login.this, MainActivity.class);
+                startActivity(i);
             }
 
 
