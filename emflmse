@@ -1,0 +1,40 @@
+warning: LF will be replaced by CRLF in .idea/compiler.xml.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in .idea/encodings.xml.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in .idea/misc.xml.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in .idea/modules.xml.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in .idea/runConfigurations.xml.
+The file will have its original line endings in your working directory.
+[1mdiff --git a/.idea/gradle.xml b/.idea/gradle.xml[m
+[1mindex 58992cc..8d2df47 100644[m
+[1m--- a/.idea/gradle.xml[m
+[1m+++ b/.idea/gradle.xml[m
+[36m@@ -3,21 +3,15 @@[m
+   <component name="GradleSettings">[m
+     <option name="linkedExternalProjectsSettings">[m
+       <GradleProjectSettings>[m
+[31m-        <option name="distributionType" value="LOCAL" />[m
+[32m+[m[32m        <option name="distributionType" value="DEFAULT_WRAPPED" />[m
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />[m
+[31m-        <option name="gradleHome" value="$APPLICATION_HOME_DIR$/gradle/gradle-2.10" />[m
+[32m+[m[32m        <option name="gradleJvm" value="1.8" />[m
+         <option name="modules">[m
+           <set>[m
+             <option value="$PROJECT_DIR$" />[m
+             <option value="$PROJECT_DIR$/app" />[m
+           </set>[m
+         </option>[m
+[31m-        <option name="myModules">[m
+[31m-          <set>[m
+[31m-            <option value="$PROJECT_DIR$" />[m
+[31m-            <option value="$PROJECT_DIR$/app" />[m
+[31m-          </set>[m
+[31m-        </option>[m
+       </GradleProjectSettings>[m
+     </option>[m
+   </component>[m
+warning: LF will be replaced by CRLF in .idea/gradle.xml.
+The file will have its original line endings in your working directory.

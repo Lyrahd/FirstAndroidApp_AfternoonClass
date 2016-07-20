@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">FirstAndroidApp</string>
+    <string name="app_name">BitCue</string>
+    <string name="forgot_pass"><u>Forgot Password?</u></string>
+    <string name="sign_up">No account? <u>Sign up</u> for free!</string>
 </resources>
