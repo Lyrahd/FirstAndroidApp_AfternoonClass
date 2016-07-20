@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">FirstAndroidApp</string>
+    <string name="login">Login</string>
+    <string name="emptyString" />
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="grabs">grabs</string>
 </resources>
