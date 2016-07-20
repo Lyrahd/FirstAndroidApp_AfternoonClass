@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mlabs.bbm.firstandroidapp.MainActivity"
-    android:background="#0a0a0a"
+    android:background="#272727"
     android:textAlignment="center">
 
 
