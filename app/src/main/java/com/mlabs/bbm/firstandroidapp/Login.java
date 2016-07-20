@@ -44,7 +44,7 @@ protected void onCreate(Bundle savedInstanceState) {
     });
 }
 
-    // validating email id
+
     private boolean isValidEmail(String email) {
         String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
@@ -54,7 +54,7 @@ protected void onCreate(Bundle savedInstanceState) {
         return matcher.matches();
     }
 
-    // validating password with retype password
+
     private boolean isValidPassword(String pass) {
         if (pass != null && pass.length() > 6) {
             return true;
