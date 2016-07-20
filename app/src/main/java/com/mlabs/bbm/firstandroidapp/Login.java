@@ -33,8 +33,6 @@ protected void onCreate(Bundle savedInstanceState) {
              String pass = editText2.getText().toString();
             if (!isValidEmail(email) || !isValidPassword(pass)) {
                 editText.setError("Invalid Email or Password");
-
-
             }
             else
             {
