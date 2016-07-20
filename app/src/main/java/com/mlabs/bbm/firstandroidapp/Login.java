@@ -16,8 +16,6 @@ import java.util.regex.Pattern;
 public class Login extends AppCompatActivity {
     EditText editText,editText2;
 
-
-
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
