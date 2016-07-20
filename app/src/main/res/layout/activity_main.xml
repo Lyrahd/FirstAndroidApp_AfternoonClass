@@ -7,10 +7,29 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.mlabs.bbm.firstandroidapp.MainActivity">
+    tools:context="com.mlabs.bbm.firstandroidapp.MainActivity"
+    android:background="@drawable/abc_ab_share_pack_mtrl_alpha">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Hello World!"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/toggleButton"
+        android:layout_toStartOf="@+id/toggleButton"
+        android:visibility="invisible" />
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:id="@+id/toggleButton"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="181dp"
+        android:layout_marginEnd="181dp"
+        android:visibility="invisible" />
 </RelativeLayout>
