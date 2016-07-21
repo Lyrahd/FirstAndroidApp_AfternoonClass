@@ -1,7 +1,7 @@
 package com.mlabs.bbm.firstandroidapp;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.app.Activity;
 import android.os.Bundle;
 
 /**
@@ -23,7 +23,7 @@ public class SplashScreen extends Activity{
                 e.printStackTrace();
             }
             finally{
-                Intent intent = new Intent(SplashScreen.this,MainActivity.class );
+                Intent intent = new Intent(SplashScreen.this,LogInActivity.class );
                 startActivity(intent);
             }
         }
