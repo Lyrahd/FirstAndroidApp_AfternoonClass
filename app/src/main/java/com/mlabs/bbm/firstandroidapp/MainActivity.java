@@ -1,8 +1,9 @@
 package com.mlabs.bbm.firstandroidapp;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,10 +12,26 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    boolean emailValidator(CharSequence email) {
+        if (TextUtils.isEmpty(email)) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        }
+    }
+
+    boolean passwordValidator(String password) {
+        if(password.length() > 7) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     EditText email;
     EditText password;
     Button button_login;
-    int attempt_counter = 3;
+    int attempt_counter = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,29 +54,65 @@ public class MainActivity extends AppCompatActivity {
                         email.setError(null);
                         password.setError(null);
 
-                        if (email.getText().toString().equals("austingueta")&&
-                                password.getText().toString().equals("201311217")) {
-                            attempt_counter = 3;
-                            Intent i;
-                            i = new Intent(MainActivity.this, Activity2.class);
-                            startActivity(i);
-                        }
-
-                        else if (email.getText().toString().equals("") &&
+                        if (email.getText().toString().equals("") &&
                                 password.getText().toString().equals(""))
                         {
                             email.setError(getString(R.string.empty_field));
                             password.setError(getString(R.string.empty_field));
                         }
 
-                        else if (email.getText().toString().equals(""))
+                        else if(emailValidator(email.getText()) == true &&
+                                passwordValidator(password.getText().toString()) == true)
+                        {
+                            attempt_counter = 3;
+                            Intent i;
+                            i = new Intent(MainActivity.this, Activity2.class);
+                            startActivity(i);
+                        }
+
+                        else if (emailValidator(email.getText()) == true &&
+                                password.getText().toString().equals(""))
+                        {
+                            password.setError(getString(R.string.empty_field));
+                        }
+
+                        else if (email.getText().toString().equals("") &&
+                                passwordValidator(password.getText().toString()) == true)
                         {
                             email.setError(getString(R.string.empty_field));
                         }
 
-                        else if (password.getText().toString().equals(""))
+                        else if (email.getText().toString().equals("") &&
+                                passwordValidator(password.getText().toString()) == false)
                         {
+                            email.setError(getString(R.string.empty_field));
+                            password.setError(getString(R.string.invalid_password));
+                        }
+
+                        else if (emailValidator(email.getText()) == false &&
+                                password.getText().toString().equals("") )
+                        {
+                            email.setError(getString(R.string.invalid_email));
                             password.setError(getString(R.string.empty_field));
+                        }
+
+                        else if(emailValidator(email.getText()) == true &&
+                                passwordValidator(password.getText().toString()) == false)
+                        {
+                            password.setError(getString(R.string.invalid_password));
+                        }
+
+                        else if(emailValidator(email.getText()) == false &&
+                                passwordValidator(password.getText().toString()) == true)
+                        {
+                            email.setError(getString(R.string.invalid_email));
+                        }
+
+                        else if(emailValidator(email.getText()) == false &&
+                                passwordValidator(password.getText().toString()) == false)
+                        {
+                            email.setError(getString(R.string.invalid_email));
+                            password.setError(getString(R.string.invalid_password));
                         }
 
                         else {
