@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class MainActivity extends AppCompatActivity {
 
     Button login;
@@ -54,15 +57,27 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
+
+    @Override
+    protected  void onPause(){
+        super.onPause();
+    }
+
     public boolean check(){
         boolean valid = true;
 
         String _mail = mail.getText().toString();
         String _pwd = pwd.getText().toString();
+        String email_pattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        Pattern pattern;
+        Matcher matcher;
 
-        if (_mail.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(_mail).matches()){
+        pattern = Pattern.compile(email_pattern);
+        matcher = pattern.matcher(_mail);
+
+        if (_mail.isEmpty() || !matcher.matches()){
             Toast.makeText(getApplicationContext(),"Enter valid email",Toast.LENGTH_LONG).show();
             valid = false;
         }
