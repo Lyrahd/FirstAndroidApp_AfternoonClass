@@ -1,5 +1,6 @@
 package com.mlabs.bbm.firstandroidapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -46,9 +47,8 @@ public class MainActivity extends AppCompatActivity {
                     pass.setError("Minimum password length is at least 8 characters.");
                 }
                 else
-                {
-                    popToast.setText("Logged in!");
-                    popToast.show();
+                {   Intent intent = new Intent(MainActivity.this,Profile.class );
+                    startActivity(intent);
                 }
             }
 
