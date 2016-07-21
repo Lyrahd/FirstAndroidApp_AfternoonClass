@@ -2,38 +2,52 @@ package com.mlabs.bbm.firstandroidapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 /**
  * Created by benjarmanalili on 16/07/2016.
+ * edited by lemarcudal on 21/07/2016
  */
 public class SplashScreen extends Activity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
 
-    Thread timerThread = new Thread(){
-        public void run(){
-            try{
-                sleep(3000);
-            }
-            catch(InterruptedException e){
-                e.printStackTrace();
-            }
-            finally{
-                Intent intent = new Intent(SplashScreen.this,MainActivity.class );
-                startActivity(intent);
-            }
-        }
-    };
-        timerThread.start();
-    }
+        final ImageView iv = (ImageView) findViewById(R.id.imageView2);
+        final ImageView iv2 = (ImageView) findViewById(R.id.imageView3);
+        final ImageView iv3 = (ImageView) findViewById(R.id.imageView4);
+        final Animation an = AnimationUtils.loadAnimation(getBaseContext(),R.anim.rotate);
+        final Animation an1 = AnimationUtils.loadAnimation(getBaseContext(),R.anim.rotate1);
+        final Animation an2 = AnimationUtils.loadAnimation(getBaseContext(),R.anim.abc_fade_out);
+        final Animation an3 = AnimationUtils.loadAnimation(getBaseContext(),R.anim.abc_fade_in);
+        iv.startAnimation(an);
+        iv3.startAnimation(an1);
+        iv2.startAnimation(an1);
+        an.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
 
-    @Override
-    protected  void onPause(){
-        super.onPause();
-        finish();
+            }
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                iv.startAnimation(an2);
+                iv2.startAnimation(an2);
+                iv3.startAnimation(an2);
+                finish();
+                Intent i = new Intent(SplashScreen.this,MainActivity.class);
+                startActivity(i);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
     }
 }
