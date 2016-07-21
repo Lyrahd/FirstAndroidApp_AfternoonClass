@@ -37,6 +37,5 @@
         android:text="Log-In"
         android:id="@+id/buttonL"
         android:layout_below="@+id/pass"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="false" />
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
