@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                         else if(emailValidator(email.getText()) == true &&
                                 passwordValidator(password.getText().toString()) == true)
                         {
-                            attempt_counter = 3;
+                            attempt_counter = 5;
                             Intent i;
                             i = new Intent(MainActivity.this, Activity2.class);
                             startActivity(i);
