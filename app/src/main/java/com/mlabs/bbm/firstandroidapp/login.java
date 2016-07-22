@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.regex.Pattern;
+
 
 /**
  * Created by Tim on 7/21/2016.
@@ -29,7 +31,7 @@ public class login extends AppCompatActivity {
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    if (Patterns.EMAIL_ADDRESS.matcher(txtEmail.getText()).matches())
+                    if (Pattern.compile("^\\w+@[a-zA-Z_]+?\\.[0-9a-zA-Z]{2,}$").matcher(txtEmail.getText()).matches())
                     {
                         if (txtPass.length()>=8)
                         {
