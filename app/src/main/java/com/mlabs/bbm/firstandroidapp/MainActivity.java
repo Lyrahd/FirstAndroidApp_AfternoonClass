@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 public class MainActivity extends AppCompatActivity {
     Button button1;
     EditText editext1, editext2;
-    int counter = 3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,50 +28,43 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        assert button1 != null;
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
-                editext1.setError(null);
-                editext2.setError(null);
-
-                if(editext1.getText().toString().equals("admin") &&
-
-                        editext2.getText().toString().equals("admin")) {
-                    Intent i;
-                    i = new Intent(MainActivity.this, Activity.class);
-                    startActivity(i);
+                public void onClick(View v) {
+                if ((!isValidPassword(editext2.getText().toString())) && (!isValidEmail(editext1.getText().toString())))  {
+                    Toast.makeText(MainActivity.this, "Invalid Email and Password", Toast.LENGTH_LONG).show(); }
+                else if(!isValidEmail(editext1.getText().toString())) {
+                    Toast.makeText(MainActivity.this,"Invalid Email",Toast.LENGTH_LONG).show();
+                } else if(!isValidPassword(editext2.getText().toString())) {
+                    Toast.makeText(MainActivity.this, "Invalid Password", Toast.LENGTH_LONG).show();
                 }
 
-                else if(editext1.getText().toString().equals("") &&
-
-                        editext2.getText().toString().equals("")) {
-                    editext1.setError(getString(R.string.error_field_required));
-                    editext2.setError(getString(R.string.error_field_required));
-                }
-
-                else if(editext1.getText().toString().equals("")) {
-                    editext1.setError(getString(R.string.error_field_required));
-
-                }
-
-                else if(editext2.getText().toString().equals("")) {
-                    editext2.setError(getString(R.string.error_field_required));
-                }
-
-                else {
-                    Toast.makeText(getApplicationContext(), "Wrong Credentials",Toast.LENGTH_SHORT).show();
-                    counter--;
-
-                    if (counter == 0) {
-                        button1.setEnabled(false);
+                else{
+                        Intent intent = new Intent(v.getContext(), Homepageb.class);
+                        startActivityForResult(intent, 0);
+                        finish();
                     }
                 }
-            }
-        });
+            });
+        }
 
+    private boolean isValidEmail(String email) {
 
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 
-
+    private boolean isValidPassword(String pass) {
+        if (pass != null && pass.length() >= 6) {
+            return true;
+        }
+        return false;
+    }
 }
+
+
+
+

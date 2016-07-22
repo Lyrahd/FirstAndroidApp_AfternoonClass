@@ -40,14 +40,16 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:singleLine="true"
             android:id="@+id/editText"
-            android:hint="Username"
+            android:hint="E-mail"
             android:elegantTextHeight="false"
             android:layout_gravity="center_horizontal" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:singleLine="true"
             android:id="@+id/editText2"
             android:hint="Password"
             android:inputType="textPassword"

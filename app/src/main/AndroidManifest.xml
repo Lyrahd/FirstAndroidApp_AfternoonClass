@@ -29,9 +29,9 @@
 
 
         <activity
-            android:name=".Activity">
+            android:name=".Homepageb">
             <intent-filter>
-                <action android:name="com.mlabs.bbm.firstandroidapp.Activity" />
+                <action android:name="com.mlabs.bbm.firstandroidapp.Homepageb" />
             </intent-filter>
         </activity>
     </application>
