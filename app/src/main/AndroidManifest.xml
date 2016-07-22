@@ -5,9 +5,9 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="@string/emptyString"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".SplashScreen"
             android:label="@string/app_name">
@@ -18,8 +18,17 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".login"
+            android:label="@string/emptyString">
+            <intent-filter>
+                <action android:name="com.mlabs.bbm.firstandroidapp.MainActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/emptyString">
             <intent-filter>
                 <action android:name="com.mlabs.bbm.firstandroidapp.MainActivity" />
 
