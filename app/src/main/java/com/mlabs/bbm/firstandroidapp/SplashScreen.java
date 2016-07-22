@@ -4,11 +4,10 @@ package com.mlabs.bbm.firstandroidapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-
-/**
- * Created by benjarmanalili on 16/07/2016.
- */
+import android.view.View;
+import android.widget.ImageView;
 
 public class SplashScreen extends Activity{
 
@@ -20,7 +19,7 @@ public class SplashScreen extends Activity{
         Thread timerThread = new Thread(){
             public void run(){
                 try{
-                    sleep(5000);
+                    sleep(3000);
                 }
                 catch(InterruptedException e){
                     e.printStackTrace();
