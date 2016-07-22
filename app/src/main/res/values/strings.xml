@@ -4,10 +4,9 @@
     <string name="button">Sign In</string>
     <string name="textView2">Password :</string>
     <string name="textView">Email :</string>
-    <string name="exit">Exit</string>
-    <string name="eme_lang_yan_sir_haha_hnd_pa_makakachoose">Eme lang yan sir haha hnd pa makakachoose</string>
-    <string name="digivicess">digiviccccc</string>
-    <string name="choose_your_digivice">Choose your Digivice</string>
-    <string name="digimon_master">DIGIMON MASTER!</string>
-    <string name="welcome">WELCOME!</string>
+    <string name="x">X</string>
+    <string name="digivicess">digivicess</string>
+    <string name="choose_your_digivice">choose your digivice</string>
+    <string name="digimon_master">Digimon Master!</string>
+    <string name="welcome">Welcome!</string>
 </resources>

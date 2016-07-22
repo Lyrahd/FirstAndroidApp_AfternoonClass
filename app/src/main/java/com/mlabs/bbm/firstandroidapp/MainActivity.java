@@ -1,5 +1,6 @@
 package com.mlabs.bbm.firstandroidapp;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,6 +37,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (etext.getText().toString().equals("Veeldyow") && ptext.getText().toString().equals("catiis")) {
                     Toast.makeText(getApplicationContext(), "Redirecting....", Toast.LENGTH_SHORT).show();
+
+                    Thread timerThread = new Thread(){
+                        public void run(){
+                            try{
+                                sleep(1000);
+                            }
+                            catch(InterruptedException e){
+                                e.printStackTrace();
+                            }
+                            finally{
+                                Intent next = new Intent(MainActivity.this,WelcomeScreen.class );
+                                startActivity(next);
+                            }
+                        }
+                    };
+                    timerThread.start();
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "Incorrect Email/Password", Toast.LENGTH_SHORT).show();
