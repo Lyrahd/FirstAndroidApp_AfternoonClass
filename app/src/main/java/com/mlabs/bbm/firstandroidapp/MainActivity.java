@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.TOP| Gravity.LEFT,0,0);
                     toast.show();
-                    Intent intent = new Intent(MainActivity.this,SplashScreen .class );
+                    Intent intent = new Intent(MainActivity.this,Main2Activity .class );
                     startActivity(intent);
                 }
             }
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private boolean validatePassword(String password) {
-       if(password !=null && password.length()>9){
+       if(password !=null && password.length()>7){
            return true;
        }else
         return false;
