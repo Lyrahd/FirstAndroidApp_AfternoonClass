@@ -2,6 +2,6 @@
     <string name="app_name">FirstAndroidApp</string>
     <string name="invalid_email">Invalid email address.</string>
     <string name="invalid_password">Password must be at least 8 characters.</string>
-    <string name="incorrect_password">The password you entered is incorrect.</string>
+    <string name="login">Successfully logged in.</string>
     <string name="empty_field">This field is required.</string>
 </resources>

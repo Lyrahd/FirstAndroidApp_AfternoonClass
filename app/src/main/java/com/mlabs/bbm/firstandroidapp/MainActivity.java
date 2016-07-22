@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     EditText email;
     EditText password;
     Button button_login;
-    int attempt_counter = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +63,12 @@ public class MainActivity extends AppCompatActivity {
                         else if(emailValidator(email.getText()) == true &&
                                 passwordValidator(password.getText().toString()) == true)
                         {
-                            attempt_counter = 5;
                             Intent i;
                             i = new Intent(MainActivity.this, Activity2.class);
                             startActivity(i);
+
+                            Toast.makeText(MainActivity.this, (R.string.login),
+                                    Toast.LENGTH_SHORT).show();
                         }
 
                         else if (emailValidator(email.getText()) == true &&
@@ -115,13 +116,6 @@ public class MainActivity extends AppCompatActivity {
                             password.setError(getString(R.string.invalid_password));
                         }
 
-                        else {
-                            Toast.makeText(MainActivity.this, (R.string.incorrect_password),
-                                    Toast.LENGTH_SHORT).show();
-                            attempt_counter--;
-                            if (attempt_counter == 0)
-                                finish();
-                        }
                     }
                 }
         );
