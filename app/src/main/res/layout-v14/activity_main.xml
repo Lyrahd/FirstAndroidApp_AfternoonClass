@@ -60,16 +60,15 @@
         android:id="@+id/button"
         android:background="#ff8119"
         android:textColor="@color/abc_primary_text_material_dark"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="36dp"
-        android:layout_gravity="center|left" />
+        android:layout_gravity="center|left"
+        android:layout_above="@+id/button2"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/textView3"
         android:id="@+id/textView3"
         android:layout_below="@+id/editText2"
         android:layout_alignLeft="@+id/textView2"
