@@ -6,9 +6,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-/**
- * Created by benjarmanalili on 16/07/2016.
- */
 
 public class SplashScreen extends Activity{
 
@@ -20,13 +17,13 @@ public class SplashScreen extends Activity{
         Thread timerThread = new Thread(){
             public void run(){
                 try{
-                    sleep(4000);
+                    sleep(3000);
                 }
                 catch(InterruptedException e){
                     e.printStackTrace();
                 }
                 finally{
-                    Intent intent = new Intent(SplashScreen.this,MainActivity.class );
+                    Intent intent = new Intent(SplashScreen.this,LogIn.class );
                     startActivity(intent);
                 }
             }
@@ -40,3 +37,4 @@ public class SplashScreen extends Activity{
         finish();
     }
 }
+
