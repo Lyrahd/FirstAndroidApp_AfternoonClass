@@ -26,6 +26,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".Activity">
+            <intent-filter>
+                <action android:name="com.mlabs.bbm.firstandroidapp.Activity" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
