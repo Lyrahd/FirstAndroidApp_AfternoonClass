@@ -3,11 +3,14 @@ package com.mlabs.bbm.firstandroidapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Window;
 
 /**
  * Created by benjarmanalili on 16/07/2016.
  */
 public class SplashScreen extends Activity{
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
