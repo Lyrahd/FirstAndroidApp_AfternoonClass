@@ -12,7 +12,7 @@ public class Homepageb  extends android.app.Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity);
+        setContentView(R.layout.homep);
 
         b2 = (Button) findViewById(R.id.button2);
         b2.setOnClickListener(new View.OnClickListener() {
