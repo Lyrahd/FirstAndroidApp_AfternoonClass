@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FirstAndroidApp</string>
+    <string name="error">This field is necessary!</string>
+    <string name="error_em">Incorrect Email Address!</string>
 </resources>
