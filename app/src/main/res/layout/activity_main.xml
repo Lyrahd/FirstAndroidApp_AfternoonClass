@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mlabs.bbm.firstandroidapp.MainActivity"
-    android:background="#ECF0F1">
+    android:background="@drawable/bckground">
 
     <ImageView
         android:layout_width="200dp"
