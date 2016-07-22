@@ -26,27 +26,30 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/holo_orange_dark"
             android:text="Username"
-            android:textSize="20dp" />
+            android:textSize="15dp"
+            android:autoText="false" />
         <EditText android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
             android:layout_marginBottom="20dip"
             android:singleLine="true"
             android:textSize="15dp"
-            android:textColor="@android:color/holo_orange_dark" />
+            android:textColor="@android:color/holo_orange_dark"
+            android:id="@+id/editUser" />
         <!--  Password Label -->
         <TextView android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/holo_orange_dark"
             android:text="Password"
-            android:textSize="20dp" />
+            android:textSize="15dp" />
         <EditText android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
             android:singleLine="true"
             android:password="true"
             android:textSize="15dp"
-            android:textColor="@android:color/holo_orange_dark" />
+            android:textColor="@android:color/holo_orange_dark"
+            android:id="@+id/editPass" />
         <!-- Login button -->
 
 
@@ -61,11 +64,24 @@
         android:src="@drawable/divisionsc1" />
 
     <Button android:id="@+id/btnLogin"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
         android:text="Activate Agent"
         android:layout_below="@+id/linearLayout"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="onButtonClick" />
+
+    <TextView android:id="@+id/link_to_register"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="49dp"
+        android:text="Not an agent? Click here"
+        android:gravity="center"
+        android:textSize="17dip"
+        android:textColor="@android:color/holo_orange_dark"
+        android:layout_below="@+id/btnLogin"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
