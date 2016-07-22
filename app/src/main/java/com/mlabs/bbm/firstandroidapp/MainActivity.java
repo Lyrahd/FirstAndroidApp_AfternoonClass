@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                if (etext.getText().toString().equals("Veeldyow") && ptext.getText().toString().equals("catiis")) {
+                if (etext.getText().toString().equals("veeldyow@yahoo.com") && ptext.getText().toString().equals("catiis")) {
                     Toast.makeText(getApplicationContext(), "Redirecting....", Toast.LENGTH_SHORT).show();
 
                     Thread timerThread = new Thread(){
@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                             finally{
-                                Intent next = new Intent(MainActivity.this,WelcomeScreen.class );
-                                startActivity(next);
+                                Intent nextmo = new Intent(MainActivity.this,WelcomeScreen.class );
+                                startActivity(nextmo);
                             }
                         }
                     };
