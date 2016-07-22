@@ -30,12 +30,18 @@ public class MainActivity extends AppCompatActivity {
                 public  void onClick(View v){
 
 
-                        if (Pattern.compile("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$").matcher(emailAdd.getText()).matches() && (Pattern.compile("([a-zA-Z0-9]+_?)+").matcher(pwd.getText()).matches() && pwd.getText().length()>=6)) {
-                            Intent intent = new Intent(MainActivity.this, blankAct.class);
-                            startActivity(intent);
-                            Toast.makeText(getBaseContext(), "Login successful!", Toast.LENGTH_SHORT).show();
+                        if (Pattern.compile("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$").matcher(emailAdd.getText()).matches()) {
+                            if (Pattern.compile("([a-zA-Z0-9]+_?)+").matcher(pwd.getText()).matches() ) {
+                                if (pwd.getText().length()>=6) {
+                                    Intent intent = new Intent(MainActivity.this, blankAct.class);
+                                    startActivity(intent);
+                                    Toast.makeText(getBaseContext(), "Login successful!", Toast.LENGTH_SHORT).show();
+                                }else
+                                    Toast.makeText(getBaseContext(), "Password too short",Toast.LENGTH_SHORT).show();
+                            }else
+                                Toast.makeText(getBaseContext(), "Invalid Password",Toast.LENGTH_SHORT).show();
                         } else
-                            Toast.makeText(getBaseContext(), "Login Failed!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getBaseContext(), "Invalid Email address!", Toast.LENGTH_SHORT).show();
 
 
                 }
