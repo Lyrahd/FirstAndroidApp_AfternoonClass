@@ -25,7 +25,7 @@ public class SplashScreen extends Activity{
         final Animation an = AnimationUtils.loadAnimation(getBaseContext(),R.anim.rotate);
         final Animation an1 = AnimationUtils.loadAnimation(getBaseContext(),R.anim.rotate1);
         final Animation an2 = AnimationUtils.loadAnimation(getBaseContext(),R.anim.abc_fade_out);
-        final Animation an3 = AnimationUtils.loadAnimation(getBaseContext(),R.anim.abc_fade_in);
+        //final Animation an3 = AnimationUtils.loadAnimation(getBaseContext(),R.anim.abc_fade_in);
         iv.startAnimation(an);
         iv3.startAnimation(an1);
         iv2.startAnimation(an1);
