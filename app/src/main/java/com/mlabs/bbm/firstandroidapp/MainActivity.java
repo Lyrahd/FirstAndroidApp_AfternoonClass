@@ -55,13 +55,14 @@ public class MainActivity extends Activity {
                     if (isEmailValid(strEmail)==true && strPw.length() >= 8 && strPw.matches(".*\\d+.*")){
                         if (strEmail.equals("a@a.com") && strPw.equals("12345Bla")) {
 
-                            msg = "Log-in Successful";
+                            Toast.makeText(getBaseContext(),"Logged-In Successfully",Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(MainActivity.this,NextScreen.class );
                             startActivity(intent);
-                            Toast.makeText(getBaseContext(),"Logged-In Successfully",Toast.LENGTH_LONG).show();
+
                         }else{
 
-                            msg = "Log-in Failed,Invalid password or Account Does not exist";
+                            
+                            Toast.makeText(getBaseContext(),"Log-in Failed,Invalid password or Account Does not exist",Toast.LENGTH_LONG).show();
                         }
 
                     }else{
