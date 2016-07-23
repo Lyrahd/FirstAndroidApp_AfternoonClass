@@ -58,11 +58,12 @@ public class MainActivity extends Activity {
                             msg = "Log-in Successful";
                             Intent intent = new Intent(MainActivity.this,NextScreen.class );
                             startActivity(intent);
+                            Toast.makeText(getBaseContext(),"Logged-In Successfully",Toast.LENGTH_LONG).show();
                         }else{
 
                             msg = "Log-in Failed,Invalid password or Account Does not exist";
                         }
-                        Toast.makeText(getBaseContext(),"Logged-In Successfully",Toast.LENGTH_LONG).show();
+
                     }else{
                         if (isEmailValid(strEmail)!=true) {
                             tEmail.setError("Log-in Failed, Invalid email address");
