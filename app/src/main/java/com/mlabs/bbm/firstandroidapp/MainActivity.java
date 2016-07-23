@@ -19,30 +19,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button btn;
-        final EditText emailAdd,pwd;
+        final EditText emailAdd,passWord;
 
         emailAdd=(EditText)findViewById(R.id.editText);
-        pwd=(EditText)findViewById(R.id.editText2);
+        passWord=(EditText)findViewById(R.id.editText2);
         btn = (Button)findViewById(R.id.button);
         if (btn!=null){
             btn.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public  void onClick(View v){
 
-
-                        if (Pattern.compile("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$").matcher(emailAdd.getText()).matches()) {
-                            if (Pattern.compile("([a-zA-Z0-9]+_?)+").matcher(pwd.getText()).matches() ) {
-                                if (pwd.getText().length()>=6) {
-                                    Intent intent = new Intent(MainActivity.this, blankAct.class);
-                                    startActivity(intent);
-                                    Toast.makeText(getBaseContext(), "Login successful!", Toast.LENGTH_SHORT).show();
-                                }else
-                                    Toast.makeText(getBaseContext(), "Password too short",Toast.LENGTH_SHORT).show();
-                            }else
-                                Toast.makeText(getBaseContext(), "Invalid Password",Toast.LENGTH_SHORT).show();
+                if(passWord.equals("") && emailAdd.equals("")) {
+                    if (Pattern.compile("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$").matcher(emailAdd.getText()).matches()) {
+                        if (Pattern.compile("([a-zA-Z0-9]+_?)+").matcher(passWord.getText()).matches()) {
+                            if (passWord.getText().length() >= 6) {
+                                Intent intent = new Intent(MainActivity.this, blankAct.class);
+                                startActivity(intent);
+                                Toast.makeText(getBaseContext(), "Login successful!", Toast.LENGTH_SHORT).show();
+                            } else
+                                Toast.makeText(getBaseContext(), "Password too short", Toast.LENGTH_SHORT).show();
                         } else
-                            Toast.makeText(getBaseContext(), "Invalid Email address!", Toast.LENGTH_SHORT).show();
-
+                            Toast.makeText(getBaseContext(), "Invalid Password", Toast.LENGTH_SHORT).show();
+                    } else
+                        Toast.makeText(getBaseContext(), "Invalid Email address!", Toast.LENGTH_SHORT).show();
+                }else
+                        Toast.makeText(getBaseContext(),"Email or Password field must not be empty",Toast.LENGTH_SHORT).show();
 
                 }
             });
