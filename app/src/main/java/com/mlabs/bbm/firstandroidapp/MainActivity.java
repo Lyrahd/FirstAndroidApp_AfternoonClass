@@ -18,32 +18,29 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       final EditText email = (EditText) findViewById(R.id.email);
-       final EditText password = (EditText) findViewById(R.id.pass);
+        final EditText email = (EditText) findViewById(R.id.email);
+        final EditText password = (EditText) findViewById(R.id.pass);
         Button validate = (Button) findViewById(R.id.buttonL);
 
         validate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!validateEmail(email.getText().toString())){
+                if (!validateEmail(email.getText().toString())) {
                     email.setError("Invalid Email");
                     email.requestFocus();
-                }else if(!validatePassword(password.getText().toString())){
+                } else if (!validatePassword(password.getText().toString())) {
                     password.setError("Invalid Password");
                     password.requestFocus();
-                }else{
+                } else {
                     Toast toast = Toast.makeText(getApplicationContext(), "WELCOME !!!",
                             Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.TOP| Gravity.LEFT,0,0);
+                    toast.setGravity(Gravity.TOP | Gravity.LEFT, 0, 0);
                     toast.show();
-                    Intent intent = new Intent(MainActivity.this,Main2Activity .class );
+                    Intent intent = new Intent(MainActivity.this, Main2Activity.class);
                     startActivity(intent);
                 }
             }
-
-
-        });
-    }
+        });}
     private boolean validateEmail(String email) {
         String emailRegEx;
         Pattern pattern;
@@ -57,18 +54,14 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-
-
-
     private boolean validatePassword(String password) {
-       if(password !=null && password.length()>7){
-           return true;
-       }else
-        return false;
-
+        if (password != null && password.length() > 7) {
+            return true;
+        } else
+            return false;
     }
+}
 
 
 
-    }
 
