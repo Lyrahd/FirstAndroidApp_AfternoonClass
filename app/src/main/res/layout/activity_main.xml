@@ -7,10 +7,79 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.mlabs.bbm.firstandroidapp.MainActivity">
+    tools:context="com.mlabs.bbm.firstandroidapp.MainActivity"
+    android:background="#ff2929">
+
+    <ImageView
+        android:orientation="horizontal"
+        android:layout_width="250dp"
+        android:layout_height="165dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/plashtu"
+        android:layout_above="@+id/editText"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Email Address"
+        android:id="@+id/textView"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textStyle="normal"
+        android:textColor="@color/abc_primary_text_disable_only_material_dark"
+        android:textSize="13dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Password"
+        android:id="@+id/textView2"
+        android:textStyle="normal"
+        android:typeface="sans"
+        android:textColor="@color/abc_primary_text_disable_only_material_dark"
+        android:layout_below="@+id/editText2"
+        android:layout_centerHorizontal="true"
+        android:textSize="13dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:width="216dp"
+        android:layout_above="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:autoText="true"
+        android:singleLine="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:width="216dp"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/editText"
+        android:layout_alignStart="@+id/editText"
+        android:singleLine="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="ok"
+        android:id="@+id/buttonok"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_alignStart="@+id/editText2"
+        android:layout_marginTop="50dp"
+        android:layout_alignRight="@+id/editText"
+        android:layout_alignEnd="@+id/editText"
+        android:longClickable="false"
+        android:contextClickable="true"
+        android:textColor="#ffffff"
+        android:typeface="sans"
+        android:background="#ff4a4a" />
+
 </RelativeLayout>
