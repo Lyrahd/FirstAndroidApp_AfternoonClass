@@ -25,7 +25,7 @@
         <TextView android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/holo_orange_dark"
-            android:text="Username"
+            android:text="Username/Email"
             android:textSize="15dp"
             android:autoText="false" />
         <EditText android:layout_width="fill_parent"

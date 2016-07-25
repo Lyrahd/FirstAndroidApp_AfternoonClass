@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 {
                     Intent i = new Intent(MainActivity.this,Display.class);
                     startActivity(i);
-                    Toast.makeText(MainActivity.this, "Welcome back Agent!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "Welcome back Agent!",Toast.LENGTH_SHORT).show();
 
                 }
                 /**
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 if (Pattern.compile("^\\w+.*\\w*@[a-zA-Z_]+?\\.[0-9a-zA-Z]{2,}$").matcher(editUser.getText()).matches() && editPass.length()>=6){
                     Intent i = new Intent(MainActivity.this,Display.class);
                     startActivity(i);
-                    Toast.makeText(MainActivity.this, "Welcome back Agent!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "Welcome back Agent!",Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Toast.makeText(getBaseContext(),"Email or Password is Incorrect",Toast.LENGTH_SHORT).show();
