@@ -29,8 +29,8 @@ public class LogInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String email = editemail.getText().toString();
-                String pass = editpass.getText().toString();
-                if((!isValidEmail(email))||(!isValidPassword(pass))){
+                String passa = editpass.getText().toString();
+                if((!isValidEmail(email))||(!isValidPassword(passa))){
                     Toast.makeText(LogInActivity.this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
                 }
                 else{
