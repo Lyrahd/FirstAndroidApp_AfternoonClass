@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.TOP | Gravity.LEFT, 0, 0);
                     toast.show();
-                    Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                    Intent intent = new Intent(MainActivity.this,Main2Activity.class);
                     startActivity(intent);
                 }
             }

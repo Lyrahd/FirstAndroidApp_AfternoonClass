@@ -10,27 +10,6 @@
     tools:context="com.mlabs.bbm.firstandroidapp.MainActivity"
     android:background="@drawable/bear2">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/email"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:text="Email Address"
-        android:nestedScrollingEnabled="false" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/pass"
-        android:layout_below="@+id/email"
-        android:layout_centerHorizontal="true"
-        android:text="Password" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,4 +17,41 @@
         android:id="@+id/buttonL"
         android:layout_below="@+id/pass"
         android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/email"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/pass"
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/email"
+        android:layout_alignStart="@+id/email" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:id="@+id/textView2"
+        android:layout_above="@+id/email"
+        android:layout_toLeftOf="@+id/buttonL"
+        android:layout_toStartOf="@+id/buttonL" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/email"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2" />
 </RelativeLayout>
