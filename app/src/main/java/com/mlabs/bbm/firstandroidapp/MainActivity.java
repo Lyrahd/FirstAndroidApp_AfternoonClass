@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                             Intent i;
                             i = new Intent(MainActivity.this, Activity2.class);
                             startActivity(i);
-
+                            finish();
                             Toast.makeText(MainActivity.this, (R.string.login),
                                     Toast.LENGTH_SHORT).show();
                         }
