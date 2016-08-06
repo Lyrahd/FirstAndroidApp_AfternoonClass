@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R .layout.activity_main);
 
         final EditText email_ad = (EditText) findViewById(R.id.editText);
         final EditText password_tu = (EditText) findViewById(R.id.editText2);
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                     password_tu.requestFocus();
                 }else{
 
-                    Intent intent = new Intent(MainActivity.this,SplashScreen .class );
+                    Intent intent = new Intent(MainActivity.this,Home .class );
                     startActivity(intent);
                 }
             }
