@@ -58,6 +58,7 @@ public class MainActivity extends Activity {
                             Toast.makeText(getBaseContext(),"Logged-In Successfully",Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(MainActivity.this,NextScreen.class );
                             startActivity(intent);
+                            finish();
 
                         }else{
 
