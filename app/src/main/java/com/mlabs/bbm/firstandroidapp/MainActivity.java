@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent i;
                     i = new Intent(MainActivity.this, Activity.class);
                     startActivity(i);
+                    finish(); //change
                 }
 
                 if(emailChecker(txtEmail.getText())==false)
