@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent i;
                     i = new Intent(MainActivity.this, Activity.class);
                     startActivity(i);
+                    finish();
                 }
                 if(validateEmail(edtxt1.getText())==false)
                 {
