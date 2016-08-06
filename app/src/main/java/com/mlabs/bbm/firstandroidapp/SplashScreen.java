@@ -1,5 +1,3 @@
-
-
 package com.mlabs.bbm.firstandroidapp;
 
 import android.app.Activity;

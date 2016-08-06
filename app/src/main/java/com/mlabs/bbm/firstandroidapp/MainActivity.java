@@ -45,13 +45,14 @@ public class MainActivity extends ActionBarActivity {
 
                 i.putExtra("Username",uname);
                 startActivity(i);
+                Intent intent = new Intent(MainActivity.this,Display.class );
+                startActivity(intent);
+                finish();
             }
             else
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setMessage(" Username or Password Must Be :" +  "\n" +
-                        " ALPHANUMERIC" + "\n" +
-                        " 8 to 24 Characters");
+                builder.setMessage(" Invalid Username or Password");
                 builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
