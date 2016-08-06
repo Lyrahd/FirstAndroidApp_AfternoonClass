@@ -31,9 +31,10 @@
         android:layout_marginTop="320dp"
         android:layout_marginLeft="20dp"/>
     <Button
+        android:id="@+id/btn"
+        android:text="LOGIN"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:text="LOGIN"
         android:layout_marginTop="390dp"
         android:background="#cc4646"
         android:layout_marginLeft="20dp"
@@ -46,7 +47,7 @@
         android:text="SIGN UP"
         android:onClick="sendMessage"
         android:layout_marginTop="500dp"
-        android:layout_marginLeft="140dp"
+        android:layout_marginLeft="120dp"
         style="?android:attr/borderlessButtonStyle" />
 
     <ImageView
@@ -62,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Magkabilang Mundo App"
+        android:text="Magkabilang Mundo"
         android:id="@+id/textView"
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
