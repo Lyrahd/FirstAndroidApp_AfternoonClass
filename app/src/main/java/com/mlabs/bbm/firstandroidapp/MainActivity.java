@@ -29,21 +29,22 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public  void onClick(View v){
 
-                if(passWord.equals("") && emailAdd.equals("")) {
+                if (passWord.equals("") && !emailAdd.equals("")) {
+                    Toast.makeText(getBaseContext(),"Email or Password field must not be empty",Toast.LENGTH_SHORT).show();
+                }else
                     if (Pattern.compile("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$").matcher(emailAdd.getText()).matches()) {
                         if (Pattern.compile("([a-zA-Z0-9]+_?)+").matcher(passWord.getText()).matches()) {
                             if (passWord.getText().length() >= 6) {
                                 Intent intent = new Intent(MainActivity.this, blankAct.class);
                                 startActivity(intent);
                                 Toast.makeText(getBaseContext(), "Login successful!", Toast.LENGTH_SHORT).show();
+                                finish();
                             } else
                                 Toast.makeText(getBaseContext(), "Password too short", Toast.LENGTH_SHORT).show();
                         } else
                             Toast.makeText(getBaseContext(), "Invalid Password", Toast.LENGTH_SHORT).show();
                     } else
                         Toast.makeText(getBaseContext(), "Invalid Email address!", Toast.LENGTH_SHORT).show();
-                }else
-                        Toast.makeText(getBaseContext(),"Email or Password field must not be empty",Toast.LENGTH_SHORT).show();
 
                 }
             });
