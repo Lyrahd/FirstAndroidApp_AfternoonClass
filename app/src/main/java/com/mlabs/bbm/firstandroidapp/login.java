@@ -50,5 +50,10 @@ public class login extends AppCompatActivity {
             }
         });
     }
+    @Override
+    protected  void onPause(){
+        super.onPause();
+        finish();
+    }
 }
 
