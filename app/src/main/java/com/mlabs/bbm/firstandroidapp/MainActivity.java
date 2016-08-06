@@ -13,7 +13,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
         final EditText email = (EditText) findViewById(R.id.email);
         final EditText password = (EditText) findViewById(R.id.pass);
         Button validate = (Button) findViewById(R.id.buttonL);
-
         validate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
