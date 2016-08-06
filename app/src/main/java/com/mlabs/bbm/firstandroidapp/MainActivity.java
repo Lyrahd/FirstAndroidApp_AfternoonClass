@@ -26,18 +26,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 /**
-                final String email = editUser.getText().toString();
-                final String pass = editPass.getText().toString();
-                if((!isValidEmail(email))||(!isValidPassword(pass))){
-                    Toast.makeText(MainActivity.this, "Warning! Agent Username or Password is incorrect!",Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Intent i = new Intent(MainActivity.this, Display.class);
-                    startActivity(i);
-
-                }
-                 */
-                /**
                  * for user name validation ONLY + password
                  */
                 if (Pattern.compile("([a-zA-Z0-9]+_?)+").matcher(editUser.getText()).matches() && editPass.length()>=6)
@@ -45,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent i = new Intent(MainActivity.this,Display.class);
                     startActivity(i);
                     Toast.makeText(getBaseContext(), "Welcome back Agent!",Toast.LENGTH_SHORT).show();
-
                 }
                 /**
                  * for email validation ONLY + password
@@ -62,19 +49,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /**
-    public void onButtonClick(View v)
-    {
-        if(v.getId() == R.id.btnLogin)
-        {
-
-            Intent i = new Intent(MainActivity.this, Display.class);
-            startActivity(i);
-
-
-        }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
-    */
+
     // validating email id
     private boolean isValidEmail(String email) {
         String EMAIL_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$#]).{6,20})";
@@ -83,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
-
     // validating password with retype password
     private boolean isValidPassword(String pass) {
         if (pass != null && pass.length() > 6) {
@@ -91,6 +70,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
-
 }
 
