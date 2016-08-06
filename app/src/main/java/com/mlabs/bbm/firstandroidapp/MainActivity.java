@@ -2,88 +2,80 @@ package com.mlabs.bbm.firstandroidapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.view.Gravity;
+import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
+
+
+    public static boolean emailChecker(CharSequence email) {
+        if (TextUtils.isEmpty(email)) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        }
+    }
+
+    Button btnLogin;
+    EditText txtEmail,txtPword;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final EditText email = (EditText) findViewById(R.id.email);
-        final EditText password = (EditText) findViewById(R.id.pass);
-        Button validate = (Button) findViewById(R.id.buttonL);
-            email.setOnClickListener(new View.OnClickListener(){
+        btnLogin=(Button)findViewById(R.id.btnLogin);
+        txtEmail=(EditText)findViewById(R.id.txtEmail);
+        txtPword=(EditText)findViewById(R.id.txtPass);
 
-                @Override
-                public void onClick(View v) {
-                    email.setText("");
-                }
-            });
-        password.setOnClickListener(new View.OnClickListener(){
 
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                password.setText("");
-            }
-        });
-        if (validate != null) {
-            validate.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (!validateEmail(email.getText().toString())) {
-                        email.setError("Invalid Email");
-                        email.requestFocus();
-                    } else if (!validatePassword(password.getText().toString())) {
-                        password.setError("Invalid Password");
-                        password.requestFocus();
-                    } else {
-                        Toast toast = Toast.makeText(getApplicationContext(), "Your toast message.",
-                                Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.TOP | Gravity.LEFT, 100, 200);
-                        toast.show();
-                        Intent intent = new Intent(MainActivity.this, SplashScreen.class);
-                        startActivity(intent);
-                    }
+
+                txtEmail.setError(null);
+                txtPword.setError(null);
+
+                if(emailChecker(txtEmail.getText())==true && txtPword.getText().length()>0)
+                {
+                    Intent i;
+                    i = new Intent(MainActivity.this, main.class);
+                    startActivity(i);
+                    finish(); //change
+                }
+
+                if(emailChecker(txtEmail.getText())==false)
+                {
+                    txtEmail.setError("Invalid Email");
                 }
 
 
-            });
-        }
-    }
+                else if(txtEmail.getText().toString().equals("") &&
 
-    private boolean validateEmail(String email) {
-        String emailRegEx;
-        Pattern pattern;
-        // Regex for a valid email address
-        emailRegEx = "^[A-Za-z0-9._%+\\-]+@[A-Za-z0-9.\\-]+\\.[A-Za-z]{2,4}$";
-        // Compare the regex with the email address
-        pattern = Pattern.compile(emailRegEx);
-        Matcher matcher = pattern.matcher(email);
-        if (!matcher.find()) {
-            return false;
-        }
-        return true;
-    }
+                        txtPword.getText().toString().equals("")) {
+                    txtEmail.setError("Pls Enter Email Address");
+                    txtPword.setError("Pls Enter Password");
+                }
 
+                else if(txtEmail.getText().toString().equals("")) {
+                    txtEmail.setError("Pls Enter Email Address");
 
-    private boolean validatePassword(String password) {
-        if (password != null && password.length() > 9) {
-            return true;
-        } else
-            return false;
+                }
+
+                else if(txtPword.getText().toString().equals("")) {
+                    txtPword.setError("Pls Enter Password");
+                }
+
+            }
+        });
+
 
     }
+
+
 }
-
