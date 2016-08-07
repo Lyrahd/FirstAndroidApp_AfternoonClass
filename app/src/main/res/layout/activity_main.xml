@@ -67,5 +67,12 @@
         android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"></TableRow>
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="358dp"
+            android:id="@+id/imageView2"
+            android:background="@drawable/logo2" />
+    </TableRow>
 </RelativeLayout>
