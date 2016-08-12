@@ -61,6 +61,7 @@ public class MainActivity extends ActionBarActivity {
 
                 i.putExtra("Username",uname);
                 startActivity(i);
+
             }
             else
             {
