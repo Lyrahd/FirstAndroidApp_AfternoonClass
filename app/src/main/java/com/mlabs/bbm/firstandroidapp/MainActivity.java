@@ -55,8 +55,8 @@ public class MainActivity extends ActionBarActivity {
            // Matcher m = r.matcher(line);
            // String x = m.toString();
             boolean b = Pattern.matches("[a-zA-Z0-9]{4,16}", uname);
-           // boolean c = Pattern.matches("[a-zA-Z0-9]{8,24}",pword);
-            if(b == true)
+            boolean c = Pattern.matches("[a-zA-Z0-9]{8,24}",pword);
+            if(b == true && c == true)
             {
 
                 i.putExtra("Username",uname);
