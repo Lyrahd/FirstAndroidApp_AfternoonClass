@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.Button;
 import android.content.Intent;
 import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Toast;
 import java.util.regex.Pattern;
@@ -33,15 +34,17 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
                 return true;
-                /*if (eventA == motionEvent.ACTION_UP) {
+                /*int EventAct = motion.getAction();
 
-                     editpass.setTransformationMethod(new PasswordTransformationMethod());
-                } else if (eventA == motionEvent.ACTION_CANCEL) {
-                    editpass.setTransformationMethod(new PasswordTransformationMethod());
-                } else if (eventA == motionEvent.ACTION_DOWN) {
-                    editpass.setTransformationMethod(null);
+                if (EventAct == MotionEvent.ACTION_UP) {
+
+                    password.setTransformationMethod(new PasswordTransformationMethod());
+                } else if (EventAct == MotionEvent.ACTION_CANCEL) {
+                    password.setTransformationMethod(new PasswordTransformationMethod());
+                } else if (EventAct == MotionEvent.ACTION_DOWN) {
+                    password.setTransformationMethod(null);
                }
-                return true; */
+                return true;*/
             }
         });
         // Button for Login
