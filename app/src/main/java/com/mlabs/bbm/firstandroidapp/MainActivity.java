@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -71,10 +72,10 @@ public class MainActivity extends AppCompatActivity {
                 switch (event)
                 {
                     case MotionEvent.ACTION_UP:
-                        edtxt2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        edtxt2.setTransformationMethod(PasswordTransformationMethod.getInstance());
                         return true;
                     case MotionEvent.ACTION_DOWN:
-                        edtxt2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        edtxt2.setTransformationMethod(null);
                         return true;
                     case MotionEvent.ACTION_CANCEL:
                         edtxt2.setTransformationMethod(null);
