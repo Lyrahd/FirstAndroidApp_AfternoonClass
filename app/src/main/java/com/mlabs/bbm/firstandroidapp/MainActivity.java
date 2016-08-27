@@ -3,6 +3,9 @@ package com.mlabs.bbm.firstandroidapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +16,7 @@ import java.util.regex.Pattern;
 public class MainActivity extends AppCompatActivity {
     Button button1;
     EditText editext1, editext2;
+    Button show;
 
 
     @Override
@@ -22,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         button1=(Button)findViewById(R.id.button);
         editext1=(EditText)findViewById(R.id.editText);
         editext2=(EditText)findViewById(R.id.editText2);
+        show = (Button)findViewById(R.id.button3);
 
 
 
@@ -47,7 +52,37 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             });
+        show.setOnTouchListener(new View.OnTouchListener() {
+                                    @Override
+                                    public boolean onTouch(View view, MotionEvent motionEvent) {
+                                        int event = motionEvent.getAction();
+                                        /** if (event == MotionEvent.ACTION_DOWN){
+                                         editext2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                                         }
+                                         else if (event == MotionEvent.ACTION_UP){
+                                         editext2.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                                         }
+                                         else if (event == MotionEvent.ACTION_CANCEL){
+                                         editext2.setTransformationMethod(new PasswordTransformationMethod());
+                                         }
+                                         return false; **/
+
+                                        switch (event) {
+                                            case MotionEvent.ACTION_DOWN:
+                                                editext2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                                                break;
+                                            case MotionEvent.ACTION_UP:
+                                                editext2.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                                                break;
+                                            case MotionEvent.ACTION_CANCEL:
+                                                editext2.setTransformationMethod(new PasswordTransformationMethod());
+                                        }
+                                        return false;
+                                    }
+                                }
+        );
         }
+
 
     private boolean isValidEmail(String email) {
 
