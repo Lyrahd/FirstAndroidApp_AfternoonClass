@@ -46,8 +46,9 @@
         android:textColorHint="#c2c2c2"
         android:password="true"
         android:layout_below="@+id/txtEmail"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp" />
+        android:layout_marginBottom="15dp"
+        android:layout_toLeftOf="@+id/btnShow"
+        android:layout_toStartOf="@+id/btnShow" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -66,9 +67,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Login with Facebook"
+        android:text="No account yet? Sign up here"
         android:id="@+id/txtFB"
         android:textColor="#cacaca"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_orange_dark"
+        android:text="Show"
+        android:id="@+id/btnShow"
+        android:layout_below="@+id/txtEmail"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView"
+        android:layout_alignBottom="@+id/txtPassword"
+        android:layout_toEndOf="@+id/txtFB" />
 </RelativeLayout>

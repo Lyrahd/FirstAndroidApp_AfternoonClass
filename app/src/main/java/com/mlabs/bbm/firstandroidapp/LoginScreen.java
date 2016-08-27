@@ -1,12 +1,16 @@
 package com.mlabs.bbm.firstandroidapp;
 
+import android.text.method.PasswordTransformationMethod;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.TextView;
+
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,10 +22,10 @@ public class LoginScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_screen);
 
-
         final EditText email = (EditText) findViewById(R.id.txtEmail);
         final EditText password = (EditText) findViewById(R.id.txtPassword);
         Button login = (Button) findViewById(R.id.btnLogin);
+        final Button btnShow = (Button) findViewById(R.id.btnShow);
 
         login.setOnClickListener(new View.OnClickListener() {
 
@@ -42,7 +46,7 @@ public class LoginScreen extends AppCompatActivity {
 
             //Return true if password is valid and false if password is invalid.
             private boolean validatePassword(String password) {
-                if (password != null && password.length() > 9) {
+                if (password != null && password.length() > 3) {
                     return true;
                 } else {
                     return false;
@@ -62,5 +66,33 @@ public class LoginScreen extends AppCompatActivity {
 
 
         });
+
+
+        btnShow.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                boolean res = false;
+                int x = motionEvent.getAction();
+
+                switch(x){
+                    case MotionEvent.ACTION_DOWN:
+                        password.setTransformationMethod(null);
+                        res = true;
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        password.setTransformationMethod(new PasswordTransformationMethod());
+                        break;
+                }
+                return res;
+            }
+
+        });
     }
+
+    @Override
+    protected  void onPause(){
+        super.onPause();
+        finish();
+    }
+
 }
