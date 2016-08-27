@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,11 +19,14 @@ import java.util.regex.Pattern;
  */
 public class Login extends AppCompatActivity {
     EditText editText,editText2;
-
+    TextView show;
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.logn);
+    Button loginbtn;
+    final EditText emailAddress,passW;
+    show = (TextView)findViewById(R.id.szhow);
 
    editText = (EditText) findViewById(R.id.editText);
     editText2 = (EditText) findViewById(R.id.editText2);
@@ -44,6 +51,24 @@ protected void onCreate(Bundle savedInstanceState) {
 
         }
     });
+    show.setOnTouchListener(new View.OnTouchListener()
+    {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent)
+        {
+            switch( motionEvent.getAction())
+            {
+                case MotionEvent.ACTION_DOWN:
+                    editText2.setInputType(InputType.TYPE_CLASS_TEXT);
+                    break;
+                case MotionEvent.ACTION_UP:
+                    editText2.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    break;
+            }
+            return true;
+        }
+
+    });
 }
 
 
@@ -62,6 +87,13 @@ protected void onCreate(Bundle savedInstanceState) {
             return true;
         }
         return false;
+
     }
-}
+
+
+
+
+    }
+
+
 
