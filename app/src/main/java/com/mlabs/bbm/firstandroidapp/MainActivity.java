@@ -4,6 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    Button login_btn;
+    Button login_btn,show_btn;
     EditText email_txt,password_txt;
 
     @Override
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         login_btn=(Button)findViewById(R.id.login_btn);
         email_txt=(EditText)findViewById(R.id.email_txt);
         password_txt=(EditText)findViewById(R.id.password_txt);
+        show_btn=(Button)findViewById(R.id.show_btn);
 
 
         login_btn.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +76,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    show_btn.setOnTouchListener(new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            int event = motionEvent.getAction();
+
+            switch (event) {
+                case MotionEvent.ACTION_UP:
+                    password_txt.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    return true;
+                case MotionEvent.ACTION_DOWN:
+                    password_txt.setTransformationMethod(null);
+                    return true;
+                case MotionEvent.ACTION_CANCEL:
+                    password_txt.setTransformationMethod(null);
+                    return true;
+            }
+        return true;
+        }
+
+
+
+        });
 
     }
 

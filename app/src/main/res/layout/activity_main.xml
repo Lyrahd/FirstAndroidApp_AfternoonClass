@@ -30,7 +30,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:id="@+id/email_txt"
             android:textSize="20dp"
@@ -44,7 +44,7 @@
             android:singleLine="true" />
 
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:id="@+id/password_txt"
             android:hint="Password"
@@ -55,15 +55,17 @@
             android:layout_marginRight="25dp"
             android:inputType="textPassword"
             android:singleLine="true" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <Button
-            android:layout_width="match_parent"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="show password"
+            android:id="@+id/show_btn"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:layout_width="283dp"
             android:layout_height="wrap_content"
             android:text="Log In"
             android:id="@+id/login_btn"
@@ -74,9 +76,17 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             />
+
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -92,7 +102,7 @@
             android:id="@+id/textView2"
             android:layout_gravity="center_horizontal" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
