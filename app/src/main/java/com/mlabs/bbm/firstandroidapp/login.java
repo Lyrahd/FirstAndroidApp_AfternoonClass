@@ -64,7 +64,7 @@ public class login extends AppCompatActivity {
                         txtPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                         break;
                     case MotionEvent.ACTION_CANCEL:
-                        txtPass.setInputType(InputType.TYPE_CLASS_TEXT);
+                    txtPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                         break;
                 }
                  **/
@@ -75,7 +75,7 @@ public class login extends AppCompatActivity {
                     txtPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 }
                 else if (event.getAction()==MotionEvent.ACTION_CANCEL){
-                    txtPass.setInputType(InputType.TYPE_CLASS_TEXT);
+                    txtPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 }
                 return true;
             }
