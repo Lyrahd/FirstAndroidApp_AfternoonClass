@@ -96,15 +96,19 @@ public class MainActivity extends Activity {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
                 int eventP = event.getAction();
+                final int cursor = tPw.getSelectionStart();
                 switch (eventP){
                     case MotionEvent.ACTION_DOWN:
                         tPw.setTransformationMethod(null);
+                        tPw.setSelection(cursor);
                         break;
                     case MotionEvent.ACTION_UP :
                         tPw.setTransformationMethod(new PasswordTransformationMethod());
+                        tPw.setSelection(cursor);
                         break;
                     case MotionEvent.ACTION_CANCEL:
                         tPw.setTransformationMethod(new PasswordTransformationMethod());
+                        tPw.setSelection(cursor);
                         break;
                 }
 
