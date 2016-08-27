@@ -6,15 +6,5 @@
     android:background="@android:color/background_light"
     android:weightSum="1">
 
-<<<<<<< HEAD
-=======
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="424dp"
-        android:id="@+id/imageView"
-        android:src="@drawable/logo"
-        android:background="@drawable/logo2"
-        android:layout_weight="0.22" />
 
->>>>>>> 2b5c165b63f91230bf28e3cb3f3f190aa871390b
 </LinearLayout>
