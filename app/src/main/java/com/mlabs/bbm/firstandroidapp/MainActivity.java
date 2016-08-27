@@ -42,23 +42,6 @@ public class MainActivity extends Activity {
         login_button = (Button) findViewById(R.id.btn_LogIn);
         show_button = (TextView) findViewById(R.id.show_password);
 
-/*      username.setTextColor(Color.GRAY);
-        password.setTextColor(Color.GRAY);
-*/
-  /*      username.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                username.setText("");
-            }
-        });
-
-        password.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                password.setText("");
-            }
-        });
-*/
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
