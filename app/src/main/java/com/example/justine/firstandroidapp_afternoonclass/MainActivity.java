@@ -33,6 +33,15 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
                 return true;
+                /*if (eventA == motionEvent.ACTION_UP) {
+
+                     editpass.setTransformationMethod(new PasswordTransformationMethod());
+                } else if (eventA == motionEvent.ACTION_CANCEL) {
+                    editpass.setTransformationMethod(new PasswordTransformationMethod());
+                } else if (eventA == motionEvent.ACTION_DOWN) {
+                    editpass.setTransformationMethod(null);
+               }
+                return true; */
             }
         });
         // Button for Login
