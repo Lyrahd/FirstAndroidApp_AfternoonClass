@@ -57,27 +57,26 @@ public class MainActivity extends AppCompatActivity {
                                     public boolean onTouch(View view, MotionEvent motionEvent) {
                                         int event = motionEvent.getAction();
                                         /** if (event == MotionEvent.ACTION_DOWN){
-                                         editext2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                                         editext2.setTransformationMethod(null);
                                          }
                                          else if (event == MotionEvent.ACTION_UP){
-                                         editext2.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                                         }
-                                         else if (event == MotionEvent.ACTION_CANCEL){
                                          editext2.setTransformationMethod(new PasswordTransformationMethod());
                                          }
+
                                          return false; **/
 
                                         switch (event) {
                                             case MotionEvent.ACTION_DOWN:
-                                                editext2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                                                editext2.setTransformationMethod(null);
                                                 break;
                                             case MotionEvent.ACTION_UP:
-                                                editext2.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                                                break;
-                                            case MotionEvent.ACTION_CANCEL:
                                                 editext2.setTransformationMethod(new PasswordTransformationMethod());
+                                                break;
+                                            /**case MotionEvent.ACTION_CANCEL:
+                                                editext2.setTransformationMethod(new PasswordTransformationMethod());**/
                                         }
-                                        return false;
+
+                                        return true;
                                     }
                                 }
         );
