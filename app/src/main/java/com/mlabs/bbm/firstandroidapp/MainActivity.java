@@ -3,6 +3,9 @@ package com.mlabs.bbm.firstandroidapp;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -11,6 +14,7 @@ import android.widget.Toast;
 import android.content.Intent;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import android.view.MotionEvent;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText email = (EditText) findViewById(R.id.email);
         final EditText password = (EditText) findViewById(R.id.password);
         Button btnLogin = (Button) findViewById(R.id.btnLogin);
+        Button btnShow = (Button) findViewById(R.id.btnShow);
 
 //        button login
        btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +45,37 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(i);
                         finish();
                 }
+            }
+        });
+
+        btnShow.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent motionevent) {
+                int event = motionevent.getAction();
+                switch (event) {
+                    case MotionEvent.ACTION_DOWN:
+                        password.setTransformationMethod(null);
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
+                        password.setTransformationMethod(new PasswordTransformationMethod());
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        password.setTransformationMethod(new PasswordTransformationMethod());
+                        break;
+
+                    //password.setInputType(InputType.TYPE_CLASS_TEXT);
+                    //password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    //password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                   // int event = motionevent.getAction();
+                    //if (event == MotionEvent.ACTION_DOWN) {
+                     // password.setInputType(InputType.TYPE_CLASS_TEXT);
+                    //}
+                    //else if(event == MotionEvent.ACTION_UP) {
+                      //password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    //}
+
+                }
+                return true;
             }
         });
     }
