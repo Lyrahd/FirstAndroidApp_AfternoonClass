@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         show.setOnTouchListener(new View.OnTouchListener() {
                                     @Override
                                     public boolean onTouch(View view, MotionEvent motionEvent) {
+                                        final int cursor = editext2.getSelectionStart();
                                         int event = motionEvent.getAction();
                                         /** if (event == MotionEvent.ACTION_DOWN){
                                          editext2.setTransformationMethod(null);
@@ -68,15 +69,17 @@ public class MainActivity extends AppCompatActivity {
                                         switch (event) {
                                             case MotionEvent.ACTION_DOWN:
                                                 editext2.setTransformationMethod(null);
+                                                editext2.setSelection(cursor);
                                                 break;
                                             case MotionEvent.ACTION_UP:
                                                 editext2.setTransformationMethod(new PasswordTransformationMethod());
+                                                editext2.setSelection(cursor);
                                                 break;
                                             /**case MotionEvent.ACTION_CANCEL:
                                                 editext2.setTransformationMethod(new PasswordTransformationMethod());**/
                                         }
 
-                                        return true;
+                                        return false;
                                     }
                                 }
         );
