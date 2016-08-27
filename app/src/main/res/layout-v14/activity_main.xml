@@ -61,7 +61,7 @@
         android:background="#ff8119"
         android:textColor="@color/abc_primary_text_material_dark"
         android:layout_gravity="center|left"
-        android:layout_above="@+id/button2"
+        android:layout_below="@+id/textView3"
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView" />
 
@@ -86,24 +86,12 @@
         android:layout_alignParentEnd="true"
         android:contentDescription="@string/imageView" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/exit"
-        android:id="@+id/button2"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/editText2"
-        android:layout_alignEnd="@+id/editText2"
-        android:background="@android:color/holo_red_dark" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="show"
         android:id="@+id/textView7"
         android:layout_alignBottom="@+id/textView3"
-        android:layout_toLeftOf="@+id/button2"
-        android:layout_toStartOf="@+id/button2" />
+        android:layout_alignRight="@+id/editText2" />
 
 </RelativeLayout>
