@@ -4,15 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.regex.Pattern;
 
 /**
- * Created by Ruzzl on 7/22/2016.
+ * Created by homerDC on 7/22/2016.
  */
 public class login extends AppCompatActivity{
     @Override
@@ -25,6 +28,7 @@ public class login extends AppCompatActivity{
         emailAddress = (EditText)findViewById(R.id.editText);
         passW = (EditText)findViewById(R.id.editText2);
         loginbtn = (Button)findViewById(R.id.button);
+        TextView szhow = (TextView) findViewById(R.id.show);
         if (loginbtn != null) {
             loginbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -44,6 +48,24 @@ public class login extends AppCompatActivity{
             });
 
         }
+        szhow.setOnTouchListener(new View.OnTouchListener()
+        { @Override
+            public boolean onTouch(View view, MotionEvent motionEvent)
+            {
+                switch (motionEvent.getAction())
+                {
+                    case MotionEvent.ACTION_DOWN:
+                        passW.setInputType(InputType.TYPE_CLASS_TEXT);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        passW.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        break;
+                }
+                return true;
+
+            }
+        });
 
     }
+
 }
