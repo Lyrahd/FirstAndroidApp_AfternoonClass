@@ -1,18 +1,24 @@
 package com.mlabs.bbm.firstandroidapp;
 
+//import android.support.annotation.BoolRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.content.Intent;
 import android.widget.EditText;
 import android.widget.Toast;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import android.widget.TextView;//text view declaration of pwd_show
+import android.text.InputType;//class for show password
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText editUser;
     private EditText editPass;
+    private TextView pwd_show; //Declaration for show password variable
+    //Boolean onTouch = true; //For ShowPassword
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +27,23 @@ public class MainActivity extends AppCompatActivity {
 
         editUser = (EditText) findViewById(R.id.editUser);
         editPass = (EditText) findViewById(R.id.editPass);
+        pwd_show = (TextView)findViewById(R.id.pwd_show); //another declaration for pwd_show
+        //below is the actual code of pwd_show based on STACK OVERFLOW
+        pwd_show.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View view, MotionEvent motionevent){
+                switch ( motionevent.getAction() ) {
+                    case MotionEvent.ACTION_DOWN:
+                        editPass.setInputType(InputType.TYPE_CLASS_TEXT);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        editPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        break;
+                }
+                return true;
+            }
+        });
+
 
         findViewById(R.id.btnLogin).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+    //Exit automatically code
     @Override
     protected void onPause() {
         super.onPause();

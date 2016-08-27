@@ -42,6 +42,7 @@
             android:textColor="@android:color/holo_orange_dark"
             android:text="Password"
             android:textSize="15dp" />
+
         <EditText android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
@@ -80,6 +81,16 @@
         android:textSize="17dip"
         android:textColor="@android:color/holo_orange_dark"
         android:layout_below="@+id/btnLogin"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SHOW PASSWORD"
+        android:id="@+id/pwd_show"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
