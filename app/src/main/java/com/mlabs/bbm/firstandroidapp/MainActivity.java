@@ -62,11 +62,11 @@ public class MainActivity extends AppCompatActivity {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         password_tu.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                        return true;
+                        break;
 
                     case MotionEvent.ACTION_UP:
                         password_tu.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                        return true;
+                        break;
 
 
                 }
