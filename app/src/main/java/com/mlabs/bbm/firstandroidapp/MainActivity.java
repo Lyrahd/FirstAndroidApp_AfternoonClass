@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 }*/
 
 
-                switch (motionEvent.getAction()) {
+                switch (event) {
                     case MotionEvent.ACTION_UP:
                         txtPword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                         return true;
