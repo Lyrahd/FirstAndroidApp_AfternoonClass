@@ -69,4 +69,13 @@
         android:layout_centerHorizontal="true"
         android:background="#1d272f"
         android:textColor="#ffffff" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show"
+        android:id="@+id/show"
+        android:layout_below="@+id/imageView"
+        android:layout_alignRight="@+id/editText"
+        android:layout_alignEnd="@+id/editText" />
 </RelativeLayout>
