@@ -46,6 +46,8 @@ public class MainActivity extends ActionBarActivity {
                     editText_password.requestFocus();
                 } else {
                     Toast.makeText(MainActivity.this, "Account Validated", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(MainActivity.this,Main_Menu.class );
+                    startActivity(intent);
                 }
             }
 
@@ -68,21 +70,21 @@ public class MainActivity extends ActionBarActivity {
         });
 
         button_show.setOnTouchListener(new View.OnTouchListener() {
-                        public boolean onTouch(View v, MotionEvent show) {
-                                if (show.getAction() == MotionEvent.ACTION_DOWN){
-                                        editText_password.setInputType(InputType.TYPE_CLASS_TEXT);
-                                    }
-                                else if (show.getAction()==MotionEvent.ACTION_UP){
-                                        editText_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                                    }
-                                else if (show.getAction()==MotionEvent.ACTION_CANCEL){
-                                    editText_password.setInputType(InputType.TYPE_CLASS_TEXT)                             ;
-                                        }
-                                return true;
-                            }
-                    });
+            public boolean onTouch(View v, MotionEvent show) {
+                if (show.getAction() == MotionEvent.ACTION_DOWN){
+                    editText_password.setInputType(InputType.TYPE_CLASS_TEXT);
+                }
+                else if (show.getAction()==MotionEvent.ACTION_UP){
+                    editText_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                }
+                else if (show.getAction()==MotionEvent.ACTION_CANCEL){
+                    editText_password.setInputType(InputType.TYPE_CLASS_TEXT)                             ;
+                }
+                return true;
+            }
+        });
 
-        
+
 
     }
 

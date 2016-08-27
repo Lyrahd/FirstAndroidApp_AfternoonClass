@@ -1,6 +1,5 @@
-
-    <resources>
-        <string name="app_name">Aniciete Android App</string>
-    </resources>
+<resources>
+    <string name="app_name">Aniciete App</string>
+</resources>
 
 
