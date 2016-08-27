@@ -50,12 +50,18 @@ public class Login extends AppCompatActivity {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent){
                 int event =motionEvent.getAction();
+                final int cursor=TF2.getSelectionStart();
                 switch(motionEvent.getAction()){
+
                     case MotionEvent.ACTION_DOWN:
+                        Log.d("Classmate","ACTION_DOWN");
                         TF2.setInputType(InputType.TYPE_CLASS_TEXT);
+                        TF2.setSelection(cursor);
                         break;
                     case MotionEvent.ACTION_UP:
+                        Log.d("Classmate","ACTION_DOWN");
                         TF2.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        TF2.setSelection(cursor);
                         break;
                 }
                 return true;
