@@ -97,4 +97,13 @@
         android:layout_alignEnd="@+id/editText2"
         android:background="@android:color/holo_red_dark" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="show"
+        android:id="@+id/textView7"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_toLeftOf="@+id/button2"
+        android:layout_toStartOf="@+id/button2" />
+
 </RelativeLayout>
