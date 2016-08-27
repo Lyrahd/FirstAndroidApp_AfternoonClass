@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                     password.setError("Invalid Password");
                     password.requestFocus();
                 } else {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Your toast message.",
+                    Toast toast = Toast.makeText(getApplicationContext(), "Login Successful",
                             Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
                 int event = motionEvent.getAction();
 
-                switch (motionEvent.getAction()) {
+                switch (event) {
                     case MotionEvent.ACTION_DOWN:
                         password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                         return true;
