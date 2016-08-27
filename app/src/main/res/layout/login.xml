@@ -17,7 +17,8 @@
         android:layout_alignParentStart="true"
         android:layout_marginLeft="385dp"
         android:layout_marginStart="385dp"
-        android:layout_centerVertical="true"></TableRow>
+        android:layout_centerVertical="true"
+        android:id="@+id/tableRow"></TableRow>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -93,5 +94,23 @@
         android:layout_alignEnd="@+id/passwordtxt"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/show"
+        android:textSize="25sp"
+        android:background="@drawable/eye"
+        android:textColor="#ffffff"
+        android:layout_marginLeft="195dp"
+        android:layout_marginStart="195dp"
+        android:layout_alignRight="@+id/passwordtxt"
+        android:layout_alignEnd="@+id/passwordtxt"
+        android:layout_alignBottom="@+id/passwordtxt"
+        android:layout_marginBottom="26dp"
+        android:layout_alignTop="@+id/passwordtxt"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2" />
 
 </RelativeLayout>

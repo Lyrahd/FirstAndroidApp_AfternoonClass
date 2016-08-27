@@ -10,4 +10,6 @@
     tools:context="com.mlabs.bbm.firstandroidapp.MainActivity"
     android:background="#e74c3c">
 
+
+
 </RelativeLayout>
