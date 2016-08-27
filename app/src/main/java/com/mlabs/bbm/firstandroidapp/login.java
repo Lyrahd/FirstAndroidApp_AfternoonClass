@@ -3,7 +3,9 @@ package com.mlabs.bbm.firstandroidapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Patterns;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,6 +49,29 @@ public class login extends AppCompatActivity {
                     {
                         Toast.makeText(getBaseContext(),"Please enter a valid e-mail address.", Toast.LENGTH_SHORT).show();
                     }
+            }
+        });
+        Button pShow;
+        pShow = (Button)findViewById(R.id.btnShow);
+        pShow.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                /**
+                switch ( event.getAction() ) {
+                    case MotionEvent.ACTION_DOWN:
+                        txtPass.setInputType(InputType.TYPE_CLASS_TEXT);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        txtPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        break;
+                }
+                 **/
+                if (event.getAction() == MotionEvent.ACTION_DOWN){
+                    txtPass.setInputType(InputType.TYPE_CLASS_TEXT);
+                }
+                else if (event.getAction()==MotionEvent.ACTION_UP){
+                    txtPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                }
+                return true;
             }
         });
     }

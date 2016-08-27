@@ -15,5 +15,5 @@ public class afterlogin extends AppCompatActivity{
         setContentView(R.layout.afterlogin);
     }
 
-   
+
 }

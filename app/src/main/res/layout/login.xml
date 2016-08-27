@@ -18,7 +18,7 @@
         android:layout_alignParentStart="true" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Password"
         android:inputType="textPassword"
@@ -47,5 +47,15 @@
         android:layout_marginBottom="32dp"
         android:layout_above="@+id/txtEmail"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show"
+        android:id="@+id/btnShow"
+        android:layout_alignTop="@+id/txtPass"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/txtPass" />
 
 </RelativeLayout>
