@@ -4,6 +4,9 @@ import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import  android.content.Intent;
 import android.widget.Button;
@@ -16,15 +19,34 @@ public class MainActivity extends ActionBarActivity {
 
 
     EditText Uname;
-    EditText Pwd;
-    Button btnLogs;
-
+    EditText Pwd,TFPword;
+    Button btnLogs,pshow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        pshow = (Button) findViewById(R.id.pshow);
+        TFPword = (EditText)findViewById(R.id.TFPword);
 
+
+        pshow.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                int eventP = event.getAction();
+                switch (eventP) {
+                    case MotionEvent.ACTION_UP:
+                        TFPword.setTransformationMethod(new PasswordTransformationMethod());
+                        break;
+                    case MotionEvent.ACTION_DOWN:
+                        TFPword.setTransformationMethod(null);
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
+                        TFPword.setTransformationMethod(new PasswordTransformationMethod());
+                        break;
+                }
+                return true;
+            }
+        });
 
     }
 
@@ -34,6 +56,7 @@ public class MainActivity extends ActionBarActivity {
         {
             EditText a = (EditText)findViewById(R.id.TFUname);
             EditText p = (EditText)findViewById(R.id.TFPword);
+
             Intent i = new Intent(MainActivity.this, Display.class);
 
             String uname = a.getText().toString();
@@ -64,8 +87,13 @@ public class MainActivity extends ActionBarActivity {
                 alert.show();
 
             }
+
+
         }
+
+
     }
+
 
     public void clickExit(View x)
     {
