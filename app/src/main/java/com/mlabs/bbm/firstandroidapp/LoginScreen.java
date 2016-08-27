@@ -1,5 +1,6 @@
 package com.mlabs.bbm.firstandroidapp;
 
+import android.database.Cursor;
 import android.text.method.PasswordTransformationMethod;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -80,11 +81,13 @@ public class LoginScreen extends AppCompatActivity {
                     case MotionEvent.ACTION_DOWN:
                         Log.d("LoginScreen.java","ACTION_DOWN");
                         password.setTransformationMethod(null);
+                        password.setSelection(cursor);
                         res = true;
                         break;
                     case MotionEvent.ACTION_UP:
                         Log.d("LoginScreen.java","ACTION_UP");
                         password.setTransformationMethod(new PasswordTransformationMethod());
+                        password.setSelection(cursor);
                         break;
                 }
                 return res;
