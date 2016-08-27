@@ -56,7 +56,7 @@ public class Login extends AppCompatActivity {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent)
         {
-            final int cursor = editText2.getSelectionStart();
+            final int cursor = editText2.getSelectionEnd();
             switch ( motionEvent.getAction() ) {
                 case MotionEvent.ACTION_DOWN:
                     Log.d("Classmate","Action_Down");
@@ -66,6 +66,7 @@ public class Login extends AppCompatActivity {
                 case MotionEvent.ACTION_UP:
                     Log.d("Classmate","Action_Up");
                     editText2.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    editText2.setSelection(cursor);
                     break;
             }
             return true;
