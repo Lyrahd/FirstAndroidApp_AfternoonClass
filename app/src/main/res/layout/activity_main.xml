@@ -41,7 +41,6 @@
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/txtPw"
-            android:layout_gravity="center_horizontal"
             android:textSize="24dp"
             android:hint="Password" />
 
@@ -52,6 +51,14 @@
             android:id="@+id/btnLogin"
             android:layout_gravity="center_horizontal"
             android:textColor="#000000" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="bes"
+            android:id="@+id/btnShow"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="50" />
 
     </LinearLayout>
 </RelativeLayout>

@@ -5,6 +5,9 @@ import android.content.Intent;
 import java.lang.*;
 import android.app.Activity;  // For removing title bar
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window; // For removing title bar
 import android.widget.Button;
@@ -27,14 +30,17 @@ public class MainActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);  // For removing title bar
         setContentView(R.layout.activity_main);
 
-        Button btnLogin = (Button) findViewById(R.id.btnLogin);
+        final Button btnLogin = (Button) findViewById(R.id.btnLogin);
+        final Button btnShow   = (Button)findViewById(R.id.btnShow);
+        final EditText tEmail   = (EditText)findViewById(R.id.txtEmail);
+        final EditText tPw   = (EditText)findViewById(R.id.txtPw);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
 
-                //start of Validations
-                EditText tEmail   = (EditText)findViewById(R.id.txtEmail);
-                EditText tPw   = (EditText)findViewById(R.id.txtPw);
+//start of Validations
+
+
                 String msg;
 
 
@@ -84,6 +90,36 @@ public class MainActivity extends Activity {
 
             }
         });
+
+
+        btnShow.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                int eventP = event.getAction();
+                switch (eventP){
+                    case MotionEvent.ACTION_DOWN:
+                        tPw.setTransformationMethod(null);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        tPw.setTransformationMethod(new PasswordTransformationMethod());
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
+                        tPw.setTransformationMethod(new PasswordTransformationMethod());
+                        break;
+                }
+
+
+
+
+
+
+                return true;
+
+            }
+
+        });
+
+
 
     }
 
