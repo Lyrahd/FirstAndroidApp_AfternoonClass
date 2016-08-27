@@ -42,6 +42,7 @@
         android:background="@drawable/rounded_edittext"
         android:hint="Password"
         android:id="@+id/pass"
+        android:password = "true"
         android:layout_marginTop="25dp"
         android:layout_below="@+id/email"
         android:layout_alignLeft="@+id/email"
@@ -84,5 +85,17 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Show"
+        android:id="@+id/showPass"
+        android:textColor="#FFFF"
+        android:typeface="normal"
+        android:layout_below="@+id/pass"
+        android:layout_alignRight="@+id/pass"
+        android:layout_alignEnd="@+id/pass" />
 
 </RelativeLayout>

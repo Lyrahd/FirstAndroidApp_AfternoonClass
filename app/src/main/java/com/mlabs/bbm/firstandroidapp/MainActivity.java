@@ -4,12 +4,16 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
 
     public final static boolean isValidEmail(CharSequence target) {
         if (TextUtils.isEmpty(target)) {
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText email = (EditText) findViewById(R.id.email);
         final EditText pass = (EditText) findViewById(R.id.pass);
         final Button login = (Button) findViewById(R.id.login);
+        final TextView showPass = (TextView) findViewById(R.id.showPass);
 
         popToast = Toast.makeText(getApplicationContext(), null, Toast.LENGTH_SHORT);
 
@@ -54,7 +59,28 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        showPass.setOnTouchListener(new View .OnTouchListener(){
 
+            @Override
+            public boolean onTouch(View v, MotionEvent motionEvent)
+            {
+                int event = motionEvent.getAction();
+
+                switch(motionEvent.getAction())
+                {
+                    case MotionEvent.ACTION_DOWN:
+                        pass.setTransformationMethod(null);
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        //pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        pass.setTransformationMethod(new PasswordTransformationMethod());
+                        return true;
+                    default:
+                        return false;
+                }
+
+            }
+        });
 
     }
 
