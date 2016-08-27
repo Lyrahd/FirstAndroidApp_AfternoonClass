@@ -80,11 +80,14 @@ public class MainActivity extends AppCompatActivity {
                                         return false;
                                         */
                                         switch(event){
-                                            case MotionEvent.ACTION_DOWN:password.setTransformationMethod(null);
+                                            case MotionEvent.ACTION_DOWN:
+                                                password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                                                 break;
-                                            case MotionEvent.ACTION_UP: password.setTransformationMethod(new PasswordTransformationMethod());
+                                            case MotionEvent.ACTION_UP:
+                                                password.setTransformationMethod(PasswordTransformationMethod.getInstance());
                                                 break;
-                                            case MotionEvent.ACTION_CANCEL: password.setTransformationMethod(new PasswordTransformationMethod());
+                                            case MotionEvent.ACTION_CANCEL:
+                                                password.setTransformationMethod(new PasswordTransformationMethod());
                                         }
                                         return false;
                                     }
