@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mlabs.bbm.firstandroidapp.MainActivity"
-    android:background="@drawable/bear2">
+    android:background="#d48551">
 
     <Button
         android:layout_width="wrap_content"
@@ -54,4 +54,34 @@
         android:layout_below="@+id/email"
         android:layout_alignLeft="@+id/textView2"
         android:layout_alignStart="@+id/textView2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Online Bear"
+        android:id="@+id/textView4"
+        android:textSize="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/email"
+        android:layout_alignStart="@+id/email" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shop"
+        android:id="@+id/textView5"
+        android:textSize="40dp"
+        android:layout_below="@+id/textView4"
+        android:layout_alignRight="@+id/buttonL"
+        android:layout_alignEnd="@+id/buttonL" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show"
+        android:id="@+id/show"
+        android:layout_alignBottom="@+id/pass"
+        android:layout_toRightOf="@+id/pass"
+        android:layout_toEndOf="@+id/pass" />
 </RelativeLayout>
