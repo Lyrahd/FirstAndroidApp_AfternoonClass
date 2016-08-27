@@ -69,10 +69,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="358dp"
-            android:id="@+id/imageView2"
-            android:background="@drawable/logo2" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show"
+            android:id="@+id/button_show"
+            android:layout_gravity="bottom" />
     </TableRow>
 </RelativeLayout>
