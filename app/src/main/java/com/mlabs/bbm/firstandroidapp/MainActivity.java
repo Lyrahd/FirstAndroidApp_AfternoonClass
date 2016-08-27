@@ -3,7 +3,9 @@ package com.mlabs.bbm.firstandroidapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
+import android.text.InputType;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     EditText email;
     EditText password;
     Button button_login;
-
+    Button show;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.txtbox_email);
         password = (EditText) findViewById(R.id.txtbox_pass);
         button_login = (Button) findViewById(R.id.btn_login);
+        show = (Button) findViewById(R.id.show);
 
 
         button_login.setOnClickListener(
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                             Intent i;
                             i = new Intent(MainActivity.this, Activity2.class);
                             startActivity(i);
-
+                            finish();
                             Toast.makeText(MainActivity.this, (R.string.login),
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -118,7 +121,28 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 }
-        );
-    }
 
+
+
+        );
+
+        show.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event){
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        password.setInputType(InputType.TYPE_CLASS_TEXT);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
+                        password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        break;
+                }
+            return true;
+            }
+        });
+
+    }
 }
