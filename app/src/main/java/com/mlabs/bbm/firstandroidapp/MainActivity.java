@@ -3,12 +3,13 @@ package com.mlabs.bbm.firstandroidapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Patterns;
+import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.TextView;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button login;
     EditText mail, pwd;
+    TextView pwd_show;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +28,30 @@ public class MainActivity extends AppCompatActivity {
         login =  (Button)findViewById(R.id.button_login);
         mail = (EditText)findViewById(R.id.editText_email);
         pwd = (EditText)findViewById(R.id.editText_pwd);
+        pwd_show = (TextView)findViewById(R.id.pwd_show);
+
+        pwd_show.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                switch (event.getAction() ) {
+                    case MotionEvent.ACTION_DOWN:
+                        //pwd.setTransformationMethod(null);
+                        pwd.setInputType(InputType.TYPE_CLASS_TEXT);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        //pwd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        break;
+                }
+                return true;
+            }
+        }
+        );
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (check()) {
-                    if (mail.getText().toString().equals("admin@yahoo.com") && pwd.getText().toString().equals("orayt")){
+                    if (mail.getText().toString().equals("admin@yahoo.com") && pwd.getText().toString().equals("Orayt100")){
                         Toast.makeText(getApplicationContext(),"Credentials matched. Redirecting...", Toast.LENGTH_LONG).show();
                         new Thread(new Runnable()
                         {
@@ -72,17 +92,19 @@ public class MainActivity extends AppCompatActivity {
         String _pwd = pwd.getText().toString();
         String email_pattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        Pattern pattern;
-        Matcher matcher;
+        Pattern pattern, ppattern;
+        Matcher matcher, pmatcher;
 
         pattern = Pattern.compile(email_pattern);
+        ppattern = Pattern.compile("^[A-Z0-9a-z]+$");
         matcher = pattern.matcher(_mail);
+        pmatcher = ppattern.matcher(_mail);
 
         if (_mail.isEmpty() || !matcher.matches()){
             Toast.makeText(getApplicationContext(),"Enter valid email",Toast.LENGTH_LONG).show();
             valid = false;
         }
-        if (_pwd.isEmpty()){
+        if (_pwd.isEmpty() || !pmatcher.matches()){
             Toast.makeText(getApplicationContext(),"Password field is empty",Toast.LENGTH_LONG).show();
             valid = false;
         }
