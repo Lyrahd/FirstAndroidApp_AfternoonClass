@@ -25,17 +25,20 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="320dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="1dp"
             android:background="@drawable/uname" />
         <EditText
             android:id="@+id/email_address"
-            android:layout_width="240dp"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:layout_marginTop="350dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="1dp"
             />
+
+
+
     </TableRow>
 
     <TableRow
@@ -50,27 +53,39 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="400dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="1dp"
             android:background="@drawable/pword" />
     <EditText
         android:id="@+id/pwd"
-        android:layout_width="240dp"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:hint="Password"
         android:inputType="textPassword"
         android:layout_marginTop="429dp"
-        android:layout_marginLeft="20dp"/>
+        android:layout_marginLeft="1dp"/>
+
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="SHOW"
+            android:id="@+id/show"
+            android:layout_marginTop="420dp"
+            android:layout_marginLeft="1dp"
+            />
+
+
+
 
     </TableRow>
 
     <Button
-        android:layout_width="200dp"
+        android:layout_width="190dp"
         android:layout_height="40dp"
         android:id="@+id/login"
         android:text="LOGIN"
-        android:layout_marginTop="490dp"
+        android:layout_marginTop="485dp"
         android:background="#c1614c"
-        android:layout_marginLeft="130dp"
+        android:layout_marginLeft="75dp"
         />
 
     <ImageView
