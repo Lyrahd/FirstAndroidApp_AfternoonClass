@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 }else if(!validatePassword(password_tu.getText().toString())){
                     password_tu.setError("Invalid Password");
                     password_tu.requestFocus();
+
                 }else{
 
                     Intent intent = new Intent(MainActivity.this,Home .class );
@@ -58,14 +59,18 @@ public class MainActivity extends AppCompatActivity {
         show.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
+                final int cursor= password_tu.getSelectionStart();
+
 
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         password_tu.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        password_tu.setSelection(cursor);
                         break;
 
                     case MotionEvent.ACTION_UP:
                         password_tu.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        password_tu.setSelection(cursor);
                         break;
 
 
