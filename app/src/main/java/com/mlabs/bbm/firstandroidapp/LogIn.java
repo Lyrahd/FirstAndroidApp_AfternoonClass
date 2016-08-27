@@ -12,7 +12,9 @@ import android.widget.EditText;
 
 
 public class LogIn extends Activity {
+    EditText pwdTxt,emailTxt;
 
+    Button showbtn,logInBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
