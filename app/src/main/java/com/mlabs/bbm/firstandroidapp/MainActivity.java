@@ -39,12 +39,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        password.setOnClickListener(new View.OnClickListener() {
+        /*password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 password.setText("");
             }
-        });
+        }); */
 
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +70,9 @@ public class MainActivity extends AppCompatActivity {
         show.setOnTouchListener(new View.OnTouchListener() {
                                     @Override
                                     public boolean onTouch(View view, MotionEvent motionEvent) {
+                                        final int cursor = password.getSelectionStart();
                                         int event = motionEvent.getAction();
+
 
                                        /* if (event == motionEvent.ACTION_DOWN) {
                                             password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
@@ -82,9 +84,11 @@ public class MainActivity extends AppCompatActivity {
                                         switch(event){
                                             case MotionEvent.ACTION_DOWN:
                                                 password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                                                password.setSelection(cursor);
                                                 break;
                                             case MotionEvent.ACTION_UP:
                                                 password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                                                password.setSelection(cursor);
                                                 break;
                                            //case MotionEvent.ACTION_CANCEL:
                                                // password.setTransformationMethod(new PasswordTransformationMethod());
