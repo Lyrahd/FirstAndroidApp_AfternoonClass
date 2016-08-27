@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -56,13 +57,18 @@ public class MainActivity extends AppCompatActivity {
         show.setOnTouchListener(new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent e) {
+            final int cursor = passWord.getSelectionStart();
             switch (e.getAction()) {
                 case MotionEvent.ACTION_DOWN:
+                    Log.d("Classname","ACTION_DOWN)");
                     passWord.setTransformationMethod(null);
+                    passWord.setSelection(cursor);
                     return true;
                 case MotionEvent.ACTION_CANCEL:
                 case MotionEvent.ACTION_UP:
+                    Log.d("Classname","ACTION_UP)");
                     passWord.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    passWord.setSelection(cursor);
                 return true;
             }
             return  false;
