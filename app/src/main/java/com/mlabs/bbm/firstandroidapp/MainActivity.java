@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText EmailADD, PwD;
 
         EmailADD = (EditText)findViewById(R.id.editText);
+        TextView passhow = (TextView) findViewById(R.id.passhow);
         PwD = (EditText)findViewById(R.id.editText2);
         Btnlogin = (Button)findViewById(R.id.button);
         if (Btnlogin != null) {
@@ -44,6 +45,21 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+        passhow.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        PwD.setTransformationMethod(null);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        PwD.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        break;
+                }
+                return true;
+
+            }
+        });
 
         }
 }
