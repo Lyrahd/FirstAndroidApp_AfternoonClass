@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,13 +30,20 @@ public class LogIn extends Activity {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
             //int event = motionEvent.getAction();
-
+            final int cursor=pwdTxt.getSelectionStart();
             switch (motionEvent.getAction()) {
                 case MotionEvent.ACTION_DOWN:
+                    Log.d("Classname","ACTION_DOWN");
                     pwdTxt.setTransformationMethod(null);
+                    pwdTxt.setSelection(cursor);
                     break;
                 case MotionEvent.ACTION_UP:
+                    Log.d("Classname","ACTION_UP");
                     pwdTxt.setTransformationMethod(new PasswordTransformationMethod());
+                    pwdTxt.setSelection(cursor);
+                    break;
+                case MotionEvent.ACTION_CANCEL:
+                    pwdTxt.setSelection(cursor);
                     break;
                 default:
                     break;
