@@ -17,7 +17,8 @@
         android:gravity="center_horizontal"
         android:background="@drawable/plashtu"
         android:layout_above="@+id/editText"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:id="@+id/imageView" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -81,5 +82,18 @@
         android:textColor="#ffffff"
         android:typeface="sans"
         android:background="#ff4a4a" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="show"
+        android:id="@+id/show"
+        android:textColor="#ffffff"
+        android:background="#ff4a4a"
+        android:layout_below="@+id/editText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/editText"
+        android:layout_toEndOf="@+id/editText" />
 
 </RelativeLayout>
