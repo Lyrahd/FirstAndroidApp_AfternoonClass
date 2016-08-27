@@ -50,13 +50,24 @@ public class LoginScreen extends Activity {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
               //  int event = MotionEvent.getAction();
+                final int cursor = NameEditText.getSelectionStart();
 
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
+                        Log.d("Classname", "ACTION_DOWN");
                         NameEditText.setTransformationMethod(null);
+                        NameEditText.setSelection(cursor);
                         break;
                     case MotionEvent.ACTION_UP:
+                        Log.d("Classname", "ACTION_UP");
                         NameEditText.setTransformationMethod(new PasswordTransformationMethod());
+                        NameEditText.setSelection(cursor);
+                        break;
+
+                    case MotionEvent.ACTION_CANCEL:
+                        NameEditText.setSelection(cursor);
+                        break;
+                    default:
                         break;
                 }
                         return true;
