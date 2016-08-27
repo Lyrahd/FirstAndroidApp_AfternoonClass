@@ -63,12 +63,18 @@ public class login extends AppCompatActivity {
                     case MotionEvent.ACTION_UP:
                         txtPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                         break;
+                 case MotionEvent.ACTION_CANCEL:
+                 txtPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                 break;
                 }
                  **/
                 if (event.getAction() == MotionEvent.ACTION_DOWN){
                     txtPass.setInputType(InputType.TYPE_CLASS_TEXT);
                 }
                 else if (event.getAction()==MotionEvent.ACTION_UP){
+                    txtPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                }
+                else if (event.getAction()==MotionEvent.ACTION_CANCEL){
                     txtPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 }
                 return true;
