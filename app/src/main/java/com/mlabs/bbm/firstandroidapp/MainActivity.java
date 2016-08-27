@@ -60,7 +60,7 @@ TextView TV_show = (TextView) findViewById(R.id.TVShow);
                 return false;
             }
 
-        }
+        });
 
     }
 
