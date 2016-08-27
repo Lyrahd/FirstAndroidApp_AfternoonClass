@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FirstAndroidApp</string>
+    <string name="app_name"></string>
     <string name="error_field_required">This field is required</string>
     <string name="Invalid_Email">Invalid Email</string>
 </resources>

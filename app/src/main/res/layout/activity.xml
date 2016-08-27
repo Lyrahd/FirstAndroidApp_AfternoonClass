@@ -5,4 +5,11 @@
     android:gravity="center_vertical|center_horizontal"
     android:id="@+id/btn">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="HELLO!"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>

@@ -34,7 +34,8 @@
             android:id="@+id/txUsername"
             android:hint="Email"
             android:gravity="center"
-            android:background="#f4977e" />
+            android:background="#f4977e"
+            android:singleLine="true" />
 
         <EditText
             android:layout_width="326dp"
@@ -43,7 +44,8 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:gravity="center"
-            android:background="#f4977e" />
+            android:background="#f4977e"
+            android:singleLine="true" />
     </LinearLayout>
 
     <LinearLayout
