@@ -3,59 +3,87 @@ package com.mlabs.bbm.firstandroidapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PatternMatcher;
-import android.util.Log;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class LogIn extends Activity {
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        showbtn = (Button) findViewById(R.id.showbtn);
+        pwdTxt = (EditText) findViewById(R.id.pwdTxt);
+        emailTxt=(EditText) findViewById(R.id.emailTxt);
+        logInBtn=(Button) findViewById(R.id.logInBtn);
+
+    showbtn.setOnTouchListener(new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            //int event = motionEvent.getAction();
+
+            switch (motionEvent.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    pwdTxt.setTransformationMethod(null);
+                    break;
+                case MotionEvent.ACTION_UP:
+                    pwdTxt.setTransformationMethod(new PasswordTransformationMethod());
+                    break;
+                default:
+                    break;
+            }
+
+            //if (event == motionEvent.ACTION_DOWN) {
+            //    pwdTxt.setTransformationMethod(null);
+            //    return true;
+            //} else if(event==motionEvent.ACTION_UP){
+            //    pwdTxt.setTransformationMethod(new PasswordTransformationMethod());
+            //    return true;
+            //}
+            return true;
+        }
+    });
+    }
+
+    public void login(View view) {
+
+        if (!validateEmail(emailTxt.getText().toString())) {
+            emailTxt.setError("Invalid Email");
+            emailTxt.requestFocus();
+        } else if (!validatePwd(pwdTxt.getText().toString())) {
+            pwdTxt.setError("Invalid Password");
+            pwdTxt.requestFocus();
+        } else {
+            Intent intent = new Intent(LogIn.this, MainActivity.class);
+            startActivity(intent);
+        }
+
+
+
     }
 
 
-    public void login(View view) {
-        final EditText email = (EditText) findViewById(R.id.emailTxt);
-        final EditText pwd = (EditText) findViewById(R.id.pwdTxt);
-        final Button loginbutton = (Button) findViewById(R.id.logInBtn);
-
-                if (!validateEmail(email.getText().toString())) {
-                    email.setError("Invalid Email");
-                    email.requestFocus();
-                } else if (!validatePwd(pwd.getText().toString())) {
-                    pwd.setError("Invalid Password");
-                    pwd.requestFocus();
-                } else {
-                    Intent intent=new Intent(LogIn.this,MainActivity.class);
-                    startActivity(intent);
-                }
-            }
-
-            private Boolean validateEmail(String emailAdd){
-                if(emailAdd==null||!Patterns.EMAIL_ADDRESS.matcher(emailAdd).matches()) {
-                    return false;
-                }
-                else {
-                    return true;
-                }
-            }
-
-            private Boolean validatePwd(String password){
-                if(password!=null&&password.length()>=8){
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            }
-
+    private Boolean validateEmail(String emailAdd) {
+        if (emailAdd == null || !Patterns.EMAIL_ADDRESS.matcher(emailAdd).matches()) {
+            return false;
+        } else {
+            return true;
         }
+    }
+
+    private Boolean validatePwd(String password) {
+        if (password != null && password.length() >= 8) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+}

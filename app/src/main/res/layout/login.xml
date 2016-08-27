@@ -26,7 +26,20 @@
         android:hint="Password"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:password="true" />
+        android:password="true"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Show"
+        android:id="@+id/showbtn"
+        android:layout_alignBaseline="@+id/pwdTxt"
+        android:layout_alignBottom="@+id/pwdTxt"
+        android:layout_alignRight="@+id/emailTxt"
+        android:layout_alignEnd="@+id/emailTxt" />
 
     <Button
         android:id="@+id/logInBtn"
