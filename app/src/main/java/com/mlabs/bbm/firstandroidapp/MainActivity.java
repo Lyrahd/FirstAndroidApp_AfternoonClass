@@ -15,7 +15,7 @@ import android.content.Intent;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import android.view.MotionEvent;
-
+import android.util.Log;
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -51,16 +51,22 @@ public class MainActivity extends AppCompatActivity {
         btnShow.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent motionevent) {
+                final int cursor = password.getSelectionStart();
                 int event = motionevent.getAction();
                 switch (event) {
                     case MotionEvent.ACTION_DOWN:
+                        Log.d("Classname","ACTION_DOWN");
                         password.setTransformationMethod(null);
+                        password.setSelection(cursor);
                         break;
                     case MotionEvent.ACTION_CANCEL:
                         password.setTransformationMethod(new PasswordTransformationMethod());
+                        password.setSelection(cursor);
                         break;
                     case MotionEvent.ACTION_UP:
+                        Log.d("Classname","ACTION_UP");
                         password.setTransformationMethod(new PasswordTransformationMethod());
+                        password.setSelection(cursor);
                         break;
 
                     //password.setInputType(InputType.TYPE_CLASS_TEXT);
