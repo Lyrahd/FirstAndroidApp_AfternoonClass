@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //      validate email
+    //      validating email
     protected boolean validateEmail(String email) {
         String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         Pattern pattern = Pattern.compile(emailPattern);
