@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //commit
         editUser = (EditText) findViewById(R.id.editUser);
         editPass = (EditText) findViewById(R.id.editPass);
         pwd_show = (TextView)findViewById(R.id.pwd_show); //another declaration for pwd_show
