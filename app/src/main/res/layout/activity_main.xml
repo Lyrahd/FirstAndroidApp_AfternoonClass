@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#86ccf9"
     android:weightSum="1">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:paddingBottom="50dp"
-        android:weightSum="1">
+
+
 
         <ImageView
             android:layout_width="238dp"
@@ -19,32 +14,34 @@
             android:id="@+id/imageView"
             android:src="@drawable/logo"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
-            android:layout_weight="0.11" />
+            android:layout_weight="0.11"
+            android:layout_above="@+id/txtEmail"
+            android:layout_alignLeft="@+id/btnLogin"
+            android:layout_alignStart="@+id/btnLogin"
+            android:layout_marginBottom="24dp" />
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
+
+
 
         <EditText
-            android:layout_width="325dp"
+            android:layout_width="272dp"
             android:layout_height="37dp"
             android:id="@+id/txtEmail"
             android:hint="Email"
             android:textColorHint="#f3f8f9"
             android:layout_gravity="center_horizontal"
             android:background="#1a404c"
-            android:layout_marginBottom="5dp"
             android:singleLine="true"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/show"
+            android:layout_toStartOf="@+id/show" />
 
-    </LinearLayout>
 
     <EditText
-        android:layout_width="325dp"
+        android:layout_width="274dp"
         android:layout_height="37dp"
         android:id="@+id/txtPword"
         android:hint="Password"
@@ -52,18 +49,21 @@
         android:inputType="textPassword"
         android:layout_gravity="center_horizontal"
         android:background="#1a404c"
-        android:layout_marginBottom="10dp"
         android:singleLine="true"
-        android:textColor="#ffffff" />
+        android:textColor="#ffffff"
+        android:layout_below="@+id/txtEmail"
+        android:layout_alignRight="@+id/btnLogin"
+        android:layout_alignEnd="@+id/btnLogin"
+        android:layout_marginTop="24dp" />
 
-    <LinearLayout
+
         android:orientation="vertical"
         android:layout_width="309dp"
         android:layout_height="wrap_content">
 
-    </LinearLayout>
 
-    <LinearLayout
+
+
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -77,13 +77,13 @@
             android:layout_weight="0.13"
             android:background="@color/material_deep_teal_500"
             android:textColor="@color/background_floating_material_light"
-            android:layout_marginTop="10dp" />
-    </LinearLayout>
+            android:layout_above="@+id/textView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="34dp" />
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
+
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -93,7 +93,9 @@
             android:textColor="#010b12"
             android:id="@+id/textView"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp" />
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="53dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -101,7 +103,20 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Need help?"
             android:textColor="#010b12"
-            android:layout_gravity="center" />
-    </LinearLayout>
+            android:layout_gravity="center"
+            android:id="@+id/textView3"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="26dp" />
 
-</LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show"
+        android:id="@+id/show"
+        android:layout_toEndOf="@+id/txtPword"
+        android:layout_alignBottom="@+id/txtPword"
+        android:layout_alignTop="@+id/txtPword"
+        android:layout_toRightOf="@+id/txtPword" />
+
+</RelativeLayout>
