@@ -1,16 +1,16 @@
 package com.mlabs.bbm.firstandroidapp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputType;
+import android.support.v7.app.AppCompatActivity;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,13 +34,18 @@ public class MainActivity extends AppCompatActivity {
         pwd_show.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
+                final int cursor = pwd.getSelectionStart();
                 switch (event.getAction() ) {
                     case MotionEvent.ACTION_DOWN:
                         pwd.setTransformationMethod(null);
+                        pwd.setSelection(cursor);
+                        Log.d("Cursor","ACTION_DOWN");
                         //pwd.setInputType(InputType.TYPE_CLASS_TEXT);
                         break;
                     case MotionEvent.ACTION_UP:
                         pwd.setTransformationMethod(new PasswordTransformationMethod());
+                        pwd.setSelection(cursor);
+                        Log.d("Cursor","ACTION_UP");
                         //pwd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                         break;
                 }
