@@ -32,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
                     case MotionEvent.ACTION_UP:
                         password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                         break;
+                    case MotionEvent.ACTION_CANCEL:
+                        password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        break;
                 }
                 return true;
                 /*int EventAct = motion.getAction();
