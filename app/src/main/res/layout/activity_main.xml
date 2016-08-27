@@ -21,7 +21,6 @@
 
     <EditText
         android:id="@+id/txt_UName"
-        android:hint="Enter username"
         android:inputType="text"
 
         android:maxLength="32"
@@ -49,7 +48,6 @@
 
     <EditText
         android:id="@+id/txt_PWord"
-        android:hint="Enter password"
         android:inputType="textPassword"
         android:maxLength="16"
 
