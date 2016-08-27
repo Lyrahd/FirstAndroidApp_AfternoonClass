@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -56,17 +57,17 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
 
                 int event = motionEvent.getAction();
-
+                final int cursor = password.getSelectionStart();
                 switch (event) {
                     case MotionEvent.ACTION_DOWN:
                         password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        password.setSelection(cursor);
                         return true;
                     case MotionEvent.ACTION_UP:
                         password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        password.setSelection(cursor);
                         return true;
                     case MotionEvent.ACTION_CANCEL:
-                        password.setTransformationMethod(new PasswordTransformationMethod());
-                        return true;
                 }
 
                 /*if (event == MotionEvent.ACTION_DOWN) {
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     password.setTransformationMethod(null);
                 }*/
 
-                return true;
+                return false;
             }
 
         });
