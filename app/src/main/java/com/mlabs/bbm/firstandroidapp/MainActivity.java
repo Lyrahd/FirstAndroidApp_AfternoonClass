@@ -100,7 +100,7 @@ public class MainActivity extends Activity {
                     case MotionEvent.ACTION_DOWN:
                         tPw.setTransformationMethod(null);
                         break;
-                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_UP :
                         tPw.setTransformationMethod(new PasswordTransformationMethod());
                         break;
                     case MotionEvent.ACTION_CANCEL:
