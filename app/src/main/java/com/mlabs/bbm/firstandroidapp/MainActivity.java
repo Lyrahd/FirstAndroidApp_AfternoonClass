@@ -6,6 +6,7 @@ import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import  android.content.Intent;
@@ -32,16 +33,23 @@ public class MainActivity extends ActionBarActivity {
 
         pshow.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
+                final int cursor = TFPword.getSelectionStart();
                 int eventP = event.getAction();
                 switch (eventP) {
                     case MotionEvent.ACTION_UP:
+                        Log.d("Classname","ACTION_UP");
                         TFPword.setTransformationMethod(new PasswordTransformationMethod());
+                        TFPword.setSelection(cursor);
                         break;
                     case MotionEvent.ACTION_DOWN:
+                        Log.d("Classname","ACTION_DOWN");
                         TFPword.setTransformationMethod(null);
+                        TFPword.setSelection(cursor);
                         break;
                     case MotionEvent.ACTION_CANCEL:
+                        Log.d("Classname","ACTION_CANCEL");
                         TFPword.setTransformationMethod(new PasswordTransformationMethod());
+                        TFPword.setSelection(cursor);
                         break;
                 }
                 return true;
