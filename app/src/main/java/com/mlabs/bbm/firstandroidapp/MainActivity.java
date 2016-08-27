@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -66,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
         show.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                int event = motionEvent.getAction();
+                final int cursor = txtPword.getSelectionStart();
+                //int event = motionEvent.getAction();
 
                 /*if (event == MotionEvent.ACTION_DOWN) {
                     txtPword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
@@ -76,18 +78,18 @@ public class MainActivity extends AppCompatActivity {
                     txtPword.setTransformationMethod(new PasswordTransformationMethod());
                 }*/
 
-                switch (event) {
+                switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_UP:
                         txtPword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        txtPword.setSelection(cursor);
                         return true;
                     case MotionEvent.ACTION_DOWN:
                         txtPword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        txtPword.setSelection(cursor);
                         return true;
                     case MotionEvent.ACTION_CANCEL:
-                        txtPword.setTransformationMethod(new PasswordTransformationMethod());
-                        return true;
                 }
-                return true;
+                return false;
             }
 
         });
