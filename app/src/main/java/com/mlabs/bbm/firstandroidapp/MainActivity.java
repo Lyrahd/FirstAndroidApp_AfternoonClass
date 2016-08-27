@@ -35,6 +35,33 @@ public class MainActivity extends ActionBarActivity {
        // Pwd = (EditText)findViewById(R.id.TFPword);
         //btnLogs = (Button)findViewById(R.id.btnLog);
 
+TextView TV_show = (TextView) findViewById(R.id.TVShow);
+
+
+        TV_show.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent e) {
+                EditText a = (EditText) findViewById(R.id.TFUname);
+                EditText p = (EditText) findViewById(R.id.TFPword);
+                Intent i = new Intent(MainActivity.this, Display.class);
+
+                String uname = a.getText().toString();
+                String pword = p.getText().toString();
+                switch (e.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        p.setTransformationMethod(null);
+                        return true;
+                    case MotionEvent.ACTION_CANCEL:
+                    case MotionEvent.ACTION_UP:
+                        p.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        return true;
+
+                }
+                return false;
+            }
+
+        }
+
     }
 
     public void onButtonClick(View v)
