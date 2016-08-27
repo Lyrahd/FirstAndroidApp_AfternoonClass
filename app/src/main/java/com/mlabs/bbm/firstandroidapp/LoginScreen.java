@@ -4,6 +4,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -71,15 +72,18 @@ public class LoginScreen extends AppCompatActivity {
         btnShow.setOnTouchListener(new View.OnTouchListener(){
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
+                final int cursor = password.getSelectionStart();
                 boolean res = false;
                 int x = motionEvent.getAction();
 
                 switch(x){
                     case MotionEvent.ACTION_DOWN:
+                        Log.d("LoginScreen.java","ACTION_DOWN");
                         password.setTransformationMethod(null);
                         res = true;
                         break;
                     case MotionEvent.ACTION_UP:
+                        Log.d("LoginScreen.java","ACTION_UP");
                         password.setTransformationMethod(new PasswordTransformationMethod());
                         break;
                 }

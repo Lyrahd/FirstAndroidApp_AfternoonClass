@@ -79,9 +79,8 @@
         android:background="@android:color/holo_orange_dark"
         android:text="Show"
         android:id="@+id/btnShow"
-        android:layout_below="@+id/txtEmail"
-        android:layout_alignRight="@+id/imageView"
-        android:layout_alignEnd="@+id/imageView"
-        android:layout_alignBottom="@+id/txtPassword"
-        android:layout_toEndOf="@+id/txtFB" />
+        android:layout_alignTop="@+id/txtPassword"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/txtPassword" />
 </RelativeLayout>
