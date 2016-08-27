@@ -17,7 +17,8 @@
         android:id="@+id/txtEmail"
         android:hint="Enter Email Address"
         android:layout_above="@+id/txtPass"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/txtPass"
+        android:layout_alignStart="@+id/txtPass" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -27,17 +28,16 @@
         android:id="@+id/txtPass"
         android:hint="Enter Password"
         android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/txtEmail"
-        android:layout_alignStart="@+id/txtEmail" />
+        android:layout_toLeftOf="@+id/showbtn"
+        android:layout_toStartOf="@+id/showbtn" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log-In"
         android:id="@+id/btnLogin"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="164dp" />
+        android:layout_below="@+id/showbtn"
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -46,5 +46,15 @@
         android:background="@drawable/logo"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show"
+        android:id="@+id/showbtn"
+        android:clickable="false"
+        android:layout_below="@+id/txtEmail"
+        android:layout_alignRight="@+id/imageView3"
+        android:layout_alignEnd="@+id/imageView3" />
 
 </RelativeLayout>
