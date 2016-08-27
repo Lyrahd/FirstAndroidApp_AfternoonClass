@@ -69,16 +69,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent motionEvent) {
                 int event = motionEvent.getAction();
+                final int cursor = edtxt2.getSelectionStart();
                 switch (event)
                 {
                     case MotionEvent.ACTION_UP:
                         edtxt2.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        edtxt2.setSelection(cursor);
                         return true;
                     case MotionEvent.ACTION_DOWN:
                         edtxt2.setTransformationMethod(null);
+                        edtxt2.setSelection(cursor);
                         return true;
                     case MotionEvent.ACTION_CANCEL:
                         edtxt2.setTransformationMethod(null);
+                        edtxt2.setSelection(cursor);
                         return true;
                 }
                 return true;
