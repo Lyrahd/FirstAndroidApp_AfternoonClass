@@ -86,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
                                             case MotionEvent.ACTION_UP:
                                                 password.setTransformationMethod(PasswordTransformationMethod.getInstance());
                                                 break;
-                                            case MotionEvent.ACTION_CANCEL:
-                                                password.setTransformationMethod(new PasswordTransformationMethod());
+                                           //case MotionEvent.ACTION_CANCEL:
+                                               // password.setTransformationMethod(new PasswordTransformationMethod());
                                         }
                                         return false;
                                     }
