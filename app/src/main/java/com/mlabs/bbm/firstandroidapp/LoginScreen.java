@@ -46,6 +46,33 @@ public class LoginScreen extends Activity {
                 }
             }
         });
+        btnshow.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+              //  int event = MotionEvent.getAction();
+
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        NameEditText.setTransformationMethod(null);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        NameEditText.setTransformationMethod(new PasswordTransformationMethod());
+                        break;
+                }
+                        return true;
+
+
+                    //if (event == motionEvent.ACTION_DOWN) {
+                    //    NameEditText.setTransformationMethod(null);
+                    //    return true;
+                    //} else
+                    //    NameEditText.setTransformationMethod(new PasswordTransformationMethod());
+                    //    return true;
+
+
+                }
+
+        });
     }
 }
 
