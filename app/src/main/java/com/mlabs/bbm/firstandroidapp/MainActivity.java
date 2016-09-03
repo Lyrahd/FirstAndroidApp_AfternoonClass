@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Enter valid email",Toast.LENGTH_LONG).show();
             valid = false;
         }
-        if (_pwd.isEmpty() || !pmatcher.matches()){
+        if (_pwd.isEmpty()){
             Toast.makeText(getApplicationContext(),"Password field is empty",Toast.LENGTH_LONG).show();
             valid = false;
         }
