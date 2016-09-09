@@ -28,39 +28,39 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        btnLogin = (Button) findViewById(R.id.btnLogin);
-        txtEmail = (EditText) findViewById(R.id.txtEmail);
-        txtPword = (EditText) findViewById(R.id.txtPword);
-        show = (Button) findViewById(R.id.show);
+                super.onCreate(savedInstanceState);
+                setContentView(R.layout.activity_main);
+                btnLogin = (Button) findViewById(R.id.btnLogin);
+                txtEmail = (EditText) findViewById(R.id.txtEmail);
+                txtPword = (EditText) findViewById(R.id.txtPword);
+                show = (Button) findViewById(R.id.show);
 
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                btnLogin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                txtEmail.setError(null);
-                txtPword.setError(null);
+                        txtEmail.setError(null);
+                        txtPword.setError(null);
 
-                if (emailChecker(txtEmail.getText()) == true && txtPword.getText().length() > 0) {
-                    Intent i;
-                    i = new Intent(MainActivity.this, Activity.class);
-                    startActivity(i);
-                    finish(); //change
-                }
+                        if (emailChecker(txtEmail.getText()) == true && txtPword.getText().length() > 0) {
+                            Intent i;
+                            i = new Intent(MainActivity.this, Activity.class);
+                            startActivity(i);
+                            finish(); //change
+                        }
 
-                if (emailChecker(txtEmail.getText()) == false) {
-                    txtEmail.setError(getString(R.string.invalid_email));
-                } else if (txtEmail.getText().toString().equals("") && txtPword.getText().toString().equals("")) {
-                    txtEmail.setError(getString(R.string.error_field_required));
-                    txtPword.setError(getString(R.string.error_field_required));
-                } else if (txtEmail.getText().toString().equals("")) {
-                    txtEmail.setError(getString(R.string.error_field_required));
+                        if (emailChecker(txtEmail.getText()) == false) {
+                            txtEmail.setError(getString(R.string.invalid_email));
+                        } else if (txtEmail.getText().toString().equals("") && txtPword.getText().toString().equals("")) {
+                            txtEmail.setError(getString(R.string.error_field_required));
+                            txtPword.setError(getString(R.string.error_field_required));
+                        } else if (txtEmail.getText().toString().equals("")) {
+                            txtEmail.setError(getString(R.string.error_field_required));
 
-                } else if (txtPword.getText().toString().equals("")) {
-                    txtPword.setError(getString(R.string.error_field_required));
-                }
+                        } else if (txtPword.getText().toString().equals("")) {
+                            txtPword.setError(getString(R.string.error_field_required));
+                        }
 
             }
         });
