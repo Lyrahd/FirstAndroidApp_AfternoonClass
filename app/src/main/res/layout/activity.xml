@@ -4,13 +4,9 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical|center_horizontal">
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home Page"
-        android:textSize="50dp"
-        android:textColor="#000000"
-        android:id="@+id/textView"
-        android:layout_gravity="center_horizontal" />
-
+        android:text="On Touch"
+        android:id="@+id/ontouch_btn" />
 </LinearLayout>

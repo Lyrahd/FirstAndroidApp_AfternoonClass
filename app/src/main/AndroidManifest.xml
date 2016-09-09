@@ -33,6 +33,12 @@
                 <action android:name="com.mlabs.bbm.firstandroidapp.Activity" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Activity2">
+            <intent-filter>
+                <action android:name="com.mlabs.bbm.firstandroidapp.Activity2" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
