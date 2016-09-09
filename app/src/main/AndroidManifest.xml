@@ -35,6 +35,15 @@
                 <category android:name="android.intent.category.VIEW" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ClickMeActivity"
+            android:label="DigiLetter">
+            <intent-filter>
+                <action android:name="com.mlabs.bbm.firstandroidapp.WelcomeActivity" />
+
+                <category android:name="android.intent.category.VIEW" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
