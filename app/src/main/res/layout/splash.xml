@@ -5,19 +5,10 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
-    <ImageView
-        android:id="@+id/logo_animation_image"
+    <com.mlabs.bbm.firstandroidapp.PlayGif
+        android:id="@+id/viewGif"
         android:layout_gravity="center"
-        android:layout_marginTop="147dp"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/logo"
-        />
-
-    <ImageView
-        android:layout_gravity="center"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/logo_txt"
-        />
+        android:layout_marginTop="170dp"
+        android:layout_width="360dp"
+        android:layout_height="240dp"/>
 </LinearLayout>

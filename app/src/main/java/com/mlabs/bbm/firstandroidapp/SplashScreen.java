@@ -11,10 +11,13 @@ public class SplashScreen extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
 
+        PlayGif pGif = (PlayGif) findViewById(R.id.viewGif);
+        pGif.setImageResource(R.drawable.animated_logo_txt_small);
+
         Thread timerThread = new Thread(){
             public void run(){
                 try{
-                    sleep(3000);
+                    sleep(3500);
                 }
                 catch(InterruptedException e){
                     e.printStackTrace();

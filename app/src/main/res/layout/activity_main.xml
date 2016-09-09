@@ -59,8 +59,6 @@
         android:layout_toEndOf="@+id/PassWord" />
 
     <TextView android:id="@+id/show_password"
-        android:layout_below="@+id/txt_PWord"
-        android:layout_marginTop="25dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
 
@@ -69,7 +67,12 @@
         android:text="SHOW"
         android:textSize="12sp"
         android:textColor="#818181"
-        />
+        android:layout_above="@+id/btn_LogIn"
+        android:layout_alignRight="@+id/txt_PWord"
+        android:layout_alignEnd="@+id/txt_PWord"
+        android:layout_toEndOf="@+id/logoLogIn"
+        android:layout_toRightOf="@+id/logoLogIn"
+        android:layout_alignTop="@+id/txt_PWord" />
 
     <Button
         style="@style/Animation.AppCompat.Dialog"
