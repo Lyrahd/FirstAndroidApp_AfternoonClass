@@ -8,32 +8,28 @@
         android:label="Diabetes APP"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".SplashScreen"
-            android:label="Diabetes APP">
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:label="Diabetes APP">
+        <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="com.mlabs.bbm.firstandroidapp.MainActivity" />
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-
-        <activity
-            android:name=".main">
+        <activity android:name=".main">
             <intent-filter>
-                <action android:name="com.mlabs.bbm.firstandroidapp.main" />
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".OnTouchActivity"></activity>
     </application>
 
 </manifest>
