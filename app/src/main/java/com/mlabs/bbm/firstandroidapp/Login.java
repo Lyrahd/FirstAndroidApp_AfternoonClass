@@ -2,10 +2,10 @@ package com.mlabs.bbm.firstandroidapp;
 
 
 import android.support.v7.app.AppCompatActivity;
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PatternMatcher;
+
 import android.text.InputType;
 import android.util.Log;
 import android.util.Patterns;
@@ -13,10 +13,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+
 import android.widget.Toast;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 /**
  * Created by Alien on 7/22/2016.
@@ -50,7 +49,7 @@ public class Login extends AppCompatActivity {
                     }
                 }
             }
-        });
+        }); 
 
     show.setOnTouchListener(new View.OnTouchListener() {
         @Override
