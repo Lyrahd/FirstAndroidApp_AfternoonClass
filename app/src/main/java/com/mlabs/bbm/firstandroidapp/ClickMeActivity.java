@@ -8,37 +8,56 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class ClickMeActivity extends AppCompatActivity{
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
-        final ImageView image = (ImageView) findViewById(R.id.imgClickMe);
+        setContentView(R.layout.clickme);
+
+        final ImageView image = (ImageView)findViewById(R.id.imgClickMe);
+
+        assert image != null;
         image.setOnTouchListener(new View.OnTouchListener() {
-            float initX = 0, finalX = 0, initY = 0, finalY = 0;
-            String w, w1;
+
+            float x1, y1, x2, y2;
+
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch (motionEvent.getAction()) {
+            public boolean onTouch(View view, MotionEvent event) {
+                switch(event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        initX = motionEvent.getX();
-                        initY = motionEvent.getY();
-                        Toast.makeText(getApplicationContext(), "" + String.format("[x:%,2f][y:%.2f]", motionEvent.getX(), motionEvent.getY()), Toast.LENGTH_LONG).show();
-                        return true;
+                        x1 = event.getX();
+                        y1 = event.getY();
+
+                        Toast.makeText(getApplicationContext(), "x1 = " + x1 + " | y1 = " + y1
+                                , Toast.LENGTH_LONG).show();
                     case MotionEvent.ACTION_UP:
-                        finalX = motionEvent.getX();
-                        finalY = motionEvent.getY();
-                        if (initX < finalX){
-                            w = "Swiped to Right";}
-                        else {
-                            w = "Swiped to Left";}
-                        if (initY < finalY) {
-                            w1 ="Swiped Down";}
-                        else {
-                            w1 = "Swiped Up";}
-                        Toast.makeText(getApplicationContext(),w+" "+w1,Toast.LENGTH_SHORT).show();
+                        x2 = event.getX();
+                        y2 = event.getY();
+
+                        if (x1 < x2)
+                            Toast.makeText(getApplicationContext(), "x2 = " + x1 + " | y2 = " + y1 +
+                                    " | left to right", Toast.LENGTH_LONG).show();
+                        if (x1 > x2)
+                            Toast.makeText(getApplicationContext(), "x2 = " + x1 + " | y2 = " + y1 +
+                                    " | right to left", Toast.LENGTH_LONG).show();
+                        if (y1 < y2)
+                            Toast.makeText(getApplicationContext(), "x2 = " + x1 + " | y2 = " + y1 +
+                                    " | up to down", Toast.LENGTH_LONG).show();
+                        if (y1 > y2)
+                            Toast.makeText(getApplicationContext(), "x2 = " + x1 + " | y2 = " + y1 +
+                                    " | down to up", Toast.LENGTH_LONG).show();
+
                 }
-                return false;
+                return true;
             }
         });
+
+    }
+
+    @Override
+    protected  void onPause(){
+        super.onPause();
+        finish();
     }
 }

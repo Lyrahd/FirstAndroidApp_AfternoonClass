@@ -39,7 +39,7 @@
             android:name=".ClickMeActivity"
             android:label="DigiLetter">
             <intent-filter>
-                <action android:name="com.mlabs.bbm.firstandroidapp.WelcomeActivity" />
+                <action android:name="com.mlabs.bbm.firstandroidapp.ClickMeActivity" />
 
                 <category android:name="android.intent.category.VIEW" />
             </intent-filter>
