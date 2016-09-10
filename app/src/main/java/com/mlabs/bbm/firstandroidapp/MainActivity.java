@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.text.TextUtils;
-import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
 import android.view.View;
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (validateEmail(edtxt1.getText()) == true && edtxt2.getText().length() > 0) {
                     Intent i;
-                    i = new Intent(MainActivity.this, Activity.class);
+                    i = new Intent(MainActivity.this, HomePage.class);
                     startActivity(i);
                     finish();
                 }

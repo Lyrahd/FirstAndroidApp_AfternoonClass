@@ -28,9 +28,19 @@
         </activity>
 
         <activity
-            android:name=".Activity">
+            android:name=".HomePage">
             <intent-filter>
-                <action android:name="com.mlabs.bbm.firstandroidapp.Activity" />
+                <action android:name="com.mlabs.bbm.firstandroidapp.HomePage"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name=".Activity3">
+            <intent-filter>
+                <action android:name="com.mlabs.bbm.firstandroidapp.Activity3" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>
