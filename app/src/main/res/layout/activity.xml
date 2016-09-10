@@ -7,6 +7,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="back"
+        android:text="On Touch"
         android:id="@+id/button2" />
 </LinearLayout>
