@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button login;
     EditText mail, pwd;
-    TextView pwd_show;
+    TextView pwd_show,reg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         mail = (EditText)findViewById(R.id.editText_email);
         pwd = (EditText)findViewById(R.id.editText_pwd);
         pwd_show = (TextView)findViewById(R.id.pwd_show);
+        reg = (TextView)findViewById(R.id.text_sign);
 
         pwd_show.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -83,6 +84,15 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             }
+        });
+
+        reg.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent_reg = new Intent(MainActivity.this, Register.class);
+                startActivity(intent_reg);
+            }
+
         });
     }
 

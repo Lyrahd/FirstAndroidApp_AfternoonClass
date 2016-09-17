@@ -93,4 +93,17 @@
         android:layout_below="@+id/editText_pwd"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Sign Up"
+        android:id="@+id/text_sign"
+        android:textColor="#0058c3"
+        android:layout_marginTop="30dp"
+        android:textIsSelectable="false"
+        android:layout_below="@+id/button_login"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold|italic" />
 </RelativeLayout>
