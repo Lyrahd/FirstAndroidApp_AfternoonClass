@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.regex.Matcher;
@@ -42,12 +43,22 @@ public class LogInActivity extends AppCompatActivity {
             }
         });
 
+        TextView textsign = (TextView) findViewById(R.id.textView4);
+
+        textsign.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(v.getContext(), SignActivity.class);
+                startActivityForResult(intent,0);
+            }
+        });
+
 
         show.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 int eventA = motionEvent.getAction();
-
+                final int cursor = editpass.getSelectionStart();
 /*                if (eventA == motionEvent.ACTION_UP) {
                     editpass.setTransformationMethod(new PasswordTransformationMethod());
                 } else if (eventA == motionEvent.ACTION_CANCEL) {
@@ -60,12 +71,15 @@ public class LogInActivity extends AppCompatActivity {
                 switch (eventA) {
                     case MotionEvent.ACTION_DOWN:
                         editpass.setTransformationMethod(null);
+                        editpass.setSelection(cursor);
                           break;
                     case MotionEvent.ACTION_UP:
                         editpass.setTransformationMethod(new PasswordTransformationMethod());
+                        editpass.setSelection(cursor);
                         break;
                     case MotionEvent.ACTION_CANCEL:
                         editpass.setTransformationMethod(new PasswordTransformationMethod());
+                        editpass.setSelection(cursor);
                         break;
                 }
                 return true;
