@@ -98,7 +98,7 @@
             android:text="Create New Account"
             android:textColor="#efefef"
             android:textColorHint="#efefef"
-            android:id="@+id/textView2"
+            android:id="@+id/txtsignup"
             android:layout_gravity="center_horizontal"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
