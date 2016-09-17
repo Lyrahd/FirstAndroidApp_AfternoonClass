@@ -47,6 +47,20 @@ public class DBAdapter extends SQLiteOpenHelper {
         onCreate(db);
     }
     //creating new user
+    public void registration(String email, String password, String created_at){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_EMAIL, email); //email
+        values.put(KEY_PASSWORD, password); //pass
+        values.put(KEY_CREATED_AT, created_at); //created at
+
+        //inserting row
+        long id = db.insert(TABLE_USER, null, values);
+        db.close();
+
+        Log.d(TAG, "Successfully Added user: " + id);
+    }
 
 }
 
