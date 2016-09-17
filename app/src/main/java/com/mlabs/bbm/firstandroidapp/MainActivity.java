@@ -59,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (check()) {
-                    if (mail.getText().toString().equals("admin@yahoo.com") && pwd.getText().toString().equals("Orayt100")){
+                    DatabaseAdapter db = new DatabaseAdapter(MainActivity.this);
+                    if (db.validateUser(mail.getText().toString().trim(),pwd.getText().toString().trim())){
                         Toast.makeText(getApplicationContext(),"Credentials matched. Redirecting...", Toast.LENGTH_LONG).show();
                         new Thread(new Runnable()
                         {

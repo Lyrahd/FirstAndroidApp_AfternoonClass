@@ -1,6 +1,7 @@
 package com.mlabs.bbm.firstandroidapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,8 +34,11 @@ public class Register extends Activity{
             @Override
             public void onClick(View v) {
                 if (check()) {
-                    String time = getDate();
+                    DatabaseAdapter sqlDB = new DatabaseAdapter(Register.this);
+                    sqlDB.registeruser(email.getText().toString().trim(),pwd1.getText().toString().trim(),getDate());
                     Toast.makeText(getApplicationContext(),"Registration success!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Register.this, MainActivity.class);
+                    startActivity(intent);
                 }
                 else {
                     Toast.makeText(getApplicationContext(),"Registration failed", Toast.LENGTH_SHORT).show();
