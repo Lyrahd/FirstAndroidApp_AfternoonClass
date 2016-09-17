@@ -54,6 +54,8 @@ public class OnTouchActivity extends AppCompatActivity {
                 });
         }
 
+
+
         @Override
         protected  void onPause(){
                 super.onPause();

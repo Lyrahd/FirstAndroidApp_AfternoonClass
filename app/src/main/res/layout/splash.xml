@@ -8,7 +8,7 @@
     android:id="@+id/lin_lay"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".Login">
+    tools:context=".LoginScreen">
 
     <ImageView
         android:layout_width="match_parent"
