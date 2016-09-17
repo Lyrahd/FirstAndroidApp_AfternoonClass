@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     Button show;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-
         show.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
@@ -78,9 +76,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
-
 
 
 
