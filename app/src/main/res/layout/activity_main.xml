@@ -14,14 +14,16 @@
         android:layout_height="wrap_content"
         android:text="Log in"
         android:id="@+id/button_login"
-        android:layout_marginTop="42dp"
         android:textColor="#030303"
         android:textAlignment="center"
         android:textColorHighlight="#f5f5f5"
         android:textSize="30dp"
         android:textStyle="bold"
-        android:layout_below="@+id/editText_pwd"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/pwd_show"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2"
+        android:layout_marginLeft="36dp"
+        android:layout_marginStart="36dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -100,10 +102,13 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Sign Up"
         android:id="@+id/text_sign"
-        android:textColor="#0058c3"
-        android:layout_marginTop="30dp"
+        android:textColor="#060699"
         android:textIsSelectable="false"
+        android:textStyle="bold|italic"
+        android:textSize="30dp"
+        android:textColorHighlight="#070303"
         android:layout_below="@+id/button_login"
-        android:layout_centerHorizontal="true"
-        android:textStyle="bold|italic" />
+        android:layout_alignRight="@+id/button_login"
+        android:layout_alignEnd="@+id/button_login"
+        android:shadowColor="#020202" />
 </RelativeLayout>
