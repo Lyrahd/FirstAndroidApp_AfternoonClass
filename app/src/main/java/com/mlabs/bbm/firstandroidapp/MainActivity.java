@@ -19,7 +19,7 @@ import android.view.View.OnTouchListener;
 public class MainActivity extends AppCompatActivity {
 
     Button validate;
-    TextView showpass;
+    TextView showpass, signup;
 
     private boolean validateEmail(String email) {
         String emailRegEx;
@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText password = (EditText) findViewById(R.id.pass);
         showpass = (TextView) findViewById(R.id.show);
         validate = (Button) findViewById(R.id.buttonL);
+        signup = (TextView) findViewById(R.id.signup);
 
         validate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +88,16 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return true;
             }
+        });
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,SignUp.class );
+                startActivity(intent);
+            }
+
+
         });
     }
 }
