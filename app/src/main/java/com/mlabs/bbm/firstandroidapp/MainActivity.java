@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
 import java.util.regex.Matcher;
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         final EditText password = (EditText) findViewById(R.id.password);
         Button btnLogin = (Button) findViewById(R.id.btnLogin);
         Button btnShow = (Button) findViewById(R.id.btnShow);
+        final TextView signup = (TextView) findViewById(R.id.txtsignup);
+
 
 //        button login
        btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -41,12 +44,22 @@ public class MainActivity extends AppCompatActivity {
                 } else {
 //                    Toast.makeText(MainActivity.this,"Validation Success",Toast.LENGTH_LONG).show();
 //                    Intent intent = new Intent(MainActivity.this, body.class);
-                        Intent i = new Intent(MainActivity.this, homepage.class);
-                        startActivity(i);
-                        finish();
+                    Intent i = new Intent(MainActivity.this, homepage.class);
+                    startActivity(i);
+                    finish();
                 }
             }
         });
+//      btnsignup
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, SignUpForm.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
 
         btnShow.setOnTouchListener(new View.OnTouchListener() {
             @Override

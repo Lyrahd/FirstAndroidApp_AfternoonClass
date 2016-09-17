@@ -28,7 +28,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".homepage"></activity>
+        <activity android:name=".homepage" />
+        <activity android:name=".Main2Activity" />
+        <activity android:name=".SignUpForm"></activity>
     </application>
 
 </manifest>
