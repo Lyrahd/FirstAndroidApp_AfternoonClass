@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        signup=(TextView)findViewById(R.id.txtsignup);
         login_btn=(Button)findViewById(R.id.login_btn);
         email_txt=(EditText)findViewById(R.id.email_txt);
         password_txt=(EditText)findViewById(R.id.password_txt);
