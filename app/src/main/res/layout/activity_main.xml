@@ -80,12 +80,6 @@
                 android:maxLength="16"
                 android:layout_weight="0.89" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Show"
-                android:id="@+id/show"
-                android:layout_gravity="center_horizontal" />
         </LinearLayout>
 
         <LinearLayout
@@ -110,37 +104,12 @@
             android:gravity="center"
             android:weightSum="1">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:paddingBottom="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Don&apos;t have an account? "
-                    android:id="@+id/textView"
-                    android:textColor="#ffffff" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Sign Up."
-                    android:id="@+id/textView2"
-                    android:textColor="#ffffff"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <TextView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Need Help?"
-                android:id="@+id/textView3"
-                android:textColor="#ffffff" />
+                android:text="Sign Up"
+                android:id="@+id/SignUp" />
+
         </LinearLayout>
 
     </LinearLayout>

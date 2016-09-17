@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:background="#3c769b"
+    android:weightSum="1"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp">
+
+    <EditText
+        android:id="@+id/email"
+        android:hint="Email"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:background="#79a0ba"
+        android:layout_weight="0.04"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <requestFocus />
+    </EditText>
+
+    <Space
+        android:layout_width="20px"
+        android:layout_height="20px" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:background="#79a0ba"
+        android:layout_weight="0.05"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp" />
+
+    <Space
+        android:layout_width="20px"
+        android:layout_height="20px" />
+
+    <EditText
+        android:id="@+id/confirm_password"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:background="#79a0ba"
+        android:layout_weight="0.05"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp" />
+
+    <Space
+        android:layout_width="20px"
+        android:layout_height="30dp" />
+
+    <Button
+        android:id="@+id/ok"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Ok"
+        android:layout_marginBottom="60dp" />
+
+</LinearLayout>
