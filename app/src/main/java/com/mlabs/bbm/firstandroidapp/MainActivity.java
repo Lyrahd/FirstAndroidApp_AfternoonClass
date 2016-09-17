@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText editUser;
     private EditText editPass;
     private TextView pwd_show; //Declaration for show password variable
+    private TextView signup;
     //Boolean onTouch = true; //For ShowPassword
 
     @Override
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         //commit
         editUser = (EditText) findViewById(R.id.editUser);
         editPass = (EditText) findViewById(R.id.editPass);
+
         pwd_show = (TextView)findViewById(R.id.pwd_show); //another declaration for pwd_show
         //below is the actual code of pwd_show based on STACK OVERFLOW
         pwd_show.setOnTouchListener(new View.OnTouchListener(){
@@ -43,7 +45,17 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        //end of pwd_show -------------------------------------------------------
 
+        //start of signup code once click
+        findViewById(R.id.signup).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent s = new Intent(MainActivity.this,SignUp.class);
+                startActivity(s);
+            }
+        });
+        //end of signup code once click
 
         findViewById(R.id.btnLogin).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,21 +92,8 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         finish();
     }
+    //end of exit code --------------
 
-    // validating email id
-    private boolean isValidEmail(String email) {
-        String EMAIL_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$#]).{6,20})";
 
-        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
-    // validating password with retype password
-    private boolean isValidPassword(String pass) {
-        if (pass != null && pass.length() > 6) {
-            return true;
-        }
-        return false;
-    }
 }
 
