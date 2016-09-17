@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         assert button1 != null;
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
-                public void onClick(View v) {
+            public void onClick(View v) {
                 if ((!isValidPassword(editext2.getText().toString())) && (!isValidEmail(editext1.getText().toString())))  {
                     Toast.makeText(MainActivity.this, "Invalid Email and Password", Toast.LENGTH_LONG).show(); }
                 else if(!isValidEmail(editext1.getText().toString())) {
@@ -41,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 else{
-                        Intent intent = new Intent(v.getContext(), Homepageb.class);
-                        startActivityForResult(intent, 0);
-                        finish();
-                    }
+                    Intent intent = new Intent(v.getContext(), Homepageb.class);
+                    startActivityForResult(intent, 0);
+                    finish();
                 }
-            });
-        }
+            }
+        });
+    }
 
     private boolean isValidEmail(String email) {
 
@@ -64,7 +64,3 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 }
-
-
-
-
