@@ -14,12 +14,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="WELCOME TO SECURHYTHM"
+        android:text="WELCOME to SecuRhythm"
         android:textStyle="bold"
         android:textSize="20pt"
         android:textAlignment="center"
         android:textColor="#f2fb06"
         android:id="@+id/textView"
-        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OnTouch Activity"
+        android:textStyle="bold"
+        android:textSize="10pt"
+        android:textAlignment="center"
+        android:onClick="onTouch"
+        android:textColor="@color/black"
+        android:id="@+id/onTouchbtn"
+        android:layout_marginTop="47dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
