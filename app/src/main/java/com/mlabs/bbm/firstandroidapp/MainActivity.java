@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,16 +18,40 @@ import android.view.View.OnTouchListener;
 
 public class MainActivity extends AppCompatActivity {
 
-Button showbtn, validate;
-    @Override
+    Button validate;
+    TextView showpass;
 
+    private boolean validateEmail(String email) {
+        String emailRegEx;
+        Pattern pattern;
+        // Regex for a valid email address
+        emailRegEx = "^[A-Za-z0-9._%+\\-]+@[A-Za-z0-9.\\-]+\\.[A-Za-z]{2,4}$";
+        // Compare the regex with the email address
+        pattern = Pattern.compile(emailRegEx);
+        Matcher matcher = pattern.matcher(email);
+        if (!matcher.find()) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validatePassword(String password) {
+        if (password != null && password.length() > 7) {
+            return true;
+        } else
+            return false;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        showbtn = (Button) findViewById(R.id.show);
         setContentView(R.layout.activity_main);
+
         final EditText email = (EditText) findViewById(R.id.email);
         final EditText password = (EditText) findViewById(R.id.pass);
+        showpass = (TextView) findViewById(R.id.show);
         validate = (Button) findViewById(R.id.buttonL);
+
         validate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,66 +72,30 @@ Button showbtn, validate;
             }
         });
 
-        showbtn.setOnTouchListener(new OnTouchListener() {
+
+       showpass.setOnTouchListener(new OnTouchListener() {
             @Override
-            public boolean onTouch(View view,MotionEvent motionEvent){
-            int event = motionEvent.getAction();
-     //       if (motionEvent.getAction() == MotionEvent.ACTION_DOWN)
-   //         {
- //               password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        password.setTransformationMethod(null);
+                        break;
 
-            //}else if (motionEvent.getAction() == MotionEvent.ACTION_UP)
-           // {
-             //   password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-            //}
-           // return false;
-            switch (event)
-            {
-                case MotionEvent.ACTION_DOWN:
-                    password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    break;
-                case MotionEvent.ACTION_UP:
-                    password.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    break;
+                    case MotionEvent.ACTION_UP:
+                        password.setTransformationMethod(new PasswordTransformationMethod());
+                        break;
+                }
+                return true;
             }
-            return true;
-
-
-
-        }
         });
     }
-
-
-
-
-    private boolean validateEmail(String email) {
-        String emailRegEx;
-        Pattern pattern;
-        // Regex for a valid email address
-        emailRegEx = "^[A-Za-z0-9._%+\\-]+@[A-Za-z0-9.\\-]+\\.[A-Za-z]{2,4}$";
-        // Compare the regex with the email address
-        pattern = Pattern.compile(emailRegEx);
-        Matcher matcher = pattern.matcher(email);
-        if (!matcher.find()) {
-            return false;
-        }
-        return true;
-    }
-    private boolean validatePassword(String password) {
-        if (password != null && password.length() > 7) {
-            return true;
-        } else
-            return false;
-    }
-
-
-
-
-
-
-
 }
+
+
+
+
+
+
 
 
 

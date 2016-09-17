@@ -12,12 +12,12 @@ public class SplashScreen extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash);
+          setContentView(R.layout.splash);
 
     Thread timerThread = new Thread(){
         public void run(){
             try{
-                sleep(10000);
+                sleep(3000);
             }
             catch(InterruptedException e){
                 e.printStackTrace();

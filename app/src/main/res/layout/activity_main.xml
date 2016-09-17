@@ -75,13 +75,14 @@
         android:layout_alignRight="@+id/buttonL"
         android:layout_alignEnd="@+id/buttonL" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show"
+        android:text="SHOW"
         android:id="@+id/show"
-        android:layout_alignBottom="@+id/pass"
+        android:layout_alignBaseline="@+id/buttonL"
+        android:layout_alignBottom="@+id/buttonL"
         android:layout_toRightOf="@+id/pass"
         android:layout_toEndOf="@+id/pass" />
+
 </RelativeLayout>

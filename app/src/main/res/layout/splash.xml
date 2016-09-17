@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="#d48551">
 
-    <ViewSwitcher
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:id="@+id/viewSwitcher"
-        android:layout_gravity="center_horizontal" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
+        android:text="BEAR"
+        android:id="@+id/textView6"
+        android:textSize="50dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/bear" />
-</LinearLayout>
+        android:layout_marginTop="156dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
