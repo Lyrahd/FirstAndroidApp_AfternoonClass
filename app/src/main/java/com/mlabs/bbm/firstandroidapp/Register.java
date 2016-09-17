@@ -7,6 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,11 +28,12 @@ public class Register extends Activity{
         pwd1 = (EditText)findViewById(R.id.edit_pass1);
         pwd2 = (EditText)findViewById(R.id.edit_pass2);
         reg = (Button)findViewById(R.id.btn_register);
-
+        final String time;
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (check()) {
+                    time  = getDate();
                     Toast.makeText(getApplicationContext(),"Registration success!", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -37,6 +41,12 @@ public class Register extends Activity{
                 }
             }
         });
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        super.finish();
     }
 
     public Boolean check(){
@@ -69,5 +79,11 @@ public class Register extends Activity{
             return false;
         }
         return true;
+    }
+
+    public String getDate(){
+        DateFormat df = new SimpleDateFormat("EEEE, d MMM yyyy, HH:mm");
+        String date = df.format(Calendar.getInstance().getTime());
+        return date;
     }
 }
