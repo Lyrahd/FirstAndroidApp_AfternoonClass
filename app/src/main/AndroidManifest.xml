@@ -19,7 +19,7 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ontouchlistener"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="com.mlabs.bbm.firstandroidapp.MainActivity"/>

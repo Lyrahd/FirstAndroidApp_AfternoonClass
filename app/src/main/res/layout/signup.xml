@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/abc_scrubber_control_to_pressed_mtrl_000">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/email"
+        android:textColorHint="@color/dim_foreground_material_dark"
+        android:hint="Enter your email"
+        android:textColor="@color/abc_input_method_navigation_guard"
+        android:layout_marginTop="133dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="37dp"
+        android:layout_marginEnd="37dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cpass"
+        android:textColorHint="@color/dim_foreground_material_dark"
+        android:hint="Confirm Password"
+        android:textColor="@color/abc_input_method_navigation_guard"
+        android:layout_below="@+id/pass"
+        android:layout_alignLeft="@+id/pass"
+        android:layout_alignStart="@+id/pass" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pass"
+        android:textColorHint="@color/dim_foreground_material_dark"
+        android:hint="Password"
+        android:textColor="@color/abc_input_method_navigation_guard"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/email"
+        android:layout_alignStart="@+id/email" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:id="@+id/btnregister"
+        android:layout_below="@+id/cpass"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Email:"
+        android:id="@+id/textView"
+        android:layout_alignBottom="@+id/email"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_alignEnd="@+id/textView2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Password:"
+        android:id="@+id/textView2"
+        android:layout_alignBottom="@+id/pass"
+        android:layout_toLeftOf="@+id/btnregister"
+        android:layout_toStartOf="@+id/btnregister" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Confirm Password:"
+        android:id="@+id/textView3"
+        android:layout_alignBottom="@+id/cpass"
+        android:layout_toLeftOf="@+id/cpass"
+        android:layout_toStartOf="@+id/cpass" />
+
+</RelativeLayout>

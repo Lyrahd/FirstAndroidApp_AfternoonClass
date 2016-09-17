@@ -43,7 +43,7 @@ protected void onCreate(Bundle savedInstanceState) {
             }
             else
             {
-                Intent i =new Intent (Login.this, MainActivity.class);
+                Intent i =new Intent (Login.this, signupactivity.class);
                 startActivity(i);
             }
 
