@@ -14,7 +14,7 @@ import android.widget.Toast;
 import android.text.InputType;
 
 public class MainActivity extends AppCompatActivity {
-    Button sign, exit;
+    Button sign;
     EditText etext, ptext;
     TextView tv7;
 
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         sign.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        if (etext.getText().toString().equals("veeldyow@yahoo.com") && ptext.getText().toString().equals("catiis")) {
+                                        if (etext.getText().toString().equals("veel") && ptext.getText().toString().equals("catiis")) {
                                             Toast.makeText(getApplicationContext(), "Redirecting....", Toast.LENGTH_SHORT).show();
 
                                             Thread timerThread = new Thread() {
