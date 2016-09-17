@@ -30,7 +30,8 @@
         android:textColorHint="#ffffff"
         android:layout_above="@+id/txt_Password"
         android:layout_alignRight="@+id/txt_Password"
-        android:layout_alignEnd="@+id/txt_Password" />
+        android:layout_alignEnd="@+id/txt_Password"
+        android:textColor="#ffffff" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -42,19 +43,21 @@
         android:textColorHint="#ffffff"
         android:layout_above="@+id/txt_CPassword"
         android:layout_alignRight="@+id/btn_CreateAcct"
-        android:layout_alignEnd="@+id/btn_CreateAcct" />
+        android:layout_alignEnd="@+id/btn_CreateAcct"
+        android:textColor="#ffffff" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
         android:hint="Confirm Password"
         android:ems="10"
         android:id="@+id/txt_CPassword"
         android:textColorHint="#ffffff"
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/txt_Password"
-        android:layout_alignStart="@+id/txt_Password" />
+        android:layout_alignStart="@+id/txt_Password"
+        android:textColor="#ffffff"
+        android:inputType="textPassword" />
 
     <Button
         android:layout_width="wrap_content"
