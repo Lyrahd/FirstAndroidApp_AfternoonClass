@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity2">
+            android:name=".TouchListener">
             <intent-filter>
                 <action android:name="com.mlabs.bbm.firstandroidapp.Activity2" />
             </intent-filter>

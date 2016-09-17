@@ -12,7 +12,7 @@ import android.widget.Toast;
 /**
  * Created by androidstudio on 03/09/16.
  */
-public class Activity2 extends AppCompatActivity {
+public class TouchListener extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
