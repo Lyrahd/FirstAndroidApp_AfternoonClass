@@ -7,43 +7,16 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.justine.firstandroidapp_afternoonclass.MainActivity">
-
+    tools:context="com.mlabs.bbm.firstandroidapp.MainActivity">
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="250dp"
-        android:id="@+id/imageView2"
+        android:layout_height="wrap_content"
+        android:id="@+id/ImageView1"
+        android:src="@drawable/splash_image"
         android:layout_alignParentTop="true"
-        android:src="@drawable/logo"
-        android:scaleType="fitCenter" />
-
-    <EditText
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:layout_below="@+id/imageView2"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/email"
-        android:hint="Email" />
-
-    <EditText
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/password"
-        android:layout_below="@+id/email"
-        android:layout_alignStart="@+id/email"
-        android:hint="Password" />
-
-    <Button
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/login"
-        android:layout_below="@+id/password"
-        android:layout_centerHorizontal="true"
-        android:singleLine="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
