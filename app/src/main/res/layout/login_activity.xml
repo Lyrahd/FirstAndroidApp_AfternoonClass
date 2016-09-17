@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.mlabs.bbm.firstandroidapp.MainActivity"
+    tools:context=".LogInActivity"
     android:background="#ff2929">
 
     <ImageView
@@ -95,5 +95,16 @@
         android:layout_toRightOf="@+id/editText"
         android:layout_toEndOf="@+id/editText"
         android:layout_below="@+id/editText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Sign Up"
+        android:id="@+id/SignUp"
+        android:contextClickable="true"
+        android:layout_below="@+id/buttonok"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
 
 </RelativeLayout>

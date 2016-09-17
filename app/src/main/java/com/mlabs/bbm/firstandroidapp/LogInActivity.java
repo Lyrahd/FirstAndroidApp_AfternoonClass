@@ -16,21 +16,26 @@ import android.widget.EditText;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import android.view.View.OnTouchListener;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class LogInActivity extends AppCompatActivity {
 
     Button show;
+    TextView SignUp;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R .layout.activity_main);
+        setContentView(R .layout.login_activity);
 
         final EditText email_ad = (EditText) findViewById(R.id.editText);
         final EditText password_tu = (EditText) findViewById(R.id.editText2);
         Button validate = (Button) findViewById(R.id.buttonok);
         show = (Button) findViewById(R.id.show);
+
+        SignUp = (TextView) findViewById(R.id.SignUp);
+
 
         assert validate != null;
         validate.setOnClickListener(new View.OnClickListener(){
@@ -45,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }else{
 
-                    Intent intent = new Intent(MainActivity.this,Home .class );
+                    Intent intent = new Intent(LogInActivity.this,SignUpActivity.class );
                     startActivity(intent);
 
                 }
@@ -76,6 +81,17 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        SignUp.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                    Intent intent = new Intent(LogInActivity.this,SignUpActivity.class );
+                    startActivity(intent);
+
+                }
+
+
+        });
 
 
 
@@ -100,10 +116,6 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }else
             return false;
-
-
-
-
     }}
 
 

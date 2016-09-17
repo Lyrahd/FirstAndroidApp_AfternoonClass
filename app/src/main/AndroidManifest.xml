@@ -19,27 +19,19 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".LogInActivity"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="com.mlabs.bbm.firstandroidapp.MainActivity"/>
+                <action android:name="com.mlabs.bbm.firstandroidapp.LogInActivity"/>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
         <activity
-            android:name=".Home"
+            android:name=".SignUpActivity"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="com.mlabs.bbm.firstandroidapp.Home"/>
-
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".Main"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="com.mlabs.bbm.firstandroidapp.Main"/>
+                <action android:name="com.mlabs.bbm.firstandroidapp.SignUpActivity"/>
 
             </intent-filter>
         </activity>
