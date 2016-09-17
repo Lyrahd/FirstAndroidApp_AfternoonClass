@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#00a585"
+    >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingBottom="30dp"
+        android:weightSum="1">
+
+        <ImageView
+            android:layout_width="258dp"
+            android:layout_height="200dp"
+            android:id="@+id/imageView"
+            android:src="@drawable/logo"
+            android:paddingTop="50dp"
+            android:layout_weight="0.62" />
+
+
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="331dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/email"
+        android:text="Email "
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:gravity="bottom"
+        android:textSize="20dp"
+        android:textColor="#efefef"
+        android:textColorHint="#efefef"
+        android:layout_marginBottom="10dp"/>
+
+    <EditText
+        android:layout_width="331dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/pwd"
+        android:text="Password"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:textSize="20dp"
+        android:textColor="#efefef"
+        android:textColorHint="#efefef"
+        android:layout_marginBottom="10dp"
+        />
+
+    <EditText
+        android:layout_width="331dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/cpwd"
+        android:text="Confirm Password"
+        android:textSize="20dp"
+        android:textColor="#efefef"
+        android:textColorHint="#efefef"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:id="@+id/ok_btn"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>
