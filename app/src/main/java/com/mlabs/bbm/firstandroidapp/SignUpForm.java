@@ -10,6 +10,8 @@ import android.widget.EditText;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+
 public class SignUpForm extends AppCompatActivity {
 
     @Override
@@ -17,12 +19,15 @@ public class SignUpForm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_form);
 
+
+
+
+
         final EditText email = (EditText) findViewById(R.id.S_email);
         final EditText password = (EditText) findViewById(R.id.S_pword);
         final EditText con_password = (EditText) findViewById(R.id.S_Cpword);
         Button btnsignup = (Button) findViewById(R.id.btnsignup);
-
-
+         
         //        button login
         btnsignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,11 +59,9 @@ public class SignUpForm extends AppCompatActivity {
         String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         Pattern pattern = Pattern.compile(emailPattern);
         Matcher matcher = pattern.matcher(email);
-
         return matcher.matches();
     }
     //      validate password
-//    return true of the passwrod is valid
     protected boolean validatePassword(String password) {
         if(password!=null && password.length() >8) {
             return true;
