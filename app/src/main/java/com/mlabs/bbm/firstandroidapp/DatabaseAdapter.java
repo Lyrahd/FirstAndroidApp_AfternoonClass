@@ -52,7 +52,7 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, created_at);
 
 
-        
+
         long id = db.insert(TABLE_USER, null, values);
         db.close();
 
