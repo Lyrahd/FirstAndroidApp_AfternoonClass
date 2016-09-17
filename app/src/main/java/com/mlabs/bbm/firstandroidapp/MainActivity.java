@@ -33,8 +33,9 @@ public class MainActivity extends AppCompatActivity {
 
         final EditText email = (EditText) findViewById(R.id.email);
         final EditText pass = (EditText) findViewById(R.id.pass);
-        final Button login = (Button) findViewById(R.id.login);
+        final Button login = (Button) findViewById(R.id.register);
         final TextView showPass = (TextView) findViewById(R.id.showPass);
+        final TextView txtReg = (TextView) findViewById(R.id.txtReg);
 
         popToast = Toast.makeText(getApplicationContext(), null, Toast.LENGTH_SHORT);
 
@@ -59,6 +60,18 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+        txtReg.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(MainActivity.this,Register.class );
+                startActivity(intent);
+            }
+
+        });
+
 
         showPass.setOnTouchListener(new View .OnTouchListener(){
 
