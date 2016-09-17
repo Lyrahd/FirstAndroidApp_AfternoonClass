@@ -23,13 +23,13 @@
         android:id="@+id/linearLayout">
         <!--  Email Label -->
         <TextView android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:textColor="@android:color/holo_orange_dark"
             android:text="Username/Email"
             android:textSize="15dp"
             android:autoText="false" />
         <EditText android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="5dip"
             android:layout_marginBottom="20dip"
             android:singleLine="true"
@@ -38,13 +38,13 @@
             android:id="@+id/editUser" />
         <!--  Password Label -->
         <TextView android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:textColor="@android:color/holo_orange_dark"
             android:text="Password"
             android:textSize="15dp" />
 
         <EditText android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="5dip"
             android:singleLine="true"
             android:password="true"

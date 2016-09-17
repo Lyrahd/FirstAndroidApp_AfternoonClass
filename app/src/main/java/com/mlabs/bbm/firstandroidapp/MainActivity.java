@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.signup).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent s = new Intent(MainActivity.this,SignUp.class);
-                startActivity(s);
+                Intent i = new Intent(MainActivity.this,SignUp.class);
+                startActivity(i);
             }
         });
         //end of signup code once click
