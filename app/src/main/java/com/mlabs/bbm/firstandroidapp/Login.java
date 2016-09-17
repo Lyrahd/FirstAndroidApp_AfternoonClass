@@ -27,6 +27,17 @@ public class Login extends AppCompatActivity {
         final EditText TF=(EditText) findViewById(R.id.editText);
         final EditText TF2=(EditText) findViewById(R.id.editText2);
         final Button b=(Button) findViewById(R.id.button);
+        final Button sign=(Button) findViewById(R.id.signup);
+
+        sign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                        Intent intent = new Intent(Login.this, signup.class);
+
+                        startActivity(intent);
+            }
+        });
+
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
