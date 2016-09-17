@@ -2,20 +2,17 @@ package com.mlabs.bbm.firstandroidapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
-import android.text.TextUtils;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import java.util.regex.Pattern;
 
 /**
- * Created by Pau on 7/21/2016.
+ * Created by androidstudio on 17/09/2016.
  */
-public class loginactivity extends AppCompatActivity {
+public class registeractivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,34 +42,4 @@ public class loginactivity extends AppCompatActivity {
             });
         }
 
-        btn1.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        PassW.setInputType(InputType.TYPE_CLASS_TEXT);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        PassW.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                        break;
-                }
-                return true;
-            }
-        });
     }
-            public static boolean isValidEmail(CharSequence target) {
-                if (TextUtils.isEmpty(target)) {
-                    return false;
-                } else {
-                    return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
-                }
-            }
-
-            protected void onPause() {
-                super.onPause();
-                finish();
-            }
-    }
-
-
-
