@@ -28,12 +28,12 @@ public class Register extends Activity{
         pwd1 = (EditText)findViewById(R.id.edit_pass1);
         pwd2 = (EditText)findViewById(R.id.edit_pass2);
         reg = (Button)findViewById(R.id.btn_register);
-        final String time;
+
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (check()) {
-                    time  = getDate();
+                    String time = getDate();
                     Toast.makeText(getApplicationContext(),"Registration success!", Toast.LENGTH_SHORT).show();
                 }
                 else {
