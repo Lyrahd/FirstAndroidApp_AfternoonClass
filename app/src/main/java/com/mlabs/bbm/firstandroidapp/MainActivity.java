@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    LoginDataBaseAdapter loginDataBaseAdapter;
 
     public final static boolean isValidEmail(CharSequence target) {
         if (TextUtils.isEmpty(target)) {
@@ -31,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+// create a instance of SQLite Database
+        loginDataBaseAdapter = new LoginDataBaseAdapter(this);
+        loginDataBaseAdapter = loginDataBaseAdapter.open();
+
+
         final EditText email = (EditText) findViewById(R.id.email);
         final EditText pass = (EditText) findViewById(R.id.pass);
         final Button login = (Button) findViewById(R.id.register);
@@ -45,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+
                 if(isValidEmail(email.getText())==false)
                 {
                     email.setError("Please enter a valid email address.");
@@ -54,9 +61,25 @@ public class MainActivity extends AppCompatActivity {
                     pass.setError("Minimum password length is at least 8 characters.");
                 }
                 else
-                {   Intent intent = new Intent(MainActivity.this,Profile.class );
-                    startActivity(intent);
+                {
+                    String userName = email.getText().toString();
+                    String password = pass.getText().toString();
+
+                    // fetch the Password form database for respective user name
+                    String storedPassword = loginDataBaseAdapter.getSinlgeEntry(userName);
+
+                    // check if the Stored password matches with  Password entered by user
+                    if (password.equals(storedPassword)) {
+                        Toast.makeText(MainActivity.this, userName + " has logged in. \n Password: " + password, Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(MainActivity.this,MainScreen.class );
+                        startActivity(intent);
+
+                        //dialog.dismiss();
+                    } else {
+                        Toast.makeText(MainActivity.this, "User Name or Password is incorrect", Toast.LENGTH_LONG).show();
+                    }
                 }
+
             }
 
         });
@@ -107,9 +130,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected  void onPause(){
-        super.onPause();
-        finish();
-    }
 }

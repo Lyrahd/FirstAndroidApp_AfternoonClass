@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Register extends AppCompatActivity {
-
+    LoginDataBaseAdapter loginDataBaseAdapter;
     public final static boolean isValidEmail(CharSequence target) {
         if (TextUtils.isEmpty(target)) {
             return false;
@@ -27,6 +27,9 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        // get Instance  of Database Adapter
+        loginDataBaseAdapter=new LoginDataBaseAdapter(this);
+        loginDataBaseAdapter=loginDataBaseAdapter.open();
 
         final EditText remail = (EditText) findViewById(R.id.remail);
         final EditText rpass = (EditText) findViewById(R.id.rpass);
@@ -51,10 +54,15 @@ public class Register extends AppCompatActivity {
                 }
                 else if(rpass.getText().toString().equals(rconfpass.getText().toString()))
                 {
+
+
+                    loginDataBaseAdapter.insertEntry(remail.getText().toString(),rpass.getText().toString());
                     popToast = Toast.makeText(getApplicationContext(), null, Toast.LENGTH_SHORT);
-                    popToast.setText("Registered");
+                    popToast.setText("Account Successfully Created ");
                     popToast.show();
 
+                    Intent intent = new Intent(Register.this,MainActivity.class );
+                    startActivity(intent);
                 }
                 else
                 {
