@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     Button login_btn,show_btn;
     EditText email_txt,password_txt;
-
+    TextView signup;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +74,14 @@ public class MainActivity extends AppCompatActivity {
                     password_txt.setError(getString(R.string.error_field_required));
                 }
 
+            }
+        });
+        
+        signup.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(MainActivity.this, SignUp.class);
+                startActivity(intent);
             }
         });
 
