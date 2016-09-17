@@ -6,81 +6,68 @@
     android:layout_height="match_parent"
     android:paddingTop="10dp"
     tools:context="com.mlabs.bbm.firstandroidapp.SignUpActivity"
-    android:background="@android:color/white"
+    android:background="#ff4545"
     android:id="@+id/txtView_attempt">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="E-mail Address"
-        android:id="@+id/lbl_Email"
-        android:layout_marginTop="92dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="27dp"
-        android:layout_marginStart="27dp" />
+        android:text="CREATE NEW ACCOUNT"
+        android:id="@+id/textView"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:layout_above="@+id/txt_Email"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="46dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
+        android:hint="E-mail"
         android:ems="10"
         android:id="@+id/txt_Email"
-        android:layout_alignBaseline="@+id/lbl_Email"
-        android:layout_alignBottom="@+id/lbl_Email"
-        android:layout_toRightOf="@+id/lbl_Email"
-        android:layout_toEndOf="@+id/lbl_Email"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Password"
-        android:id="@+id/lbl_Password"
-        android:layout_marginTop="18dp"
-        android:layout_below="@+id/txt_Email"
-        android:layout_alignLeft="@+id/lbl_Email"
-        android:layout_alignStart="@+id/lbl_Email" />
+        android:textColorHint="#ffffff"
+        android:layout_above="@+id/txt_Password"
+        android:layout_alignRight="@+id/txt_Password"
+        android:layout_alignEnd="@+id/txt_Password" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
+        android:hint="Password"
         android:ems="10"
         android:id="@+id/txt_Password"
-        android:layout_below="@+id/txt_Email"
-        android:layout_alignLeft="@+id/txt_Email"
-        android:layout_alignStart="@+id/txt_Email" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Confirm Password"
-        android:id="@+id/lbl_CPassword"
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/txt_Password"
-        android:layout_toLeftOf="@+id/editText3"
-        android:layout_toStartOf="@+id/editText3" />
+        android:inputType="textPassword"
+        android:textColorHint="#ffffff"
+        android:layout_above="@+id/txt_CPassword"
+        android:layout_alignRight="@+id/btn_CreateAcct"
+        android:layout_alignEnd="@+id/btn_CreateAcct" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
+        android:hint="Confirm Password"
         android:ems="10"
-        android:id="@+id/editText3"
-        android:layout_below="@+id/txt_Password"
+        android:id="@+id/txt_CPassword"
+        android:textColorHint="#ffffff"
+        android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/txt_Password"
         android:layout_alignStart="@+id/txt_Password" />
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:text="Create Account"
+        android:textColor="#ffffff"
+        android:typeface="sans"
+        android:background="#ff8181"
         android:id="@+id/btn_CreateAcct"
-        android:layout_below="@+id/editText3"
-        android:layout_toRightOf="@+id/lbl_Email"
-        android:layout_toEndOf="@+id/lbl_Email"
-        android:layout_marginTop="62dp" />
+        android:layout_marginTop="73dp"
+        android:layout_below="@+id/txt_CPassword"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
 </RelativeLayout>

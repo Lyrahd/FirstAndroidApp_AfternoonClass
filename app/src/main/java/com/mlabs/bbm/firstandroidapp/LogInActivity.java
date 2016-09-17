@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 public class LogInActivity extends AppCompatActivity {
 
-    Button show;
+    TextView show;
     TextView SignUp;
 
 
@@ -32,7 +32,7 @@ public class LogInActivity extends AppCompatActivity {
         final EditText email_ad = (EditText) findViewById(R.id.editText);
         final EditText password_tu = (EditText) findViewById(R.id.editText2);
         Button validate = (Button) findViewById(R.id.buttonok);
-        show = (Button) findViewById(R.id.show);
+        show = (TextView) findViewById(R.id.show);
 
         SignUp = (TextView) findViewById(R.id.SignUp);
 
