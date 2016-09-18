@@ -10,6 +10,7 @@ import android.widget.Button;
 public class Homepageb  extends android.app.Activity {
     Button b2;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
