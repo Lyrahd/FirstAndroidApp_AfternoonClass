@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (check()) {
                     DatabaseAdapter db = new DatabaseAdapter(MainActivity.this);
+                    System.out.println(mail.getText().toString().trim() + " " +pwd.getText().toString().trim());
                     if (db.validateUser(mail.getText().toString().trim(),pwd.getText().toString().trim())){
                         Toast.makeText(getApplicationContext(),"Credentials matched. Redirecting...", Toast.LENGTH_LONG).show();
                         new Thread(new Runnable()
