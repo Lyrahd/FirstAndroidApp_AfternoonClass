@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
 public class SignUp extends AppCompatActivity {
     EditText emailsu, passu, conpassu;
     Button buttonsu;
+    DatabaseAdapter DataBaseAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,9 @@ public class SignUp extends AppCompatActivity {
         passu = (EditText) findViewById(R.id.pword_txt);
         conpassu = (EditText) findViewById(R.id.cpword_txt);
         buttonsu = (Button) findViewById(R.id.signup_btn);
+
+        DataBaseAdapter = new DatabaseAdapter(this);
+        DataBaseAdapter = DataBaseAdapter.open();
 
         assert buttonsu != null;
         buttonsu.setOnClickListener(new View.OnClickListener() {

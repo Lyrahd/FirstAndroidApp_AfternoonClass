@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     Button button1;
     EditText editext1, editext2;
     Button show;
+    DatabaseAdapter DataBaseAdapter;
+
 
 
     @Override
@@ -28,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
         editext2=(EditText)findViewById(R.id.editText2);
         show = (Button)findViewById(R.id.button3);
 
-
+        DataBaseAdapter = new DatabaseAdapter(this);
+        DataBaseAdapter = DataBaseAdapter.open();
 
 
 
