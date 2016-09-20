@@ -20,6 +20,7 @@ public class OnTouchActivity extends AppCompatActivity{
                 final String tag=OnTouchActivity.class.getSimpleName();
                 final ImageView imageView=(ImageView)findViewById(R.id.imageView);
 
+                assert imageView != null;
                 imageView.setOnTouchListener(new View.OnTouchListener(){
                         float initX,initY,finalX,finalY;
 

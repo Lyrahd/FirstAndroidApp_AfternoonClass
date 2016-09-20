@@ -10,17 +10,22 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class LogIn extends Activity {
+
     EditText pwdTxt,emailTxt;
 
     Button showbtn,logInBtn;
+    String uname,pwd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+
         showbtn = (Button) findViewById(R.id.showbtn);
         pwdTxt = (EditText) findViewById(R.id.pwdTxt);
         emailTxt=(EditText) findViewById(R.id.emailTxt);
@@ -61,7 +66,10 @@ public class LogIn extends Activity {
     });
     }
 
+
     public void login(View view) {
+        final DataBaseAdapter sqlDB = new DataBaseAdapter(getApplicationContext());
+
 
         if (!validateEmail(emailTxt.getText().toString())) {
             emailTxt.setError("Invalid Email");
@@ -69,31 +77,42 @@ public class LogIn extends Activity {
         } else if (!validatePwd(pwdTxt.getText().toString())) {
             pwdTxt.setError("Invalid Password");
             pwdTxt.requestFocus();
-        } else {
+        }
+
+        if (sqlDB.validateUser(emailTxt.getText().toString(),pwdTxt.getText().toString())) {
             Intent intent = new Intent(LogIn.this, MainActivity.class);
             startActivity(intent);
+        } else{
+            Toast.makeText(getApplicationContext(), "Invalid email or password", Toast.LENGTH_SHORT).show();
         }
-
 
 
     }
 
 
-    private Boolean validateEmail(String emailAdd) {
-        if (emailAdd == null || !Patterns.EMAIL_ADDRESS.matcher(emailAdd).matches()) {
-            return false;
-        } else {
-            return true;
+
+        private Boolean validateEmail(String emailAdd) {
+            if (emailAdd == null || !Patterns.EMAIL_ADDRESS.matcher(emailAdd).matches()) {
+                return false;
+            } else {
+                return true;
+            }
         }
+
+        private Boolean validatePwd(String password) {
+            if (password != null && password.length() >= 8) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+
+    public void SignUp(View v) {
+        Intent intent=new Intent(this,SignupActivity.class);
+        startActivity(intent);
     }
 
-    private Boolean validatePwd(String password) {
-        if (password != null && password.length() >= 8) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
 
 }

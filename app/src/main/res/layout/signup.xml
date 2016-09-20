@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Show"
+        android:id="@+id/showbtn1"
+        android:layout_alignTop="@+id/passText"
+        android:layout_toRightOf="@+id/passText"
+        android:layout_toEndOf="@+id/passText" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Email Address:"
+        android:id="@+id/txtEmail"
+        android:layout_marginTop="81dp"
+        android:textSize="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+       />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Password:"
+        android:id="@+id/txtPass"
+        android:layout_marginTop="35dp"
+        android:layout_below="@+id/txtEmail"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="15dp"
+         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Confirm Pass:"
+        android:id="@+id/txtConfirm"
+        android:layout_marginTop="35dp"
+        android:layout_below="@+id/txtPass"
+        android:layout_alignLeft="@+id/txtPass"
+        android:layout_alignStart="@+id/txtPass"
+        android:textSize="15dp"
+      />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="register"
+        android:text="OK"
+        android:id="@+id/btnOK"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:id="@+id/emailText"
+        android:layout_alignBottom="@+id/txtEmail"
+        android:layout_toRightOf="@+id/txtEmail" />
+
+    <EditText
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:id="@+id/passText"
+        android:layout_above="@+id/txtConfirm"
+        android:layout_toRightOf="@+id/txtEmail"
+        android:inputType="textPassword"
+        android:layout_toEndOf="@+id/txtEmail" />
+
+    <EditText
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:id="@+id/confirmText"
+        android:layout_alignBottom="@+id/txtConfirm"
+        android:layout_alignLeft="@+id/passText"
+        android:layout_alignStart="@+id/passText" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Show"
+        android:id="@+id/showbtn2"
+        android:layout_alignTop="@+id/confirmText"
+        android:layout_alignLeft="@+id/showbtn1"
+        android:layout_alignStart="@+id/showbtn1" />
+</RelativeLayout>
