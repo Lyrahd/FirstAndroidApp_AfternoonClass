@@ -88,8 +88,7 @@
             android:contentDescription="icon"
             android:background="#a8b4bb"
             android:layout_above="@+id/textView3"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_centerHorizontal="true" />
 
         <!--<TextView-->
             <!--android:layout_width="wrap_content"-->
@@ -129,7 +128,5 @@
             android:id="@+id/textView3"
             android:layout_gravity="center_horizontal"
             android:layout_above="@+id/textView2"
-            android:layout_alignRight="@+id/textView2"
-            android:layout_alignEnd="@+id/textView2"
-            android:layout_marginBottom="27dp" />
+            android:layout_centerHorizontal="true" />
 </RelativeLayout>

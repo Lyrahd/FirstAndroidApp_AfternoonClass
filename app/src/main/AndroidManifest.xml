@@ -36,11 +36,20 @@
         </activity>
 
         <activity
+            android:name=".SignUp">
+            <intent-filter>
+                <action android:name="com.mlabs.bbm.firstandroidapp.SignUp" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".OnTouchActivity">
             <intent-filter>
                 <action android:name="com.mlabs.bbm.firstandroidapp.OnTouchActivity" />
             </intent-filter>
         </activity>
+
+
     </application>
 
 </manifest>

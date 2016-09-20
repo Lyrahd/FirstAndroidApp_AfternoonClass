@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,8 +17,9 @@ import java.util.regex.Pattern;
 public class MainActivity extends AppCompatActivity {
     Button button1;
     EditText editext1, editext2;
+    TextView txtview;
     Button show;
-    DatabaseAdapter DataBaseAdapter;
+    DatabaseAdapter DatabaseAdapter;
 
 
 
@@ -28,33 +30,49 @@ public class MainActivity extends AppCompatActivity {
         button1=(Button)findViewById(R.id.button);
         editext1=(EditText)findViewById(R.id.editText);
         editext2=(EditText)findViewById(R.id.editText2);
+        txtview=(TextView)findViewById(R.id.textView3);
         show = (Button)findViewById(R.id.button3);
 
-        DataBaseAdapter = new DatabaseAdapter(this);
-        DataBaseAdapter = DataBaseAdapter.open();
-
-
+        DatabaseAdapter = new DatabaseAdapter(this);
+        DatabaseAdapter = DatabaseAdapter.open();
 
 
         assert button1 != null;
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
                 public void onClick(View v) {
-                if ((!isValidPassword(editext2.getText().toString())) && (!isValidEmail(editext1.getText().toString())))  {
-                    Toast.makeText(MainActivity.this, "Invalid Email and Password", Toast.LENGTH_LONG).show(); }
-                else if(!isValidEmail(editext1.getText().toString())) {
-                    Toast.makeText(MainActivity.this,"Invalid Email",Toast.LENGTH_LONG).show();
-                } else if(!isValidPassword(editext2.getText().toString())) {
+                if ((!isValidPassword(editext2.getText().toString())) && (!isValidEmail(editext1.getText().toString()))) {
+                    Toast.makeText(MainActivity.this, "Invalid Email and Password", Toast.LENGTH_LONG).show();
+                } else if (!isValidEmail(editext1.getText().toString())) {
+                    Toast.makeText(MainActivity.this, "Invalid Email", Toast.LENGTH_LONG).show();
+                } else if (!isValidPassword(editext2.getText().toString())) {
                     Toast.makeText(MainActivity.this, "Invalid Password", Toast.LENGTH_LONG).show();
-                }
+                } else {
+                    String email = editext1.getText().toString();
+                    String pword = editext2.getText().toString();
+                    String savePassword = DatabaseAdapter.getSinlgeEntry(email);
 
-                else{
-                        Intent intent = new Intent(v.getContext(), Homepageb.class);
-                        startActivityForResult(intent, 0);
-                        finish();
+                    if (pword.equals(savePassword)) {
+                        Toast.makeText(MainActivity.this, email + " has logged in. \n Password: " + pword, Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                        startActivity(intent);
+
+
                     }
                 }
+            }
             });
+
+        txtview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i;
+                i = new Intent(MainActivity.this, SignUp.class);
+                startActivity(i);
+            }
+
+        });
+
         show.setOnTouchListener(new View.OnTouchListener() {
                                     @Override
                                     public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -103,6 +121,9 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
+
+
+
 }
 
 

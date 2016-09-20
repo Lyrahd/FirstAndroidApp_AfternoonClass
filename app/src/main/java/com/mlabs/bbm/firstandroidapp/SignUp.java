@@ -17,12 +17,14 @@ import java.util.regex.Pattern;
 public class SignUp extends AppCompatActivity {
     EditText emailsu, passu, conpassu;
     Button buttonsu;
-    DatabaseAdapter DataBaseAdapter;
+    DatabaseAdapter DatabaseAdapter;
+
+    private Toast popToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.signup);
 
 
         emailsu = (EditText) findViewById(R.id.email_txt);
@@ -30,8 +32,8 @@ public class SignUp extends AppCompatActivity {
         conpassu = (EditText) findViewById(R.id.cpword_txt);
         buttonsu = (Button) findViewById(R.id.signup_btn);
 
-        DataBaseAdapter = new DatabaseAdapter(this);
-        DataBaseAdapter = DataBaseAdapter.open();
+        DatabaseAdapter = new DatabaseAdapter(this);
+        DatabaseAdapter = DatabaseAdapter.open();
 
         assert buttonsu != null;
         buttonsu.setOnClickListener(new View.OnClickListener() {
@@ -45,10 +47,14 @@ public class SignUp extends AppCompatActivity {
                     Toast.makeText(SignUp.this, "Invalid Password", Toast.LENGTH_LONG).show();
                 }
 
-                else{
-                    Intent intent = new Intent(v.getContext(), Homepageb.class);
-                    startActivityForResult(intent, 0);
-                    finish();
+                else if(passu.getText().toString().equals(conpassu.getText().toString())){
+                    DatabaseAdapter.insertEntry(emailsu.getText().toString(),passu.getText().toString());
+                    popToast = Toast.makeText(getApplicationContext(), null, Toast.LENGTH_SHORT);
+                    popToast.setText("Account Successfully Created ");
+                    popToast.show();
+
+                    Intent intent = new Intent(SignUp.this,Homepageb.class );
+                    startActivity(intent);
                 }
             }
         });
