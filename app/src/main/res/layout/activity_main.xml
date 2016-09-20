@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Sign Up for Free"
-            android:id="@+id/textView2"
+            android:id="@+id/signup"
             android:layout_gravity="center_horizontal"
             android:textColor="#ffffff" />
 

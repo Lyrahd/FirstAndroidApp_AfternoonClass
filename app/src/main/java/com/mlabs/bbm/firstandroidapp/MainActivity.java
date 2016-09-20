@@ -1,8 +1,8 @@
 package com.mlabs.bbm.firstandroidapp;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button btn1, show_btn;
     EditText txt_mail,txt_pw;
-
+    TextView btnSignUp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +34,16 @@ public class MainActivity extends AppCompatActivity {
         txt_mail=(EditText)findViewById(R.id.txt_email);
         txt_pw=(EditText)findViewById(R.id.txt_pw);
         show_btn=(Button)findViewById(R.id.show_btn);
+        btnSignUp =(TextView)findViewById(R.id.signup);
 
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i;
+                i = new Intent(MainActivity.this, SignUp.class);
+                startActivity(i);
+            }
+            });
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
