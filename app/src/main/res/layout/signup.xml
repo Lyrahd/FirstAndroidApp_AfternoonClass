@@ -17,7 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/email"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:singleLine="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,7 +33,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pwd"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:singleLine="true"
+        android:password="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,7 +50,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cpwd"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:singleLine="true"
+        android:password="true" />
 
     <Button
         android:layout_width="wrap_content"

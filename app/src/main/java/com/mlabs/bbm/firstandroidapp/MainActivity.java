@@ -11,9 +11,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    LoginDataBaseAdapter loginDataBaseAdapter;
 
     public static boolean validationEm(CharSequence email) {
         if (TextUtils.isEmpty(email)) {
@@ -28,7 +31,13 @@ public class MainActivity extends AppCompatActivity {
     TextView btnSignUp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+        loginDataBaseAdapter = new LoginDataBaseAdapter(this);
+        loginDataBaseAdapter = loginDataBaseAdapter.open();
+
+
         setContentView(R.layout.activity_main);
         btn1=(Button)findViewById(R.id.button);
         txt_mail=(EditText)findViewById(R.id.txt_email);
@@ -52,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 txt_mail.setError(null);
                 txt_pw.setError(null);
 
-                if(validationEm(txt_mail.getText())==true && txt_pw.getText().length()>0)
+                if(validationEm(txt_mail.getText())==true && txt_pw.getText().length()>8)
                 {
                     Intent i;
                     i = new Intent(MainActivity.this, Activity.class);
@@ -79,6 +88,26 @@ public class MainActivity extends AppCompatActivity {
 
                 else if(txt_pw.getText().toString().equals("")) {
                     txt_pw.setError(getString(R.string.error));
+                }
+                else
+
+                {  String userName = txt_mail.getText().toString();
+                    String password = txt_pw.getText().toString();
+
+                    // fetch the Password form database for respective user name
+                    String storedPassword = loginDataBaseAdapter.getSinlgeEntry(userName);
+
+                    // check if the Stored password matches with  Password entered by user
+                    if (password.equals(storedPassword)) {
+                        Toast.makeText(MainActivity.this, userName + " has logged in. \n Password: " + password, Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(MainActivity.this, Activity.class );
+                        startActivity(intent);
+
+                        //dialog.dismiss();
+                    } else {
+                        Toast.makeText(MainActivity.this, "User Name or Password is incorrect", Toast.LENGTH_LONG).show();
+                    }
+
                 }
 
             }
