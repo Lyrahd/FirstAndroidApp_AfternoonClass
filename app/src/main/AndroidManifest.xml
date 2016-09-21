@@ -10,8 +10,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SplashScreen"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,17 +19,16 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="com.mlabs.bbm.firstandroidapp.MainActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".homepage" />
+        <activity android:name=".signupactivity" />
         <activity android:name=".Main2Activity" />
-        <activity android:name=".SignUpForm"></activity>
+        <activity android:name=".homepage"></activity>
     </application>
 
 </manifest>
