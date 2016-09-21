@@ -1,6 +1,5 @@
 package com.mlabs.bbm.firstandroidapp;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,59 +17,81 @@ import java.util.regex.Pattern;
 /**
  * Created by RalphPogi on 7/20/2016.
  */
-public class Login extends AppCompatActivity {
-    EditText editText,editText2;
-    TextView show;
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.logn);
-    Button loginbtn;
-    final EditText emailAddress,passW;
-    show = (TextView)findViewById(R.id.szhow);
+public class Login extends  AppCompatActivity {
+    EditText editText, editText2;
+    TextView show, signup1;
 
-   editText = (EditText) findViewById(R.id.editText);
-    editText2 = (EditText) findViewById(R.id.editText2);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
 
-    findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.logn);
+        Button loginbtn;
+        final EditText emailAddress, passW;
+        show = (TextView) findViewById(R.id.szhow);
+        signup1 = (TextView) findViewById(R.id.signup);
+        editText = (EditText) findViewById(R.id.editText);
+        editText2 = (EditText) findViewById(R.id.editText2);
 
-        @Override
-        public void onClick(View arg0) {
+        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
 
-             String email = editText.getText().toString();
-             String pass = editText2.getText().toString();
-            if (!isValidEmail(email) || !isValidPassword(pass)) {
-                editText.setError("Invalid Email or Password");
+            @Override
+            public void onClick(View arg0) {
+                final databaseAdapter sqlDB = new databaseAdapter(getApplicationContext());
+                String email = editText.getText().toString();
+                String pass = editText2.getText().toString();
+                if (!isValidEmail(email) || !isValidPassword(pass))
+                {
+                    editText.setError("Invalid Email or Password");
+                    editText.requestFocus();
+                }
+                else
+                    {
+                    Intent i = new Intent(Login.this, MainActivity.class);
+                    startActivity(i);
+                    if (sqlDB.validateUser(editText.getText().toString(),editText2.getText().toString()))
+                    {
+                        Intent intent = new Intent(Login.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplication(),"Invalid Email or Password",Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+
             }
-            else
-            {
-                Intent i =new Intent (Login.this, signupactivity.class);
+        });
+        findViewById(R.id.signup).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+
+                Intent i = new Intent(Login.this, signupactivity.class);
                 startActivity(i);
+
+
+;            }
+        });
+        show.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        editText2.setInputType(InputType.TYPE_CLASS_TEXT);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        editText2.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        break;
+                }
+                return true;
             }
 
+        });
 
-
-        }
-    });
-    show.setOnTouchListener(new View.OnTouchListener()
-    {
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent)
-        {
-            switch( motionEvent.getAction())
-            {
-                case MotionEvent.ACTION_DOWN:
-                    editText2.setInputType(InputType.TYPE_CLASS_TEXT);
-                    break;
-                case MotionEvent.ACTION_UP:
-                    editText2.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    break;
-            }
-            return true;
-        }
-
-    });
-}
+    }
 
 
     private boolean isValidEmail(String email) {
@@ -87,13 +109,10 @@ protected void onCreate(Bundle savedInstanceState) {
             return true;
         }
         return false;
-
     }
 
 
-
-
-    }
+}
 
 
 

@@ -16,7 +16,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="37dp"
-        android:layout_marginEnd="37dp" />
+        android:layout_marginEnd="37dp"
+        android:foreground="#ffffff" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -27,7 +28,8 @@
         android:textColor="@color/abc_input_method_navigation_guard"
         android:layout_below="@+id/pass"
         android:layout_alignLeft="@+id/pass"
-        android:layout_alignStart="@+id/pass" />
+        android:layout_alignStart="@+id/pass"
+        android:foreground="#ffffff" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -38,7 +40,8 @@
         android:textColor="@color/abc_input_method_navigation_guard"
         android:layout_below="@+id/textView"
         android:layout_alignLeft="@+id/email"
-        android:layout_alignStart="@+id/email" />
+        android:layout_alignStart="@+id/email"
+        android:foreground="#ffffff" />
 
     <Button
         android:layout_width="wrap_content"
