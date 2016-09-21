@@ -22,84 +22,24 @@ public class LogInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.log_in_activity);
-        Button button1 = (Button) findViewById(R.id.button1);
-        Button show = (Button) findViewById(R.id.button);
+        Button btnlogin = (Button) findViewById(R.id.btn_login);
+        TextView btnsignup = (TextView) findViewById(R.id.sign_up);
+        final EditText un = (EditText) findViewById(R.id.username);
+        final EditText pwd = (EditText) findViewById(R.id.password);
 
-        final EditText editemail = (EditText) findViewById(R.id.editText);
-        final EditText editpass = (EditText) findViewById(R.id.editText2);
-
-        assert button1 != null;
-        button1.setOnClickListener(new View.OnClickListener() {
+        btnsignup.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
-                String email = editemail.getText().toString();
-                String passa = editpass.getText().toString();
-                if ((!isValidEmail(email)) || (!isValidPassword(passa))) {
-                    Toast.makeText(LogInActivity.this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent intent = new Intent(v.getContext(), MainActivity.class);
-                    startActivityForResult(intent, 0);
-                }
+            public void onClick(View view){
+                Intent intent = new Intent(view.getContext(), SignActivity.class);
+                startActivityForResult(intent, 0);
             }
         });
-
-        TextView textsign = (TextView) findViewById(R.id.textView4);
-
-        textsign.setOnClickListener(new View.OnClickListener(){
+        btnlogin.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v){
-                Intent intent = new Intent(v.getContext(), SignActivity.class);
-                startActivityForResult(intent,0);
+            public void onClick(View view){
+                
             }
         });
-
-
-        show.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                int eventA = motionEvent.getAction();
-                final int cursor = editpass.getSelectionStart();
-/*                if (eventA == motionEvent.ACTION_UP) {
-                    editpass.setTransformationMethod(new PasswordTransformationMethod());
-                } else if (eventA == motionEvent.ACTION_CANCEL) {
-                    editpass.setTransformationMethod(new PasswordTransformationMethod());
-                } else if (eventA == motionEvent.ACTION_DOWN) {
-                    editpass.setTransformationMethod(null);
-                }
-                return true; */
-
-                switch (eventA) {
-                    case MotionEvent.ACTION_DOWN:
-                        editpass.setTransformationMethod(null);
-                        editpass.setSelection(cursor);
-                          break;
-                    case MotionEvent.ACTION_UP:
-                        editpass.setTransformationMethod(new PasswordTransformationMethod());
-                        editpass.setSelection(cursor);
-                        break;
-                    case MotionEvent.ACTION_CANCEL:
-                        editpass.setTransformationMethod(new PasswordTransformationMethod());
-                        editpass.setSelection(cursor);
-                        break;
-                }
-                return true;
-            }
-        });
-    }
-
-    private boolean isValidEmail(String email) {
-        String EMAIL_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$#]).{6,20})";
-
-        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
-
-    private boolean isValidPassword(String pass) {
-        if (pass != null && pass.length() >= 6) {
-            return true;
-        }
-        return false;
     }
 
 }

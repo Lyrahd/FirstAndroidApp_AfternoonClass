@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,7 +28,29 @@ public class SignActivity extends AppCompatActivity {
         buttonok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = etemail.getText().toString();
+                if (etemail != null && etpass != null) {
+                    if (Pattern.compile("([a-zA-Z0-9]+_?)+@[a-zA-Z0-9]+\\.com").matcher(etemail.getText()).matches()) {
+                        if (etpass.length() > 8) {
+                            String etpass1 = etpass.getText().toString();
+                            String etcp1 = etcp.getText().toString();
+                            if (etpass1.equals(etcp1)) {
+                                Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_SHORT).show();
+                                Intent a = new Intent(SignActivity.this, MainActivity.class);
+                                startActivity(a);
+                                finish();
+                            }else{
+                                Toast.makeText(getBaseContext(), "Password Does not Match", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(getBaseContext(), "Password too short", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(getBaseContext(), "Invalid Email address", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Please fill in the blank field", Toast.LENGTH_SHORT).show();
+                }
+                /**String email = etemail.getText().toString();
                 String passa = etpass.getText().toString();
                 String cpass = etcp.getText().toString();
                 if ((!isValidEmail(email)) || (!isValidPassword(passa))) {
@@ -39,13 +62,13 @@ public class SignActivity extends AppCompatActivity {
                 else {
                     Intent intent = new Intent(v.getContext(), MainActivity.class);
                     startActivityForResult(intent, 0);
-                }
+                }**/
             }
         });
 
 
     }
-    private boolean isValidEmail(String email) {
+/**    private boolean isValidEmail(String email) {
         String EMAIL_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$#]).{6,20})";
 
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
@@ -59,4 +82,5 @@ public class SignActivity extends AppCompatActivity {
         }
         return false;
     }
+ **/
 }

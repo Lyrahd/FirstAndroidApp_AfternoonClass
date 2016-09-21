@@ -67,7 +67,7 @@ public class DBHelp extends SQLiteOpenHelper {
         long id = db.insert(TABLE_USER, null, values);
         db.close();
 
-        Log.d(TAG, "Successfully Added user: " + id;
+        Log.d(TAG, "Successfully Added user: " + id);
 
     }
 
