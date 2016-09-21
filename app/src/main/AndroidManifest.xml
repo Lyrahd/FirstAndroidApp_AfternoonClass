@@ -28,12 +28,6 @@
         </activity>
 
         <activity
-            android:name=".Activity">
-            <intent-filter>
-                <action android:name="com.mlabs.bbm.firstandroidapp.Activity" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".TouchListener">
             <intent-filter>
                 <action android:name="com.mlabs.bbm.firstandroidapp.Activity2" />

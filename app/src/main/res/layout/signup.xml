@@ -28,39 +28,41 @@
         android:layout_width="331dp"
         android:layout_height="wrap_content"
         android:id="@+id/email"
-        android:text="Email "
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:gravity="bottom"
         android:textSize="20dp"
         android:textColor="#efefef"
         android:textColorHint="#efefef"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        android:singleLine="true"
+        android:hint="Email" />
 
     <EditText
         android:layout_width="331dp"
         android:layout_height="wrap_content"
         android:id="@+id/pwd"
-        android:text="Password"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:textSize="20dp"
         android:textColor="#efefef"
         android:textColorHint="#efefef"
         android:layout_marginBottom="10dp"
-        />
+        android:singleLine="true"
+        android:hint="Password" />
 
     <EditText
         android:layout_width="331dp"
         android:layout_height="wrap_content"
         android:id="@+id/cpwd"
-        android:text="Confirm Password"
         android:textSize="20dp"
         android:textColor="#efefef"
         android:textColorHint="#efefef"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"/>
+        android:layout_marginRight="25dp"
+        android:singleLine="true"
+        android:hint="Confirm Password" />
 
     <Button
         android:layout_width="wrap_content"
