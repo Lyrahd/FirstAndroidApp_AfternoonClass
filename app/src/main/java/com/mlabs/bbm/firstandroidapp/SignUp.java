@@ -39,21 +39,23 @@ public class SignUp extends AppCompatActivity {
         buttonsu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ((isValidPassword(passu.getText().toString()))!=(isValidConPassword(conpassu.getText().toString())))  {
-                    Toast.makeText(SignUp.this, "Password do not match", Toast.LENGTH_LONG).show(); }
-                else if(!isValidEmail(emailsu.getText().toString())) {
+                /**if ((isValidPassword(passu.getText().toString()))!=(isValidConPassword(conpassu.getText().toString())))  {
+                    Toast.makeText(SignUp.this, "Password do not match", Toast.LENGTH_LONG).show(); } **/
+                if(!isValidEmail(emailsu.getText().toString())) {
                     Toast.makeText(SignUp.this,"Invalid Email",Toast.LENGTH_LONG).show();
                 } else if(!isValidPassword(passu.getText().toString())) {
-                    Toast.makeText(SignUp.this, "Invalid Password", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignUp.this, "Password Length needs to be at least 8 characters", Toast.LENGTH_LONG).show();
                 }
-
-                else if(passu.getText().toString().equals(conpassu.getText().toString())){
+                else if (!passu.getText().toString().equals(conpassu.getText().toString())) {
+                    Toast.makeText(SignUp.this, "Password does not match", Toast.LENGTH_LONG).show();
+                }
+                else /**if(passu.getText().toString().equals(conpassu.getText().toString()))**/{
                     DatabaseAdapter.insertEntry(emailsu.getText().toString(),passu.getText().toString());
                     popToast = Toast.makeText(getApplicationContext(), null, Toast.LENGTH_SHORT);
                     popToast.setText("Account Successfully Created ");
                     popToast.show();
 
-                    Intent intent = new Intent(SignUp.this,Homepageb.class );
+                    Intent intent = new Intent(SignUp.this,BlankHomePage.class );
                     startActivity(intent);
                 }
             }
@@ -69,13 +71,6 @@ public class SignUp extends AppCompatActivity {
     }
 
     private boolean isValidPassword(String pass) {
-        if (pass != null && pass.length() >= 8) {
-            return true;
-        }
-        return false;
-
-    }
-    private boolean isValidConPassword(String pass) {
         if (pass != null && pass.length() >= 8) {
             return true;
         }

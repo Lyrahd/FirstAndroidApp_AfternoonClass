@@ -41,26 +41,30 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
                 public void onClick(View v) {
-                if ((!isValidPassword(editext2.getText().toString())) && (!isValidEmail(editext1.getText().toString()))) {
+                /**if ((!isValidPassword(editext2.getText().toString())) && (!isValidEmail(editext1.getText().toString()))) {
                     Toast.makeText(MainActivity.this, "Invalid Email and Password", Toast.LENGTH_LONG).show();
                 } else if (!isValidEmail(editext1.getText().toString())) {
                     Toast.makeText(MainActivity.this, "Invalid Email", Toast.LENGTH_LONG).show();
                 } else if (!isValidPassword(editext2.getText().toString())) {
                     Toast.makeText(MainActivity.this, "Invalid Password", Toast.LENGTH_LONG).show();
-                } else {
+                } else {**/
                     String email = editext1.getText().toString();
                     String pword = editext2.getText().toString();
                     String savePassword = DatabaseAdapter.getSinlgeEntry(email);
 
                     if (pword.equals(savePassword)) {
                         Toast.makeText(MainActivity.this, email + " has logged in. \n Password: " + pword, Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                        Intent intent = new Intent(MainActivity.this, BlankHomePage.class);
                         startActivity(intent);
 
 
                     }
+                else{
+                       Toast.makeText(MainActivity.this, "invalid email or password ", Toast.LENGTH_LONG).show();
+                    }
+
                 }
-            }
+
             });
 
         txtview.setOnClickListener(new View.OnClickListener() {

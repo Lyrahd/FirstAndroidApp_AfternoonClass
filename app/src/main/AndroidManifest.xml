@@ -49,6 +49,13 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".BlankHomePage">
+            <intent-filter>
+                <action android:name="com.mlabs.bbm.firstandroidapp.BlankHomePage" />
+            </intent-filter>
+        </activity>
+
 
     </application>
 

@@ -39,15 +39,15 @@ public class DatabaseAdapter {
         newValues.put("EMAIL", email);
         newValues.put("PASSWORD", pword);
         db.insert("USERS", null, newValues);
-        Toast.makeText(context, "Reminder Is Successfully Saved", Toast.LENGTH_LONG).show();
+        /**Toast.makeText(context, "Reminder Is Successfully Saved", Toast.LENGTH_LONG).show();**/
     }
 
-    public int deleteEntry(String email) {
+    /**public int deleteEntry(String email) {
         String where = "EMAIL=?";
         int numberOFEntriesDeleted = db.delete("USERS", where, new String[]{email});
-        Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Number for Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
         return numberOFEntriesDeleted;
-    }
+    }**/
 
     public String getSinlgeEntry(String email) {
         Cursor cursor = db.query("USERS", null, " EMAIL=?", new String[]{email}, null, null, null);
