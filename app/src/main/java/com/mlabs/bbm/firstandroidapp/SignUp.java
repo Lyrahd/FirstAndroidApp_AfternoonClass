@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.view.View;
-
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 /**
@@ -36,28 +36,34 @@ public class SignUp extends AppCompatActivity{
         final String emailInput = email.getText().toString().trim();
         final String passwordInput = password.getText().toString().trim();
         final String passwordInputVerify = verifypassword.getText().toString().trim();
+        final String getCurrentTime = DateFormat.getDateTimeInstance().format(new Date());
 
-        btnRegister.setOnClickListener((View) {
-                Log.d(getApplicationContext().toString(),"SCLICK");
-                if (!emailInput.isEmpty() && !passwordInput.isEmpty() && !passwordInputVerify.isEmpty()){
+        findViewById(R.id.btnLogin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /**
+                 * for user name validation ONLY + password
+                 */
+                //if (Pattern.compile("([a-zA-Z0-9]+_?)+").matcher(editEmail.getText()).matches() && editPassSU.length()>=8 && editPassCon.length()>=8 && editPassSU == editPassCon)
+                if (!emailInput.equals("") && !passwordInput.equals("") && !passwordInputVerify.equals("")){
                     Log.d(getApplicationContext().toString(),"CLICK");
                     if (passwordInput.equals(passwordInputVerify)){
-                        Log.d(SignUp.this,toString(), "Signing up..");
-                        sqlDB.registerUser(emailInput, passwordInput, getCurrentDateTime());
+                        Log.d(SignUp.this.toString(),"SIGNING UP..");
+                        sqlDB.registerUser(emailInput, passwordInput, getCurrentTime);
                         Toast.makeText(getApplicationContext(),"User successfully added",Toast.LENGTH_LONG).show();
-                        Intent gobackToLoginScreen = new Intent(getApplicationContext(),MainActivity.class);
-                        startActivity(gobackToLoginScreen);
+                        Intent s = new Intent(getApplicationContext(),Display.class);
+                        startActivity(s);
                     }
                     else {
-                        Toast.makeText(getApplicationContext(),"Password did not match",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Password did not match", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(getApplicationContext(),"Please fill up required fields",Toast.LENGTH_SHORT).show();
+
                 }
+                else{
+                    Toast.makeText(getApplicationContext(),"User successfully added", Toast.LENGTH_SHORT).show();
+                }
+
+            }
         });
-
     }
-
-
-
 }

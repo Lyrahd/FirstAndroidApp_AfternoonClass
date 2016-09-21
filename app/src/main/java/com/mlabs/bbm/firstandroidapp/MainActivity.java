@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 /**
                  * for user name validation ONLY + password
-                 */
+                 *
                 if (Pattern.compile("([a-zA-Z0-9]+_?)+").matcher(editUser.getText()).matches() && editPass.length()>=6)
                 {
                     Intent i = new Intent(MainActivity.this,Display.class);
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 /**
                  * for email validation ONLY + password
                  */
-                else if (Pattern.compile("^\\w+.*\\w*@[a-zA-Z_]+?\\.[0-9a-zA-Z]{2,}$").matcher(editUser.getText()).matches() && editPass.length()>=6){
+                if (Pattern.compile("^\\w+.*\\w*@[a-zA-Z_]+?\\.[0-9a-zA-Z]{2,}$").matcher(editUser.getText()).matches() && editPass.length()>=6){
                     Intent i = new Intent(MainActivity.this,Display.class);
                     startActivity(i);
                     Toast.makeText(getBaseContext(), "Welcome back Agent!",Toast.LENGTH_SHORT).show();
