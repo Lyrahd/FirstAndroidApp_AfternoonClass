@@ -8,6 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.SimpleTimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -44,9 +48,10 @@ public class signupactivity extends AppCompatActivity {
                     password.requestFocus();
                 }
                 else {
-                    loginDataBaseAdapter.insertEntry(email.toString(), password.toString());
-                    Toast.makeText(getApplicationContext(), "Add Account.", Toast.LENGTH_LONG).show();
-                    Intent i = new Intent(signupactivity.this, Main2Activity.class);
+//                    loginDataBaseAdapter.insertEntry(email.getText().toString(), password.getText().toString(),getCurrentDateTime());
+                    loginDataBaseAdapter.insertEntry(email.getText().toString(), password.getText().toString());
+                    Toast.makeText(getApplicationContext(), "Added Account.", Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(signupactivity.this, MainActivity.class);
                     startActivity(i);
                     finish();
                 }
@@ -54,7 +59,12 @@ public class signupactivity extends AppCompatActivity {
         });
 
     }
-
+    public String getCurrentDateTime() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        System.out.println(dateFormat.format(date));
+        return dateFormat.format(date).toString();
+    }
     //      validating email
     protected boolean validateEmail(String email) {
         String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";

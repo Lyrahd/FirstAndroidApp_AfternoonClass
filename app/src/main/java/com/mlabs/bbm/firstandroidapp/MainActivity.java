@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         final EditText email = (EditText) findViewById(R.id.email);
         final EditText password = (EditText) findViewById(R.id.password);
+
         Button btnLogin = (Button) findViewById(R.id.btnLogin);
         Button btnShow = (Button) findViewById(R.id.btnShow);
         final TextView signup = (TextView) findViewById(R.id.txtsignup);
@@ -36,25 +37,22 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // fetch the Password form database for respective user name
-                String storedPassword = loginDataBaseAdapter.getSinlgeEntry(email.toString());
+                // get The User name and Password
+                String uname=email.getText().toString();
+                String pword=password.getText().toString();
 
-//                if(!validateEmail(email.getText().toString())) {
-//                    email.setError("Invalid Email");
-//                    email.requestFocus();
-//                } else if(!validatePassword(password.getText().toString())){
-//                    password.setError("Invalid Password");
-//                    password.requestFocus();
-//                } else if (password.equals(storedPassword)){
-//                    Toast.makeText(MainActivity.this, "Congrats: Login Successfull", Toast.LENGTH_LONG).show();
-//                    Intent i = new Intent(MainActivity.this, homepage.class);
-//                    startActivity(i);
-//                    finish();
-//                }
-                if (password.equals(storedPassword)) {
-                    Toast.makeText(MainActivity.this, "Login Successfull", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(MainActivity.this, "error: Username or Password does not match", Toast.LENGTH_LONG).show();
+                // fetch the Password form database for respective user name
+                String storedPassword=loginDataBaseAdapter.getSinlgeEntry(uname);
+
+                if(pword.equals(storedPassword))
+                {
+                    Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                    Intent i=new Intent(getApplicationContext(),Main2Activity.class);
+                    startActivity(i);
+                }
+                else
+                {
+                    Toast.makeText(MainActivity.this, "Error: Username or Password does not match", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -95,23 +93,23 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //      validating email
-    protected boolean validateEmail(String email) {
-        String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        Pattern pattern = Pattern.compile(emailPattern);
-        Matcher matcher = pattern.matcher(email);
-
-        return matcher.matches();
-    }
-    //      validate password
-//    return true of the passwrod is valid
-    protected boolean validatePassword(String password) {
-        if(password!=null && password.length() >6) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    //    //      validating email
+//    protected boolean validateEmail(String email) {
+//        String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+//        Pattern pattern = Pattern.compile(emailPattern);
+//        Matcher matcher = pattern.matcher(email);
+//
+//        return matcher.matches();
+//    }
+//    //      validate password
+////    return true of the passwrod is valid
+//    protected boolean validatePassword(String password) {
+//        if(password!=null && password.length() >6) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
