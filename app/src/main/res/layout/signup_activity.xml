@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="10dp"
+    tools:context="com.mlabs.bbm.firstandroidapp.SignUpActivity"
+    android:background="#ff4545"
+    android:id="@+id/txtView_attempt">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CREATE NEW ACCOUNT"
+        android:id="@+id/textView"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:layout_above="@+id/txt_Email"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="46dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="E-mail"
+        android:ems="10"
+        android:id="@+id/txt_Email"
+        android:textColorHint="#ffffff"
+        android:layout_above="@+id/txt_Password"
+        android:layout_alignRight="@+id/txt_Password"
+        android:layout_alignEnd="@+id/txt_Password"
+        android:textColor="#ffffff" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:ems="10"
+        android:id="@+id/txt_Password"
+        android:inputType="textPassword"
+        android:textColorHint="#ffffff"
+        android:layout_above="@+id/txt_CPassword"
+        android:layout_alignRight="@+id/btn_CreateAcct"
+        android:layout_alignEnd="@+id/btn_CreateAcct"
+        android:textColor="#ffffff" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Confirm Password"
+
+        android:contextClickable="true"
+        android:ems="10"
+        android:id="@+id/txt_CPassword"
+        android:textColorHint="#ffffff"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/txt_Password"
+        android:layout_alignStart="@+id/txt_Password"
+        android:textColor="#ffffff"
+        android:inputType="textPassword" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="Create Account"
+        android:textColor="#ffffff"
+
+        android:contextClickable="true"
+        android:typeface="sans"
+        android:background="#ff8181"
+        android:id="@+id/btn_CreateAcct"
+        android:layout_marginTop="73dp"
+        android:layout_below="@+id/txt_CPassword"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+</RelativeLayout>
