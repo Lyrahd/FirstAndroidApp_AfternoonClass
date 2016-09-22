@@ -16,21 +16,22 @@ import android.widget.EditText;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import android.view.View.OnTouchListener;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
-    Button show;
+    TextView show;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R .layout.activity_main);
+        setContentView(R .layout.activity_login);
 
         final EditText email_ad = (EditText) findViewById(R.id.editText);
         final EditText password_tu = (EditText) findViewById(R.id.editText2);
         Button validate = (Button) findViewById(R.id.buttonok);
-        show = (Button) findViewById(R.id.show);
+        show = (TextView) findViewById(R.id.show);
 
         assert validate != null;
         validate.setOnClickListener(new View.OnClickListener(){
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }else{
 
-                    Intent intent = new Intent(MainActivity.this,Home .class );
+                    Intent intent = new Intent(LoginActivity.this,SignUpActivity.class );
                     startActivity(intent);
 
                 }
@@ -76,10 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
-
-        }
+    }
 
     private boolean validateEmail(String username) {
         String email_ad;
@@ -100,11 +98,8 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }else
             return false;
-
-
-
-
-    }}
+    }
+}
 
 
 
