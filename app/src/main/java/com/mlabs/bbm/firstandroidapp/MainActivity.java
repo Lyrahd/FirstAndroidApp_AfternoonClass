@@ -1,5 +1,6 @@
 package com.mlabs.bbm.firstandroidapp;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,87 +19,90 @@ import android.view.View.OnTouchListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button validate;
-    TextView showpass, signup;
-
-    private boolean validateEmail(String email) {
-        String emailRegEx;
-        Pattern pattern;
-        // Regex for a valid email address
-        emailRegEx = "^[A-Za-z0-9._%+\\-]+@[A-Za-z0-9.\\-]+\\.[A-Za-z]{2,4}$";
-        // Compare the regex with the email address
-        pattern = Pattern.compile(emailRegEx);
-        Matcher matcher = pattern.matcher(email);
-        if (!matcher.find()) {
-            return false;
-        }
-        return true;
-    }
-
-    private boolean validatePassword(String password) {
-        if (password != null && password.length() > 7) {
-            return true;
-        } else
-            return false;
-    }
+    Button btnSignIn;
+    TextView btnSignUp,showpass;
+    DatabaseAdapter loginDataBaseAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final EditText email = (EditText) findViewById(R.id.email);
-        final EditText password = (EditText) findViewById(R.id.pass);
-        showpass = (TextView) findViewById(R.id.show);
-        validate = (Button) findViewById(R.id.buttonL);
-        signup = (TextView) findViewById(R.id.signup);
+        // create a instance of SQLite Database
+        loginDataBaseAdapter=new DatabaseAdapter(this);
+        loginDataBaseAdapter=loginDataBaseAdapter.open();
 
-        validate.setOnClickListener(new View.OnClickListener() {
-            @Override
+        // Get The Refference Of Buttons
+        btnSignIn=(Button)findViewById(R.id.buttonL);
+        btnSignUp=(TextView)findViewById(R.id.signup);
+        showpass=(TextView)findViewById(R.id.show);
+
+        // Set OnClick Listener on SignUp button
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (!validateEmail(email.getText().toString())) {
-                    email.setError("Invalid Email");
-                    email.requestFocus();
-                } else if (!validatePassword(password.getText().toString())) {
-                    password.setError("Invalid Password");
-                    password.requestFocus();
-                } else {
-                    Toast toast = Toast.makeText(getApplicationContext(), "WELCOME !!!",
-                            Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.TOP | Gravity.LEFT, 0, 0);
-                    toast.show();
-                    Intent intent = new Intent(MainActivity.this, Main2Activity.class);
-                    startActivity(intent);
+                // TODO Auto-generated method stub
+
+                /// Create Intent for SignUpActivity  abd Start The Activity
+                Intent intentSignUP=new Intent(getApplicationContext(),SignUp.class);
+                startActivity(intentSignUP);
+            }
+        });
+        final  EditText editTextEmail=(EditText)findViewById(R.id.email);
+        final  EditText editTextPassword=(EditText)findViewById(R.id.pass);
+
+        Button btnSignIn=(Button)findViewById(R.id.buttonL);
+
+        // Set On ClickListener
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                // get The User name and Password
+                String userName=editTextEmail.getText().toString();
+                String password=editTextPassword.getText().toString();
+
+                // fetch the Password form database for respective user name
+                String storedPassword=loginDataBaseAdapter.getSinlgeEntry(userName);
+
+                // check if the Stored password matches with  Password entered by user
+                if(password.equals(storedPassword))
+                {
+                    Toast.makeText(MainActivity.this, "Congrats: Login Successfull", Toast.LENGTH_SHORT).show();
+                    Intent intentSignUP=new Intent(getApplicationContext(),Main2Activity.class);
+                    startActivity(intentSignUP);
+                }
+                else
+                {
+                    Toast.makeText(MainActivity.this, "User Name or Password does not match", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-
-       showpass.setOnTouchListener(new OnTouchListener() {
+        showpass.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        password.setTransformationMethod(null);
+                        editTextPassword.setTransformationMethod(null);
                         break;
 
                     case MotionEvent.ACTION_UP:
-                        password.setTransformationMethod(new PasswordTransformationMethod());
+                        editTextPassword.setTransformationMethod(new PasswordTransformationMethod());
                         break;
                 }
                 return true;
             }
         });
 
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,SignUp.class );
-                startActivity(intent);
-            }
+    }
+    // Methos to handleClick Event of Sign In Button
 
 
-        });
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Close The Database
+        loginDataBaseAdapter.close();
     }
 }
 

@@ -3,85 +3,82 @@ package com.mlabs.bbm.firstandroidapp;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
-import java.util.HashMap;
+public class DatabaseAdapter {
+    static final String DATABASE_NAME = "login.db";
+    static final int DATABASE_VERSION = 1;
+    public static final int NAME_COLUMN = 1;
+    // TODO: Create public field for each column in your table.
+    // SQL Statement to create a new database.
+    static final String DATABASE_CREATE = "create table " + "LOGIN" +
+            "( " + "ID" + " integer primary key autoincrement," + "USERNAME  text,PASSWORD text); ";
+    // Variable to hold the database instance
+    public SQLiteDatabase db;
+    // Context of the application using the database.
+    private final Context context;
+    // Database open/upgrade helper
+    private DataBaseHelper dbHelper;
 
-/**
- * Created by MaryAnnJane on 9/18/2016.
- */
-public class DatabaseAdapter extends SQLiteOpenHelper {
-
-    private static  final String TAG = DatabaseAdapter.class.getSimpleName();
-    private static  final String DATABASE_NAME = "user.db";
-    private static  final int DATABASE_VERSION = 1;
-    private static  final String TABLE_USER = "user";
-    private static  final String KEY_ID = "id";
-    private static  final String KEY_EMAIL="email";
-    private static  final String KEY_PASSWORD="password";
-    private static  final String KEY_CREATED_AT = "created_at";
-
-    public DatabaseAdapter(Context _context){
-        super(_context,DATABASE_NAME,null,DATABASE_VERSION);
-
-    }
-    @Override
-    public void onCreate(SQLiteDatabase sqlDB){
-        String CREATE_USER_TABLE = "CREATE TABLE" +TABLE_USER + "(" + KEY_ID + "INTEGER PRIMARY KEY,"
-                +KEY_EMAIL + "TEXT UNIQUE," + KEY_PASSWORD + "TEXT," + KEY_CREATED_AT +"TEXT" + "(";
-        sqlDB.execSQL(CREATE_USER_TABLE);
-
-
+    public DatabaseAdapter(Context _context) {
+        context = _context;
+        dbHelper = new DataBaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-        db.execSQL("DROP TABLE IF EXIST"+ TABLE_USER);
-
-        onCreate(db);
-
+    public DatabaseAdapter open() throws SQLException {
+        db = dbHelper.getWritableDatabase();
+        return this;
     }
-    public void registerUser(String email, String password, String created_at){
-        SQLiteDatabase db =this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(KEY_EMAIL, email);
-        values.put(KEY_PASSWORD, password);
-        values.put(KEY_CREATED_AT, created_at);
-        Long id = db.insert(TABLE_USER, null, values);
+
+    public void close() {
         db.close();
-        Log.d(TAG, "success"+ id);
-
     }
 
-    public boolean validateUser(String userName, String password){
-        HashMap<String, String> user = new HashMap<String, String>();
-        String selectQuery = "SELECT * FROM" + TABLE_USER + "WHERE" + KEY_EMAIL+ "="+ userName;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
+    public SQLiteDatabase getDatabaseInstance() {
+        return db;
+    }
+
+    public void insertEntry(String userName, String password) {
+        ContentValues newValues = new ContentValues();
+        // Assign values for each row.
+        newValues.put("USERNAME", userName);
+        newValues.put("PASSWORD", password);
+
+        // Insert the row into your table
+        db.insert("LOGIN", null, newValues);
+        ///Toast.makeText(context, "Reminder Is Successfully Saved", Toast.LENGTH_LONG).show();
+    }
+
+    public int deleteEntry(String UserName) {
+        //String id=String.valueOf(ID);
+        String where = "USERNAME=?";
+        int numberOFEntriesDeleted = db.delete("LOGIN", where, new String[]{UserName});
+        // Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
+        return numberOFEntriesDeleted;
+    }
+
+    public String getSinlgeEntry(String userName) {
+        Cursor cursor = db.query("LOGIN", null, " USERNAME=?", new String[]{userName}, null, null, null);
+        if (cursor.getCount() < 1) // UserName Not Exist
+        {
+            cursor.close();
+            return "NOT EXIST";
+        }
         cursor.moveToFirst();
-        if(cursor.getCount()>0){
-            user.put("email",cursor.getString(1));
-            user.put("password",cursor.getString(2));
-            user.put("created_at",cursor.getString(3));
-        }
+        String password = cursor.getString(cursor.getColumnIndex("PASSWORD"));
         cursor.close();
-        db.close();
-        Log.d(TAG, "fetching user from sqlite"+ user.toString());
-        // Toast.makeText(DatabaseAdapter.this, "password is incorrect", Toast.LENGTH_SHORT).show();
-        if(password.equals(user.get(password))){
-            Log.d(TAG, "password was validated");
-            return true;
-
-        }
-        else{
-            Log.d(TAG, "Password mismatch");
-            return false;
-        }
-
-
+        return password;
     }
 
+    public void updateEntry(String userName, String password) {
+        // Define the updated row content.
+        ContentValues updatedValues = new ContentValues();
+        // Assign values for each row.
+        updatedValues.put("USERNAME", userName);
+        updatedValues.put("PASSWORD", password);
 
+        String where = "USERNAME = ?";
+        db.update("LOGIN", updatedValues, where, new String[]{userName});
+    }
 }

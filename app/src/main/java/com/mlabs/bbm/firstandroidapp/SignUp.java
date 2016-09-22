@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,11 +20,13 @@ import java.util.regex.Pattern;
  */
 public class SignUp extends AppCompatActivity {
 
+    DatabaseAdapter loginDataBaseAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
-
+        loginDataBaseAdapter=new DatabaseAdapter(this);
+        loginDataBaseAdapter=loginDataBaseAdapter.open();
         final EditText email = (EditText) findViewById(R.id.email);
         final EditText password = (EditText) findViewById(R.id.password);
         final EditText confirmpass = (EditText) findViewById(R.id.confpassword);
@@ -33,28 +36,43 @@ public class SignUp extends AppCompatActivity {
         validate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String em = email.getText().toString();
+                String p = password.getText().toString();
+                String cp = confirmpass.getText().toString();
+                if(em.equals("")||p.equals("")||cp.equals(""))
+                    {Toast.makeText(getApplicationContext(), "Field Vaccant", Toast.LENGTH_SHORT).show();
+                    return;}
 
-                if (!validateEmail(email.getText().toString())) {
-                    email.setError("Invalid Email!");
-                    email.requestFocus();
+                if (!validateEmail(em))
+                    {email.setError("Invalid Email!");
+                     email.requestFocus();}
 
-                } else if (!validatePassword(password.getText().toString())) {
-                    password.setError("Invalid Password!");
-                    password.requestFocus();
+                if(!validatePassword(password.getText().toString()))
+                    {password.setError("Invalid Password!");
+                     password.requestFocus();}
 
-                }
+                if (!password.getText().toString().equals(confirmpass.getText().toString()))
+                    {Toast.makeText(SignUp.this, "Password does not match the confirm password.", Toast.LENGTH_SHORT).show();}
 
-                if (password != confirmpass) {
-                    Toast.makeText(SignUp.this, "Password does not match the confirm password.", Toast.LENGTH_SHORT).show();
+                else
+                    {Toast.makeText(SignUp.this, "Password Match.", Toast.LENGTH_SHORT).show();
+                     loginDataBaseAdapter.insertEntry(em, p);
+                     Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_SHORT).show();
+                     Intent intent = new Intent(SignUp.this,MainActivity.class );
+                     startActivity(intent);}
 
-                } else {
-
-                }
             }
         });
 
-    }
 
+    }
+    @Override
+    protected void onDestroy() {
+        // TODO Auto-generated method stub
+        super.onDestroy();
+
+        loginDataBaseAdapter.close();
+    }
     private boolean validateEmail(String email) {
         String emailRegex;
         Pattern pattern;

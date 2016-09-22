@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Online Bear Shop</string>
+    <string name="bear">BEAR</string>
 
 </resources>
