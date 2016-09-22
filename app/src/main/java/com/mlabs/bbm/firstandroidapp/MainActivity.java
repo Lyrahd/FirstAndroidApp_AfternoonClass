@@ -1,28 +1,29 @@
 package com.mlabs.bbm.firstandroidapp;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.Intent;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import android.view.MotionEvent;
-import android.util.Log;
-public class MainActivity extends AppCompatActivity {
 
+public class MainActivity extends AppCompatActivity {
+    LoginDataBaseAdapter loginDataBaseAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // create a instance of SQLite Database
+        loginDataBaseAdapter = new LoginDataBaseAdapter(this);
+        loginDataBaseAdapter = loginDataBaseAdapter.open();
 
         final EditText email = (EditText) findViewById(R.id.email);
         final EditText password = (EditText) findViewById(R.id.password);
@@ -32,21 +33,28 @@ public class MainActivity extends AppCompatActivity {
 
 
 //        button login
-       btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!validateEmail(email.getText().toString())) {
-                    email.setError("Invalid Email");
-                    email.requestFocus();
-                } else if(!validatePassword(password.getText().toString())){
-                    password.setError("Invalid Password");
-                    password.requestFocus();
+                // fetch the Password form database for respective user name
+                String storedPassword = loginDataBaseAdapter.getSinlgeEntry(email.toString());
+
+//                if(!validateEmail(email.getText().toString())) {
+//                    email.setError("Invalid Email");
+//                    email.requestFocus();
+//                } else if(!validatePassword(password.getText().toString())){
+//                    password.setError("Invalid Password");
+//                    password.requestFocus();
+//                } else if (password.equals(storedPassword)){
+//                    Toast.makeText(MainActivity.this, "Congrats: Login Successfull", Toast.LENGTH_LONG).show();
+//                    Intent i = new Intent(MainActivity.this, homepage.class);
+//                    startActivity(i);
+//                    finish();
+//                }
+                if (password.equals(storedPassword)) {
+                    Toast.makeText(MainActivity.this, "Login Successfull", Toast.LENGTH_LONG).show();
                 } else {
-//                    Toast.makeText(MainActivity.this,"Validation Success",Toast.LENGTH_LONG).show();
-//                    Intent intent = new Intent(MainActivity.this, body.class);
-                    Intent i = new Intent(MainActivity.this, homepage.class);
-                    startActivity(i);
-                    finish();
+                    Toast.makeText(MainActivity.this, "error: Username or Password does not match", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -54,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, SignUpForm.class);
+                Intent i = new Intent(MainActivity.this, signupactivity.class);
                 startActivity(i);
                 finish();
             }
@@ -81,18 +89,6 @@ public class MainActivity extends AppCompatActivity {
                         password.setTransformationMethod(new PasswordTransformationMethod());
                         password.setSelection(cursor);
                         break;
-
-                    //password.setInputType(InputType.TYPE_CLASS_TEXT);
-                    //password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    //password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                   // int event = motionevent.getAction();
-                    //if (event == MotionEvent.ACTION_DOWN) {
-                     // password.setInputType(InputType.TYPE_CLASS_TEXT);
-                    //}
-                    //else if(event == MotionEvent.ACTION_UP) {
-                      //password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    //}
-
                 }
                 return true;
             }
@@ -116,5 +112,10 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Close The Database
+        loginDataBaseAdapter.close();
+    }
 }
-
