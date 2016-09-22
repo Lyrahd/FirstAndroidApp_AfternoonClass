@@ -6,7 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,9 +22,10 @@ public class signupactivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
-
-        final databaseAdapter sqlDB = new databaseAdapter(getApplicationContext());
-
+        final databaseAdapter sqlite = new databaseAdapter(getApplicationContext());
+        SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
+        Date todayDate = new Date();
+        final String thisDate = currentDate.format(todayDate);
         final EditText email = (EditText) findViewById(R.id.email);
         final EditText password = (EditText) findViewById(R.id.pass);
         final EditText confirmPassword = (EditText) findViewById(R.id.cpass);
@@ -30,46 +35,45 @@ public class signupactivity extends AppCompatActivity{
 
             @Override
             public void onClick(View arg0) {
-
-     //   if ((isValidPassword(password)== isValidPassword1(confirmPassword)) && isValidEmail(email)) {
-
-
-           // Intent i = new Intent(signupactivity.this, MainActivity.class);
-          //  startActivity(i);
-      //  }
-            }
+                if (isValidEmail(email.getText().toString()))
+               {
+                    if (((password != null && password.length() >= 8) && password.getText().toString().equals(confirmPassword.getText().toString())))
+                    {
+                        sqlite.registerUser(email.getText().toString(), (password.getText().toString()),thisDate);
+                        email.setText("");
+                        password.setText("");
+                        confirmPassword.setText("");
+                        Toast.makeText(getApplication(),"Registered Successful",Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(signupactivity.this,Login.class );
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                       password.setError("Password mismatched or insufficient password length: it should be atleast 8 characters");
+                       password.setText("");
+                       confirmPassword.setText("");
+                       password.requestFocus();
+                    }
+                }
+                else
+                {
+                    email.setError("Invalid Email Validation");
+                    email.setText("");
+                    password.setText("");
+                    confirmPassword.setText("");
+                    email.requestFocus();
+                }
+           }
         });
     }
 
-    private boolean isValidEmail(EditText email) {
+    private boolean isValidEmail(String email) {
         String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-        Matcher matcher = pattern.matcher((CharSequence) email);
+        Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
-
-    private boolean isValidPassword1(EditText confirmPassword) {
-        if (confirmPassword != null && confirmPassword.length() > 6) {
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isValidPassword(EditText password) {
-        if (password != null && password.length() > 6) {
-            return true;
-        }
-        return false;
-    }
-
-
-
-
-
-
-
 }
 
 

@@ -52,19 +52,24 @@ public class databaseAdapter extends SQLiteOpenHelper {
 
     public boolean validateUser(String username, String password){
         HashMap<String, String> user = new HashMap<String, String>();
-        String selectQuery = "SELECT * FROM " + TABLE_USER + " WHERE " + KEY_EMAIL + "=" + username ;
+        String selectQuery = "SELECT email, password FROM " + TABLE_USER + " WHERE " + KEY_EMAIL + "=\"" + username +"\" AND " + KEY_PASSWORD + "=\"" + password + "\"";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
-;
+        boolean res = false;
         cursor.moveToFirst();
         if (cursor.getCount() > 0){
-            user.put("email", cursor.getString(1));
-            user.put("password", cursor.getString(2));
-            user.put("created_at", cursor.getString(3));
+            user.put(KEY_EMAIL, cursor.getString(0));
+            user.put(KEY_PASSWORD, cursor.getString(1));
+            res = true;
+            //user.put("created_at", cursor.getString(3));
+        }
+        else{
+            res = false;
         }
         cursor.close();
         db.close();
-        Log.d(TAG, "Fetching user from SqLite: " + user.toString());
+        return res;
+        /**Log.d(TAG, "Fetching user from SqLite: " + user.toString());
 
         if (password.equals(user.get(password))){
             Log.d(TAG, "Password was validated");
@@ -74,6 +79,7 @@ public class databaseAdapter extends SQLiteOpenHelper {
             Log.d(TAG, "Password mismatch");
             return false;
         }
+         **/
     }
 
     public void deleteUser(){
@@ -82,4 +88,7 @@ public class databaseAdapter extends SQLiteOpenHelper {
         db.close();
         Log.d(TAG, "Deleted all user records from SQLite");
     }
+
+
+
 }

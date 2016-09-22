@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
  * Created by RalphPogi on 7/20/2016.
  */
 public class Login extends  AppCompatActivity {
-    EditText editText, editText2;
+    //EditText editText, editText2;
     TextView show, signup1;
 
     @Override
@@ -27,43 +27,33 @@ public class Login extends  AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.logn);
         Button loginbtn;
-        final EditText emailAddress, passW;
+        final EditText username = (EditText) findViewById(R.id.editText);
+        final EditText password = (EditText) findViewById(R.id.editText2);
         show = (TextView) findViewById(R.id.szhow);
         signup1 = (TextView) findViewById(R.id.signup);
-        editText = (EditText) findViewById(R.id.editText);
-        editText2 = (EditText) findViewById(R.id.editText2);
+        loginbtn = (Button) findViewById(R.id.button);
 
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-
+        loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View arg0) {
-                final databaseAdapter sqlDB = new databaseAdapter(getApplicationContext());
-                String email = editText.getText().toString();
-                String pass = editText2.getText().toString();
-                if (!isValidEmail(email) || !isValidPassword(pass))
-                {
-                    editText.setError("Invalid Email or Password");
-                    editText.requestFocus();
-                }
-                else
-                    {
-                    Intent i = new Intent(Login.this, MainActivity.class);
-                    startActivity(i);
-                    if (sqlDB.validateUser(editText.getText().toString(),editText2.getText().toString()))
-                    {
-                        Intent intent = new Intent(Login.this, MainActivity.class);
-                        startActivity(intent);
-                    }
-                    else
-                    {
-                        Toast.makeText(getApplication(),"Invalid Email or Password",Toast.LENGTH_SHORT).show();
-                    }
-                }
+            public void onClick(View v) {
+                databaseAdapter sqlite = new databaseAdapter(getApplicationContext());
 
+
+               if (!username.getText().toString().equals("") && !password.getText().toString().equals("")){
+                    if (sqlite.validateUser(username.getText().toString().trim(), password.getText().toString().trim()) == true) {
+                      Intent intent = new Intent(Login.this, MainActivity.class);
+                       startActivity(intent);
+
+                    } else {
+                        Toast.makeText(getBaseContext(), "Invalid Email or Password", Toast.LENGTH_SHORT).show();
+                    }
+                }
 
             }
         });
-        findViewById(R.id.signup).setOnClickListener(new View.OnClickListener() {
+
+
+        signup1.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
@@ -73,23 +63,25 @@ public class Login extends  AppCompatActivity {
                 startActivity(i);
 
 
-;            }
-        });
-        show.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch (motionEvent.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        editText2.setInputType(InputType.TYPE_CLASS_TEXT);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        editText2.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                        break;
-                }
-                return true;
+                ;
             }
-
         });
+
+//        show.setOnTouchListener(new View.OnTouchListener() {
+  //          @Override
+    //        public boolean onTouch(View view, MotionEvent motionEvent) {
+      //          switch (motionEvent.getAction()) {
+        //            case MotionEvent.ACTION_DOWN:
+          //              editText2.setInputType(InputType.TYPE_CLASS_TEXT);
+            //            break;
+              //      case MotionEvent.ACTION_UP:
+                //        editText2.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                  //      break;
+              //  }
+        //    return true;
+        //    }
+
+      //  });
 
     }
 
@@ -102,16 +94,12 @@ public class Login extends  AppCompatActivity {
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
-
-
     private boolean isValidPassword(String pass) {
         if (pass != null && pass.length() > 6) {
             return true;
         }
         return false;
     }
-
-
 }
 
 
