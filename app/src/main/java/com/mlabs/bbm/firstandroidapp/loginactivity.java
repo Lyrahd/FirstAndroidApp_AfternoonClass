@@ -2,6 +2,7 @@ package com.mlabs.bbm.firstandroidapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.database.DatabaseUtilsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -37,7 +38,11 @@ public class loginactivity extends AppCompatActivity {
                 btnlogin.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (Pattern.compile("([a-zA-Z0-9]+_?)+@[a-zA-Z0-9]+\\.com").matcher(EmailAdd.getText()).matches() && (Pattern.compile("([a-zA-Z0-9]+)").matcher(PassW.getText()).matches()) && PassW.length() >= 8) {
+                        DataBaseAdapter db = new DataBaseAdapter(getApplicationContext());
+                        boolean res = false;
+                        res = db.validateUser(EmailAdd.getText().toString().trim(),PassW.getText().toString().trim());
+
+                        if (res == true) {
                             Toast.makeText(getBaseContext(), "Login Success", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(loginactivity.this, MainActivity.class);
                             startActivity(intent);

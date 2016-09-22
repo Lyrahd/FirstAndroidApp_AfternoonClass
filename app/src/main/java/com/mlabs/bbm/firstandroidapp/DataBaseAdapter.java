@@ -26,11 +26,11 @@ public class DataBaseAdapter extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqlDB) {
-        String CREATE_USER_TABLE = "CREATE TABLE" + TABLE_USER + "("
-                + KEY_ID + "INTEGER PRIMARY KEY,"
-                + KEY_EMAIL + "TEXT UNIQUE,"
-                + KEY_PASSWORD + "TEXT,"
-                + KEY_CREATED_AT + "TEXT" + ")";
+        String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
+                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + KEY_EMAIL + " TEXT ,"
+                + KEY_PASSWORD + " TEXT,"
+                + KEY_CREATED_AT + " TEXT" + ")";
         sqlDB.execSQL(CREATE_USER_TABLE);
 
         Log.d(TAG, "Database tables created!");
@@ -59,21 +59,32 @@ public class DataBaseAdapter extends SQLiteOpenHelper {
 
     public boolean validateUser(String userName, String password) {
         HashMap <String, String> user = new HashMap<String, String>();
-        String selectQuery = "SELECT * FROM" + TABLE_USER + "WHERE" + KEY_EMAIL + "=" + userName;
+        String selectQuery = "SELECT email, password FROM " + TABLE_USER + " WHERE " + KEY_EMAIL + "=\"" + userName+"\" AND " + KEY_PASSWORD + "=\""+password+"\"";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
+        boolean result = false;
+
+
+
         cursor.moveToFirst();
         if (cursor.getCount() > 0) {
-            user.put("email", cursor.getString(1));
-            user.put("password", cursor.getString(2));
-            user.put("created_at", cursor.getString(3));
+            user.put(KEY_EMAIL, cursor.getString(0));
+            user.put(KEY_PASSWORD, cursor.getString(1));
+            //user.put("created_at", cursor.getString(3));
+            result = true;
+        }
+        else
+        {
+            result = false;
         }
         cursor.close();
         db.close();
-
+        return  result;
+/**
         Log.d(TAG, "Fetching user from Sqlite:" + user.toString());
+        Log.d(TAG, "Pw:" + user.get(password));
 
         if (password.equals(user.get(password))){
             Log.d(TAG, "Password was validated");
@@ -83,6 +94,7 @@ public class DataBaseAdapter extends SQLiteOpenHelper {
             Log.d(TAG, "Password Mismatch");
             return false;
         }
+ **/
     }
 
     public void deleteUsers() {
