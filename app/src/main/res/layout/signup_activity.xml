@@ -50,6 +50,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Confirm Password"
+
+        android:contextClickable="true"
         android:ems="10"
         android:id="@+id/txt_CPassword"
         android:textColorHint="#ffffff"
@@ -64,6 +66,8 @@
         android:layout_height="30dp"
         android:text="Create Account"
         android:textColor="#ffffff"
+
+        android:contextClickable="true"
         android:typeface="sans"
         android:background="#ff8181"
         android:id="@+id/btn_CreateAcct"

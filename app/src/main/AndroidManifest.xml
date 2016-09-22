@@ -32,6 +32,7 @@
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="com.mlabs.bbm.firstandroidapp.SignUpActivity"/>
+                <category android:name="android.intent.category.DEFAULT" />
 
             </intent-filter>
         </activity>
