@@ -6,10 +6,9 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.content.Intent;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import android.widget.TextView;//text view declaration of pwd_show
 import android.text.InputType;//class for show password
 
@@ -20,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView pwd_show; //Declaration for show password variable
     private TextView signup;
     //Boolean onTouch = true; //For ShowPassword
+    DatabaseAdapter loginDatabaseAdapter;
+    private Button btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
         //commit
         editUser = (EditText) findViewById(R.id.editUser);
         editPass = (EditText) findViewById(R.id.editPass);
-
+        loginDatabaseAdapter = new DatabaseAdapter(this);
+        loginDatabaseAdapter = loginDatabaseAdapter.open();
         pwd_show = (TextView)findViewById(R.id.pwd_show); //another declaration for pwd_show
         //below is the actual code of pwd_show based on STACK OVERFLOW
         pwd_show.setOnTouchListener(new View.OnTouchListener(){
@@ -51,18 +53,18 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.signup).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent s = new Intent(MainActivity.this,SignUp.class);
-                startActivity(s);
+                Intent i = new Intent(MainActivity.this,SignUp.class);
+                startActivity(i);
             }
         });
         //end of signup code once click
 
-        findViewById(R.id.btnLogin).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btnRegister).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /**
                  * for user name validation ONLY + password
-                 */
+                 *
                 if (Pattern.compile("([a-zA-Z0-9]+_?)+").matcher(editUser.getText()).matches() && editPass.length()>=6)
                 {
                     Intent i = new Intent(MainActivity.this,Display.class);
@@ -73,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
                 /**
                  * for email validation ONLY + password
                  */
-                else if (Pattern.compile("^\\w+.*\\w*@[a-zA-Z_]+?\\.[0-9a-zA-Z]{2,}$").matcher(editUser.getText()).matches() && editPass.length()>=6){
+                /**
+                if (Pattern.compile("^\\w+.*\\w*@[a-zA-Z_]+?\\.[0-9a-zA-Z]{2,}$").matcher(editUser.getText()).matches() && editPass.length()>=6){
                     Intent i = new Intent(MainActivity.this,Display.class);
                     startActivity(i);
                     Toast.makeText(getBaseContext(), "Welcome back Agent!",Toast.LENGTH_SHORT).show();
@@ -81,11 +84,33 @@ public class MainActivity extends AppCompatActivity {
                 else{
                     Toast.makeText(getBaseContext(),"Email or Password is Incorrect",Toast.LENGTH_SHORT).show();
                 }
+                 */
+                String email = editUser.getText().toString();
+                String pw = editPass.getText().toString();
+                String strpw = loginDatabaseAdapter.getSinlgeEntry(email);
+
+                if (pw.equals(strpw)){
+                    Toast.makeText(MainActivity.this, "Welcome Back Agent!", Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(getApplicationContext(), Display.class);
+                    startActivity(i);
+                }
+                else {
+                    if (email.equals("") && pw.equals(""))
+                    {
+                        Toast.makeText(getApplicationContext(), "Please fill out all the field.", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    else if(email.equals("") || pw.equals(""))
+                    {
+                        Toast.makeText(getApplicationContext(), "Please fill out the field.", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    Toast.makeText(MainActivity.this, "Incorrect Email or Password.", Toast.LENGTH_LONG).show();
+
+                }
             }
         });
     }
-
-
     //Exit automatically code
     @Override
     protected void onPause() {
@@ -93,6 +118,11 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
     //end of exit code --------------
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        loginDatabaseAdapter.close();
+    }
 
 
 }
