@@ -29,22 +29,22 @@ public class OnTouchActivity extends AppCompatActivity {
                                         case MotionEvent.ACTION_DOWN:
                                                 dx = motionEvent.getX();
                                                 dy = motionEvent.getY();
-                                                Toast.makeText(getApplicationContext(), "Value of X = " + dx + "Y = "+ dy, Toast.LENGTH_LONG).show();
+                                                Toast.makeText(getApplicationContext(), "Value of X = " + dx + "Y = "+ dy, Toast.LENGTH_SHORT).show();
                                                 return true;
                                         case MotionEvent.ACTION_UP:
                                                 ux = motionEvent.getX();
                                                 uy = motionEvent.getY();
                                                 if(ux>dx){
-                                                        Toast.makeText(getApplicationContext(), "SWIPED RIGHT"+"\n"+"Value of X = " + ux + "Y = "+ uy, Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(getApplicationContext(), "SWIPED RIGHT"+"\n"+"Value of X = " + ux + " Y = "+ uy, Toast.LENGTH_SHORT).show();
                                                 }
                                                 if(ux<dx){
-                                                        Toast.makeText(getApplicationContext(), "SWIPED LEFT"+"\n"+"Value of X = " + ux + "Y = "+ uy, Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(getApplicationContext(), "SWIPED LEFT"+"\n"+"Value of X = " + ux + " Y = "+ uy, Toast.LENGTH_SHORT).show();
                                                 }
                                                 if(uy<dy){
-                                                        Toast.makeText(getApplicationContext(), "SWIPED UP"+"\n"+"Value of X = " + ux + "Y = "+ uy, Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(getApplicationContext(), "SWIPED UP"+"\n"+"Value of X = " + ux + " Y = "+ uy, Toast.LENGTH_SHORT).show();
                                                 }
                                                 if(uy>dy) {
-                                                        Toast.makeText(getApplicationContext(), "SWIPED DOWN"+"\n"+"Value of X = " + ux + "Y = " + uy, Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(getApplicationContext(), "SWIPED DOWN"+"\n"+"Value of X = " + ux + " Y = " + uy, Toast.LENGTH_SHORT).show();
                                                 }
                                                 return true;
                                 }
