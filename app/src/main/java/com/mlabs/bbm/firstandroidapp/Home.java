@@ -12,18 +12,10 @@ public class Home extends android.app.Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.homel);
+        setContentView(R.layout.home);
 
-        Button next= (Button) findViewById(R.id.btnMain);
 
-        assert next != null;
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                Intent intent = new Intent(Home.this,Main .class );
-                startActivity(intent);
-            }
 
-            });
+
         }}

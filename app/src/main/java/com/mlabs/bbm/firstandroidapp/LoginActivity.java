@@ -16,11 +16,14 @@ import android.widget.EditText;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import android.view.View.OnTouchListener;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
-    TextView show;
+    TextView show, SignUp;
+    LoginDatabaseAdapter LoginDatabaseAdapter;
 
 
     @Override
@@ -28,40 +31,45 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R .layout.activity_login);
 
+        LoginDatabaseAdapter=new LoginDatabaseAdapter(this);
+        LoginDatabaseAdapter=LoginDatabaseAdapter.open();
+
         final EditText email_ad = (EditText) findViewById(R.id.editText);
         final EditText password_tu = (EditText) findViewById(R.id.editText2);
-        Button validate = (Button) findViewById(R.id.buttonok);
         show = (TextView) findViewById(R.id.show);
 
-        assert validate != null;
-        validate.setOnClickListener(new View.OnClickListener(){
+        SignUp = (TextView) findViewById(R.id.SignUp);
+        Button go = (Button) findViewById(R.id.buttonok);
+
+
+        assert go != null;
+        go.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if(!validateEmail(email_ad.getText().toString())){
-                    email_ad.setError("Invalid Email");
-                    email_ad.requestFocus();
-                }else if(!validatePassword(password_tu.getText().toString())){
-                    password_tu.setError("Invalid Password");
-                    password_tu.requestFocus();
 
-                }else{
+                String userName = email_ad.getText().toString();
+                String password = password_tu.getText().toString();
 
-                    Intent intent = new Intent(LoginActivity.this,SignUpActivity.class );
-                    startActivity(intent);
+                String storedPassword=LoginDatabaseAdapter.getSinlgeEntry(userName);
 
+                if(password.equals(storedPassword))
+                {
+                    Toast.makeText(LoginActivity.this, "Login", Toast.LENGTH_SHORT).show();
+                    Intent intentSignUP=new Intent(getApplicationContext(),Home.class);
+                    startActivity(intentSignUP);
                 }
-
+                else
+                {
+                    Toast.makeText(LoginActivity.this, "Account does not exist", Toast.LENGTH_SHORT).show();
+                }
             }
-
         });
 
         show.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
                 final int cursor= password_tu.getSelectionStart();
-
-
-                switch (event.getAction()) {
+               switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         password_tu.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                         password_tu.setSelection(cursor);
@@ -71,35 +79,32 @@ public class LoginActivity extends AppCompatActivity {
                         password_tu.setTransformationMethod(PasswordTransformationMethod.getInstance());
                         password_tu.setSelection(cursor);
                         break;
-
-
                 }
                 return true;
             }
         });
+
+        SignUp.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                    Intent intent = new Intent(LoginActivity.this,SignUpActivity.class );
+                    startActivity(intent);
+
+                }
+
+
+
+        });
     }
 
-    private boolean validateEmail(String username) {
-        String email_ad;
-        Pattern pattern;
-
-        email_ad = "^[A-Za-z0-9._%+\\-]+@[A-Za-z0-9.\\-]+\\.[A-Za-z]{2,4}$";
-
-        pattern = Pattern.compile(email_ad);
-        Matcher matcher = pattern.matcher(username);
-        if (!matcher.find()) {
-            return false;
-        }
-        return true;
-    }
-
-    private boolean validatePassword(String password) {
-        if(password !=null && password.length()>8){
-            return true;
-        }else
-            return false;
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LoginDatabaseAdapter.close();
     }
 }
+
 
 
 
