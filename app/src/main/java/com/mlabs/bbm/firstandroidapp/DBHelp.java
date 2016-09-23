@@ -3,10 +3,13 @@ package com.mlabs.bbm.firstandroidapp;
 import android.app.ActionBar;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 
 import java.net.ConnectException;
 import java.sql.SQLClientInfoException;
@@ -29,11 +32,15 @@ public class DBHelp extends SQLiteOpenHelper {
     private static final String KEY_ID ="id";
     private static final String KEY_USERNAME ="username";
     private static final String KEY_PASSWORD ="password";
-    private static final String KEY_CREATED_AT ="created_at";
+    //private static final String KEY_CREATED_AT ="created_at";
 
 
     public DBHelp(Context _context){
         super(_context,DATABASE_NAME,null,DATABASE_VERSION);
+    }
+
+    public DBHelp(Context context, String databaseName, SQLiteDatabase.CursorFactory o, int databaseVersion) {
+        super(context, databaseName, o, databaseVersion);
     }
 
     @Override
@@ -41,8 +48,8 @@ public class DBHelp extends SQLiteOpenHelper {
         String CREATE_USER_TABLE ="CREATE TABLE " +  TABLE_USER  + "("
                 + KEY_ID + " INTEGER PRIMARY KEY,"
                 + KEY_USERNAME + " TEXT UNIQUE,"
-                + KEY_PASSWORD + " TEXT,"
-                + KEY_CREATED_AT + " TEXT" + ")";
+                + KEY_PASSWORD + " TEXT" + ")";
+                //+ KEY_CREATED_AT + " TEXT" + ")";
         sqlDB.execSQL(CREATE_USER_TABLE);
 
         Log.d(TAG, "Database Tables Created");
@@ -54,15 +61,15 @@ public class DBHelp extends SQLiteOpenHelper {
 
         onCreate(db);
     }
-
-    public void registerUser(String username, String password, String created_at) {
+/**
+    public void registerUser(String username, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
 
         values.put(KEY_USERNAME, username);
         values.put(KEY_PASSWORD, password);
-        values.put(KEY_CREATED_AT, created_at);
+        //values.put(KEY_CREATED_AT, created_at);
 
         long id = db.insert(TABLE_USER, null, values);
         db.close();
@@ -71,39 +78,21 @@ public class DBHelp extends SQLiteOpenHelper {
 
     }
 
-
-    public boolean validateUser(String userName, String password){
-
-        HashMap<String, String> user = new HashMap<String, String>();
-        String selectQuery = "SELECT * FROM " + TABLE_USER + " WHERE " + KEY_USERNAME + "=" + userName;
-
+    public String getUserName(String UserName){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery,null);
+        String selectQuery =  "SELECT * FROM " + TABLE_USER
+                + " WHERE " +
+                KEY_USERNAME + "=?";// It's a good practice to use parameter ?, instead of concatenate string
 
+        Cursor cursor = db.rawQuery(selectQuery, new String[] {UserName});
+        if(cursor.getCount()>1){
+            cursor.close();
+            return "Does Not Exist";
+        }
         cursor.moveToFirst();
-        if(cursor.getCount() > 0) {
-            user.put("username", cursor.getString(1));
-            user.put("password", cursor.getString(2));
-            user.put("created_at", cursor.getString(3));
-        }
+        String pass = cursor.getString(cursor.getColumnIndex("password"));
         cursor.close();
-
-        Log.d(TAG, "Fetching user from Sqlite: " + user.toString());
-        if(password.equals(user.get(password))){
-            Log.d(TAG, "Password was validated");
-            return true;
-        }
-        else {
-            Log.d(TAG, "Password mismatch ");
-            return false;
-        }
+        return pass;
     }
-
-    public void deleteUsers() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_USER, null, null);
-        db.close();
-        Log.d(TAG, "Deleted all user records from Sqlite");
-    }
-
+    **/
 }
