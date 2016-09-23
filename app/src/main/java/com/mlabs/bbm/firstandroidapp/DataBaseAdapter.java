@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.HashMap;
-
+ //hi
 public class DataBaseAdapter extends SQLiteOpenHelper {
     private static final String TAG = DataBaseAdapter.class.getSimpleName();
     private static final String DATABASE_NAME = "users.db";
