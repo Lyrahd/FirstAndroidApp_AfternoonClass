@@ -18,7 +18,7 @@
         android:layout_alignParentStart="true"
         android:scaleType="fitCenter"
         android:src="@drawable/splash_image"
-        android:layout_above="@+id/txtPassword" />
+        android:layout_above="@+id/lblPass" />
 
     <EditText
         android:id="@+id/txtEmail"
@@ -36,7 +36,7 @@
 
 
     <EditText
-        android:id="@+id/txtPassword"
+        android:id="@+id/lblPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
@@ -59,7 +59,7 @@
         android:text="LOG IN"
         android:shadowColor="#ffffff"
         android:textStyle="bold"
-        android:layout_below="@+id/txtPassword"
+        android:layout_below="@+id/lblPass"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="No account yet? Sign up here"
-        android:id="@+id/txtFB"
+        android:id="@+id/lblSignUp"
         android:textColor="#cacaca"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
@@ -79,8 +79,8 @@
         android:background="@android:color/holo_orange_dark"
         android:text="Show"
         android:id="@+id/btnShow"
-        android:layout_alignTop="@+id/txtPassword"
+        android:layout_alignTop="@+id/lblPass"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/txtPassword" />
+        android:layout_alignBottom="@+id/lblPass" />
 </RelativeLayout>
