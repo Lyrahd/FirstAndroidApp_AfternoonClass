@@ -54,7 +54,7 @@ public class DBAdapter {
         return numberOFEntriesDeleted;
     }
 
-    public String getSinlgeEntry(String email) {
+    public String getSingleEntry(String email) {
         Cursor cursor = db.query("USERS", null, " EMAIL=?", new String[]{email}, null, null, null);
         if (cursor.getCount() < 1)
         {
