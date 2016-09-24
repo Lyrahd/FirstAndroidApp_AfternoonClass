@@ -12,7 +12,7 @@ public class DatabaseAdapter {
     // TODO: Create public field for each column in your table.
     // SQL Statement to create a new database.
     static final String DATABASE_CREATE = "create table " + "LOGIN" +
-            "( " + "ID" + " integer primary key autoincrement," + "USERNAME  text,PASSWORD text); ";
+            "( " + "ID" + " integer primary key autoincrement," + "USERNAME  text,PASSWORD text); " + "USERID text" + "FIRSTNAME text, LASTNAME text";
     // Variable to hold the database instance
     public SQLiteDatabase db;
     // Context of the application using the database.
@@ -38,11 +38,14 @@ public class DatabaseAdapter {
         return db;
     }
 
-    public void insertEntry(String email, String password) {
+    public void insertEntry(String email, String password, String userid, String fname, String lname) {
         ContentValues newValues = new ContentValues();
         // Assign values for each row.
         newValues.put("USERNAME", email);
         newValues.put("PASSWORD", password);
+        newValues.put("USERID", userid);
+        newValues.put("FIRSTNAME", fname);
+        newValues.put("LASTNAME", lname);
 
         // Insert the row into your table
         db.insert("LOGIN", null, newValues);
@@ -69,6 +72,7 @@ public class DatabaseAdapter {
         cursor.close();
         return password;
     }
+
 
     public void updateEntry(String userName, String password) {
         // Define the updated row content.
