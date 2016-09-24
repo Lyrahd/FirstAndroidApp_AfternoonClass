@@ -15,10 +15,9 @@ import java.util.regex.Pattern;
 /**
  * Created by androidstudio on 17/09/16.
  */
-public class SignActivity extends AppCompatActivity {
+public class SignActivity extends AppCompatActivity{
 
-    private int _admin_Id=0;
-    DBHelp dbHelp = new DBHelp(this);
+    LogInCRUD logInCRUD;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +27,9 @@ public class SignActivity extends AppCompatActivity {
         final EditText etemail = (EditText) findViewById(R.id.ETun);
         final EditText etpass = (EditText) findViewById(R.id.ETpass);
         final EditText etcp = (EditText) findViewById(R.id.ETcp);
+
+        logInCRUD = new LogInCRUD(this);
+        logInCRUD = logInCRUD.open();
 
         assert buttonok != null;
         buttonok.setOnClickListener(new View.OnClickListener() {
@@ -40,10 +42,10 @@ public class SignActivity extends AppCompatActivity {
                             String etcp1 = etcp.getText().toString();
                             if (etpass1.equals(etcp1)) {
 
-                                dbHelp.registerUser(String.valueOf(etemail),String.valueOf(etpass));
+                                logInCRUD.insertEntry(String.valueOf(etemail.getText()),String.valueOf(etpass.getText()));
 
                                 Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_SHORT).show();
-                                Intent a = new Intent(SignActivity.this, MainActivity.class);
+                                Intent a = new Intent(SignActivity.this, LogInActivity.class);
                                 startActivity(a);
                                 finish();
 
@@ -61,5 +63,13 @@ public class SignActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        // TODO Auto-generated method stub
+        super.onDestroy();
+
+        logInCRUD.close();
     }
 }

@@ -1,5 +1,6 @@
 package com.mlabs.bbm.firstandroidapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,9 +19,9 @@ import java.util.regex.Pattern;
 /**
  * Created by User on 7/20/2016.
  */
-public class LogInActivity extends AppCompatActivity {
+public class LogInActivity extends Activity{
 
-    DBHelp dbHelp = new DBHelp(this);
+    LogInCRUD logInCRUD;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,13 +39,17 @@ public class LogInActivity extends AppCompatActivity {
                 startActivityForResult(intent, 0);
             }
         });
+
+        logInCRUD = new LogInCRUD(this);
+        logInCRUD = logInCRUD.open();
+
         assert btnlogin != null;
         btnlogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 String pas = pwd.getText().toString();
                 String uns = un.getText().toString();
-                String storedPassword= dbHelp.getUserName(uns);
+                String storedPassword = logInCRUD.getSinlgeEntry(uns);
 
                 // check if the Stored password matches with  Password entered by user
                 if(pas.equals(storedPassword))
@@ -55,10 +60,18 @@ public class LogInActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(LogInActivity.this, "User Name or Password does not match", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LogInActivity.this, "User Name or Password does not match"+storedPassword, Toast.LENGTH_LONG).show();
                 }
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        // TODO Auto-generated method stub
+        super.onDestroy();
+
+        logInCRUD.close();
     }
 
 }
