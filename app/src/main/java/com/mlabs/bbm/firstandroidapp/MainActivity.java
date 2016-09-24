@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         matcher = pattern.matcher(_mail);
         pmatcher = ppattern.matcher(_mail);
 
-        if (_mail.isEmpty() || !matcher.matches()){
+        if (_mail.isEmpty()){
             Toast.makeText(getApplicationContext(),"Enter valid email",Toast.LENGTH_LONG).show();
             valid = false;
         }

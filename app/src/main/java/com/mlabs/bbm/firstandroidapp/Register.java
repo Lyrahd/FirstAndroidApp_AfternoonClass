@@ -42,7 +42,7 @@ public class Register extends Activity{
                         Toast.makeText(getApplicationContext(),"Registration failed! Email/username already in use.", Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        sqlDB.registeruser("","","",email.getText().toString().trim(),pwd1.getText().toString().trim(),getDate());
+                        sqlDB.registeruser(first.getText().toString().trim(),sur.getText().toString().trim(),user.getText().toString().trim(),email.getText().toString().trim(),pwd1.getText().toString().trim(),getDate());
                         Toast.makeText(getApplicationContext(),"Registration success!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Register.this, MainActivity.class);
                         startActivity(intent);
