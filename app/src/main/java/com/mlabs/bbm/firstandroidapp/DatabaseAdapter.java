@@ -16,6 +16,9 @@ public class DatabaseAdapter extends SQLiteOpenHelper{
     private static final String TABLE_USER = "user";
     private static final String KEY_ID = "id";
     private static final String KEY_EMAIL = "email";
+    private static final String KEY_FIRST = "first";
+    private static final String KEY_SUR = "surname";
+    private static final String KEY_USER = "username";
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_CREATED_AT = "created_at";
 
@@ -28,6 +31,9 @@ public class DatabaseAdapter extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "(" +
                 KEY_ID + " INTEGER PRIMARY KEY, " +
+                KEY_FIRST + " TEXT, " +
+                KEY_SUR + " TEXT, " +
+                KEY_USER+ " TEXT UNIQUE, " +
                 KEY_EMAIL + " TEXT UNIQUE, " +
                 KEY_PASSWORD + " TEXT, " +
                 KEY_CREATED_AT + " TEXT)";
@@ -41,9 +47,12 @@ public class DatabaseAdapter extends SQLiteOpenHelper{
         onCreate(db);
     }
 
-    public void registeruser(String email, String password, String created_at){
+    public void registeruser(String first, String sur, String username, String email, String password, String created_at){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        values.put(KEY_FIRST,first);
+        values.put(KEY_SUR,sur);
+        values.put(KEY_USER,username);
         values.put(KEY_EMAIL,email);
         values.put(KEY_PASSWORD,password);
         values.put(KEY_CREATED_AT,created_at);
@@ -51,6 +60,19 @@ public class DatabaseAdapter extends SQLiteOpenHelper{
         long id  = db.insert(TABLE_USER,null, values);
         db.close();
         Log.d(TAG, "User added successfully!");
+    }
+
+    public boolean checkExist(String username, String email){
+        String qry = "SELECT * FROM " + TABLE_USER + " WHERE " + KEY_EMAIL +" = '"+email+"' or "+ KEY_USER + " = '" + username +"'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(qry,null);
+        cursor.moveToFirst();
+        if (cursor.getCount() != 0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public boolean validateUser(String email, String password){
@@ -61,9 +83,12 @@ public class DatabaseAdapter extends SQLiteOpenHelper{
 
         cursor.moveToFirst();
         if (cursor.getCount()>0){
-            user.put("email",cursor.getString(1));
-            user.put("password",cursor.getString(2));
-            user.put("created_at",cursor.getString(3));
+            user.put("first",cursor.getString(1));
+            user.put("surname",cursor.getString(2));
+            user.put("username",cursor.getString(3));
+            user.put("email",cursor.getString(4));
+            user.put("password",cursor.getString(5));
+            user.put("created_at",cursor.getString(6));
             Log.d(TAG,"Fetching user from Sqlite: "+user.toString());
             cursor.close();
             db.close();

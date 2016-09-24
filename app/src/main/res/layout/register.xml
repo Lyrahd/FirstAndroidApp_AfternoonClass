@@ -9,13 +9,12 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Email :"
         android:id="@+id/textView3"
-        android:layout_marginTop="96dp"
-        android:layout_alignParentTop="true"
+        android:layout_marginRight="33dp"
+        android:layout_marginEnd="33dp"
+        android:textStyle="bold|italic"
+        android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/btn_register"
-        android:layout_toStartOf="@+id/btn_register"
-        android:layout_marginRight="27dp"
-        android:layout_marginEnd="27dp"
-        android:textStyle="bold|italic" />
+        android:layout_toStartOf="@+id/btn_register" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,11 +22,10 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Password :"
         android:id="@+id/textView4"
-        android:layout_below="@+id/textView3"
+        android:textStyle="bold|italic"
+        android:layout_below="@+id/edit_email"
         android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3"
-        android:layout_marginTop="75dp"
-        android:textStyle="bold|italic" />
+        android:layout_alignStart="@+id/textView3" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,11 +33,10 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Confirm Password :"
         android:id="@+id/textView5"
+        android:textStyle="bold|italic"
         android:layout_below="@+id/edit_pass1"
         android:layout_alignLeft="@+id/edit_pass1"
-        android:layout_alignStart="@+id/edit_pass1"
-        android:layout_marginTop="28dp"
-        android:textStyle="bold|italic" />
+        android:layout_alignStart="@+id/edit_pass1" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -79,6 +76,68 @@
         android:text="Register"
         android:id="@+id/btn_register"
         android:layout_below="@+id/edit_pass2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="31dp" />
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="First Name:"
+        android:id="@+id/textView6"
+        android:layout_marginTop="76dp"
+        android:textStyle="bold|italic"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/edit_first"
+        android:layout_alignStart="@+id/edit_first" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/edit_first"
+        android:layout_below="@+id/textView6"
+        android:layout_alignLeft="@+id/textView3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Surname:"
+        android:id="@+id/textView7"
+        android:textStyle="bold|italic"
+        android:layout_below="@+id/edit_first"
+        android:layout_alignLeft="@+id/edit_first"
+        android:layout_alignStart="@+id/edit_first" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/edit_surname"
+        android:layout_below="@+id/textView7"
+        android:layout_alignLeft="@+id/edit_first" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Username"
+        android:id="@+id/textView8"
+        android:textStyle="bold|italic"
+        android:layout_below="@+id/edit_surname"
+        android:layout_alignLeft="@+id/edit_surname"
+        android:layout_alignStart="@+id/edit_surname" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/edit_user"
+        android:layout_below="@+id/textView8"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3" />
+
 </RelativeLayout>
