@@ -2,87 +2,107 @@ package com.mlabs.bbm.firstandroidapp;
 
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputType;
+import android.support.v7.app.AppCompatActivity;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.view.View;
+import android.view.View.OnClickListener;
+import java.util.regex.Pattern;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.regex.Pattern;
-
 public class MainActivity extends AppCompatActivity {
 
+    EditText Email;
+    EditText Password;
+    Button LogIn;
+    Button Show;
+    TextView SignUp;
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button btn;
-        final EditText emailAdd,passWord;
-        Button show;
-        emailAdd=(EditText)findViewById(R.id.editText);
-        passWord=(EditText)findViewById(R.id.editText2);
-        btn = (Button)findViewById(R.id.button);
-        SQLiteDatabase mydatabase = openOrCreateDatabase("dbAccounts",MODE_PRIVATE,null);
-        final DBHelper mydb = new DBHelper(this) ;
-        show = (Button)findViewById(R.id.show);
-        Button signup;
-        signup= (Button)findViewById((R.id.button2));
-        if (btn!=null){
-            btn.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public  void onClick(View v){
 
-                    if(Pattern.compile("([a-zA-Z0-9]+_?)+@[a-zA-Z0-9]+\\.com").matcher(emailAdd.getText()).matches()){
-                        if(!(passWord.length()== 0)){
-                            if(passWord.length()>8){
-                                if (mydb.validateUser(emailAdd.getText().toString(), passWord.getText().toString())=="True") {
-                                    Intent intent = new Intent(MainActivity.this, blankAct.class);
-                                    startActivity(intent);
-                                    //for disposing
-                                    finish();
-                                }else Toast.makeText(getBaseContext(),"Incorrect email or password", Toast.LENGTH_SHORT).show();
-                            } else Toast.makeText(getBaseContext(),"Password too short", Toast.LENGTH_SHORT).show();
-                        }else Toast.makeText(getBaseContext(),"Password field is empty", Toast.LENGTH_SHORT).show();
-                    }else Toast.makeText(getBaseContext(),"Invalid Email Address", Toast.LENGTH_SHORT).show();
+        Email = (EditText) findViewById(R.id.editText);
+        Password = (EditText) findViewById(R.id.editText2);
+        LogIn = (Button) findViewById(R.id.button);
+        Show = (Button) findViewById(R.id.show);
+        SignUp = (TextView) findViewById(R.id.button2);
 
+        LogIn.setOnClickListener(new OnClickListener() {
+                                     @Override
+                                     public void onClick(View v) {
+                                         //if (Pattern.compile("^\\w+.*\\w*@[a-zA-Z_]+?\\.[0-9a-zA-Z]{2,}$").matcher(Email.getText()).matches() && Password.length() >= 8){
+                                         AccountRepo repo = new AccountRepo(getApplicationContext());
+                                         boolean res = false;
+                                         res = repo.validateLogin(Email.getText().toString(), Password.getText().toString());
+                                         if(res == true){
+                                             Intent intent = new Intent(MainActivity.this, blankAct.class);
+                                             startActivity(intent);}
+                                         else  {
+                                             Toast.makeText(getBaseContext(), "Username/Email or password is incorrect.",Toast.LENGTH_SHORT).show();
+                                         }
+                                         //} else {
+                                         //    Toast.makeText(getBaseContext(), "Email or Password is Incorrect", Toast.LENGTH_SHORT).show();
+                                         //}
+                                     }
+                                 }
+        );
 
-                }
-            });
-        }
-
-
-
-        signup.setOnClickListener(new View.OnClickListener() {
+        Show.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,signup.class );
-                startActivity(intent);
-            }
-        });
-        show.setOnTouchListener(new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View v, MotionEvent e) {
-            switch (e.getAction()) {
-                case MotionEvent.ACTION_DOWN:
-                    passWord.setTransformationMethod(null);
-                    return true;
-                case MotionEvent.ACTION_CANCEL:
-                case MotionEvent.ACTION_UP:
-                    passWord.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            public boolean onTouch(View view, MotionEvent motionevent) {
+
+                final int cursor = Password.getSelectionStart();
+
+                int event = motionevent.getAction();
+
+                // if (event == motionevent.ACTION_DOWN) {
+                //    Password.setTransformationMethod(null);
+
+                //}
+                //  if (event == motionevent.ACTION_UP) {
+                //    Password.setTransformationMethod(new PasswordTransformationMethod());
+                //}
+
+                switch (motionevent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        Log.d("login","ACTION_DOWN");
+                        Password.setTransformationMethod(null);
+                        Password.setSelection(cursor);
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        Log.d("login","ACTION_UP");
+                        Password.setTransformationMethod(new PasswordTransformationMethod());
+                        Password.setSelection(cursor);
+                        break;
+                }
                 return true;
             }
-            return  false;
-        }
+        });
 
-    });
+        SignUp.setOnClickListener(new OnClickListener() {
+                                      @Override
+                                      public void onClick(View v) {
+
+                                          Intent intent = new Intent(MainActivity.this, signup.class);
+                                          startActivity(intent);
+                                      }
+
+
+                                  }
+        );
     }
-
-
+    protected  void onPause(){
+        super.onPause();
+        finish();
+    }
 }
+

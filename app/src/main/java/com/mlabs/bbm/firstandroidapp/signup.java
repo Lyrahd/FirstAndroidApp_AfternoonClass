@@ -1,72 +1,95 @@
 package com.mlabs.bbm.firstandroidapp;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.regex.Pattern;
 
-/**
- * Created by androidstudio on 17/09/16.
- */
-public class signup extends AppCompatActivity{
+
+public class signup extends AppCompatActivity implements android.view.View.OnClickListener {
+
+    TextView fname;
+    TextView lname;
+    TextView uname;
+    TextView email;
+    TextView password;
+    TextView confirmpass;
+    Button create;
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
-        final DBHelper mydb = new DBHelper(this) ;
-        Button btnSignUp ;
-        final EditText etsignEmail, etsignPass, etsignConPass;
 
-        etsignEmail = (EditText)findViewById(R.id.editText3);
-        etsignPass = (EditText)findViewById(R.id.editText4);
-        etsignConPass = (EditText)findViewById(R.id.editText5);
-        btnSignUp = (Button)findViewById(R.id.button3);
+        fname = (TextView) findViewById(R.id.fname);
+        lname = (TextView) findViewById(R.id.lname);
+        uname = (TextView) findViewById(R.id.uname);
+        email = (TextView) findViewById(R.id.editText3);
+        password = (TextView) findViewById(R.id.editText4);
+        confirmpass = (TextView) findViewById(R.id.editText5);
+        create = (Button) findViewById(R.id.button3);
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String strPass = etsignPass.getText().toString();
-                final String strConPass = etsignConPass.getText().toString();
-                if(Pattern.compile("([a-zA-Z0-9]+_?)+@[a-zA-Z0-9]+\\.com").matcher(etsignEmail.getText()).matches()){
-                    if(!(etsignPass.length()== 0)){
-                        if(etsignPass.length()>8){
-                            if(strPass.equals(strConPass)){
-                                Calendar c = Calendar.getInstance();
-                                SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-                                String formattedDate = df.format(c.getTime());
-                                if(mydb.insertAccount(etsignEmail.getText().toString(), etsignPass.getText().toString(),formattedDate))
-                                {
-                                    Toast.makeText(getBaseContext(),"You have succesfully registered!", Toast.LENGTH_SHORT).show();
-                                    Toast.makeText(getBaseContext(),"Created at: " + formattedDate, Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(signup.this,MainActivity.class);
-                                    startActivity(i);
-                                }
-                                else
-                                {
-                                    Toast.makeText(getBaseContext(),"Already registered!", Toast.LENGTH_SHORT).show();
-                                }
-                            }else Toast.makeText(getBaseContext(),"Password does not match", Toast.LENGTH_SHORT).show();
-                        } else Toast.makeText(getBaseContext(),"Password too short", Toast.LENGTH_SHORT).show();
-                    }else Toast.makeText(getBaseContext(),"Password field is empty", Toast.LENGTH_SHORT).show();
-                }else Toast.makeText(getBaseContext(),"Invalid Email Address", Toast.LENGTH_SHORT).show();
-
-
-                    /*Toast.makeText(getBaseContext(),, Toast.LENGTH_SHORT).show();*/
-            }
-        });
-
+        create.setOnClickListener(this);
 
     }
+    public void onClick(View view) {
+        if (view == findViewById(R.id.button3)){
+            if (Pattern.compile("^\\w+.*\\w*@[a-zA-Z_]+?\\.[0-9a-zA-Z]{2,}(\\.[0-9a-zA-Z]{2,})?(\\.[0-9a-zA-Z]{2,})?$").matcher(email.getText()).matches())
+            {
+                if (password.getText().toString().equals(confirmpass.getText().toString())){
+                    if (password.getText().toString().length() >= 8){
+                        Account acct = new Account();
+                        Calendar c = Calendar.getInstance();
+                        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+                        String formattedDate = df.format(c.getTime());
+                        if (Pattern.compile("^\\w+.*\\w*@[a-zA-Z_]+?\\.[0-9a-zA-Z]{2,}$").matcher(uname.getText()).matches()) {
+                            Toast.makeText(getBaseContext(), "Username should not be in Email format.", Toast.LENGTH_SHORT).show();
+                        }else {
 
+                            AccountRepo repo = new AccountRepo(this);
+                            acct.acct_firstname = fname.getText().toString();
+                            acct.acct_lastname = lname.getText().toString();
+                            acct.acct_username = uname.getText().toString();
+                            acct.acct_email = email.getText().toString();
+                            acct.acct_password = password.getText().toString();
+                            acct.acct_datecreated = formattedDate;
+                            if(repo.isExisting(acct) == false){
+                                int a = 0;
+                                a = repo.createAccount(acct);
+                                Toast.makeText(this, "Account Registered!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(signup.this, MainActivity.class);
+
+
+                                startActivity(intent);}
+                            else{
+                                Toast.makeText(getBaseContext(), "Username/Email already exists!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                    else  {
+                        Toast.makeText(this, "Password must contain 8 or more characters.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else   {
+                    Toast.makeText(this, "Password does not match.", Toast.LENGTH_SHORT).show();
+                }
+            }
+            else   {
+                Toast.makeText(this, "Incorrect e-mail format.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    protected  void onPause() {
+        super.onPause();
+        finish();
+    }
 }
