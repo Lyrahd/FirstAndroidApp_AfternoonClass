@@ -60,7 +60,7 @@ public class LogInActivity extends Activity{
                 }
                 else
                 {
-                    Toast.makeText(LogInActivity.this, "User Name or Password does not match"+storedPassword, Toast.LENGTH_LONG).show();
+                    Toast.makeText(LogInActivity.this, "User Name or Password does not match", Toast.LENGTH_LONG).show();
                 }
             }
         });

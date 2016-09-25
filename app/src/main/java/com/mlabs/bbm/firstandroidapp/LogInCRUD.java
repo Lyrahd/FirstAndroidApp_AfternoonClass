@@ -16,7 +16,7 @@ public class LogInCRUD {
     // TODO: Create public field for each column in your table.
     // SQL Statement to create a new database.
     static final String DATABASE_CREATE = "create table " + "LOGIN" +
-            "( " + "ID" + " integer primary key autoincrement," + "USERNAME  text,PASSWORD text); ";
+            "( " + "ID" + " integer primary key autoincrement," + "USERNAME  text,PASSWORD text, EMAIL text, FIRSTNAME text, LASTNAME text); ";
     // Variable to hold the database instance
     public SQLiteDatabase db;
     // Context of the application using the database.
@@ -48,11 +48,15 @@ public class LogInCRUD {
 //        newValues.put("USERNAME", userName);
 //        newValues.put("PASSWORD", password);
 //        newValues.put("CREATED_AT", created_at);
-    public void insertEntry(String userName, String password) {
+    public void insertEntry(String userName, String password, String email, String firstname, String lastname) {
+
         ContentValues newValues = new ContentValues();
         // Assign values for each row.
         newValues.put("USERNAME", userName);
         newValues.put("PASSWORD", password);
+        newValues.put("EMAIL", email);
+        newValues.put("FIRSTNAME", firstname);
+        newValues.put("LASTNAME", lastname);
         // Insert the row into your table
         db.insert("LOGIN", null, newValues);
         ///Toast.makeText(context, "Reminder Is Successfully Saved", Toast.LENGTH_LONG).show();
@@ -71,12 +75,44 @@ public class LogInCRUD {
         if (cursor.getCount() < 1) // UserName Not Exist
         {
             cursor.close();
-            return "NOT EXIST";
+            Cursor cursor1 = db.query("LOGIN", null, "EMAIL=?", new String[]{userName}, null, null, null);
+            if (cursor1.getCount() < 1) // UserName Not Exist
+            {
+                cursor1.close();
+                return "Not Exist";
+            }
+            cursor1.moveToFirst();
+            String password1 = cursor.getString(cursor.getColumnIndex("PASSWORD"));
+            cursor1.close();
+            return password1;
         }
         cursor.moveToFirst();
         String password = cursor.getString(cursor.getColumnIndex("PASSWORD"));
         cursor.close();
         return password;
+    }
+
+    public boolean getUsernameEntry(String userName) {
+        Cursor cursor = db.query("LOGIN", null, " USERNAME=?", new String[]{userName}, null, null, null);
+        if (cursor.getCount() < 1) // UserName Not Exist
+        {
+            cursor.close();
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    public boolean getEmailEntry(String email) {
+        Cursor cursor = db.query("LOGIN", null, " EMAIL=?", new String[]{email}, null, null, null);
+        if (cursor.getCount() < 1) // UserName Not Exist
+        {
+            cursor.close();
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public void updateEntry(String userName, String password) {
