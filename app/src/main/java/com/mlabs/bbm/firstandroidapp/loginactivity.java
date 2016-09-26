@@ -2,6 +2,7 @@ package com.mlabs.bbm.firstandroidapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.database.DatabaseUtilsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -33,36 +34,42 @@ public class loginactivity extends AppCompatActivity {
         Button btn1 = (Button) findViewById(R.id.tv_lbl1);
         txtsign = (TextView) findViewById(R.id.txtsignup);
 
-            if (btnlogin != null) {
-                btnlogin.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (Pattern.compile("([a-zA-Z0-9]+_?)+@[a-zA-Z0-9]+\\.com").matcher(EmailAdd.getText()).matches() && (Pattern.compile("([a-zA-Z0-9]+)").matcher(PassW.getText()).matches()) && PassW.length() >= 8) {
-                            Toast.makeText(getBaseContext(), "Login Success", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(loginactivity.this, MainActivity.class);
-                            startActivity(intent);
-                        } else
-                            Toast.makeText(getBaseContext(), "Login Failed", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
 
-            btn1.setOnTouchListener(new View.OnTouchListener() {
+
+        if (btnlogin != null) {
+            btnlogin.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    switch (event.getAction()) {
-                        case MotionEvent.ACTION_DOWN:
-                            PassW.setInputType(InputType.TYPE_CLASS_TEXT);
-                            break;
-                        case MotionEvent.ACTION_UP:
-                            PassW.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                            break;
-                    }
-                    return true;
+                public void onClick(View v) {
+                    DataBaseAdapter db = new DataBaseAdapter(getApplicationContext());
+                    boolean res = false;
+                    res = db.validateUser(EmailAdd.getText().toString().trim(),PassW.getText().toString().trim());
+
+                    if (res == true) {
+                        Toast.makeText(getBaseContext(), "Login Success", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(loginactivity.this, MainActivity.class);
+                        startActivity(intent);
+                    } else
+                        Toast.makeText(getBaseContext(), "Login Failed", Toast.LENGTH_SHORT).show();
                 }
             });
+        }
 
-            txtsign.setOnClickListener(new View.OnClickListener() {
+        btn1.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        PassW.setInputType(InputType.TYPE_CLASS_TEXT);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        PassW.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        break;
+                }
+                return true;
+            }
+        });
+
+        txtsign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(loginactivity.this, registeractivity.class);
@@ -71,19 +78,15 @@ public class loginactivity extends AppCompatActivity {
         });
     }
 
-        public static boolean isValidEmail(CharSequence target) {
-            if (TextUtils.isEmpty(target)) {
-                return false;
-            } else {
-                return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
-            }
-
+    public static boolean isValidEmail(CharSequence target) {
+        if (TextUtils.isEmpty(target)) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
         }
-
-
 
     }
 
 
 
-
+}

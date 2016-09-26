@@ -9,6 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 
@@ -24,6 +28,9 @@ public class registeractivity extends AppCompatActivity {
 
         final EditText email = (EditText) findViewById(R.id.email);
         final EditText password = (EditText) findViewById(R.id.password);
+        final EditText uname = (EditText) findViewById(R.id.uname);
+        final EditText firstname = (EditText) findViewById(R.id.firstname);
+        final EditText lastname = (EditText) findViewById(R.id.lastname);
         final EditText confirmpass = (EditText) findViewById(R.id.confirmpass);
 
         final Button btn_reg = (Button) findViewById(R.id.btn_reg);
@@ -31,26 +38,50 @@ public class registeractivity extends AppCompatActivity {
         final String emailInput = email.getText().toString().trim();
         final String passwordInput = password.getText().toString().trim();
         final String passwordInputVerify = confirmpass.getText().toString().trim();
+        final String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
 
-        btn_reg.setOnClickListener(view);{
+
+        //EmailMatcher = "([a-zA-Z0-9]+_?)+@[a-zA-Z0-9]+\\.com";
+        // PassMatcher = "([a-zA-Z0-9])";
+
+
+        btn_reg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Log.d(getApplicationContext().toString(), "CLICK");
-                if (!emailInput.isEmpty() && !passwordInput.isEmpty() && !passwordInputVerify.isEmpty()) {
+                if (Pattern.compile("([a-zA-Z0-9]+_?)+@[a-zA-Z0-9]+\\.([a-zA-Z0-9])+(\\.([a-zA-Z0-9])+)?").matcher(email.getText()).matches() && (Pattern.compile("([a-zA-Z0-9]+)").matcher(password.getText()).matches()) && password.getText().length() >= 8) {
                     Log.d(getApplicationContext().toString(), "PAU");
-                    if (passwordInput.equals(passwordInputVerify)) {
+                    if (password.getText().toString().equals(confirmpass.getText().toString())) {
                         Log.d(registeractivity.this.toString(), "Signing Up..");
-                        sqlDB.registerUser(emailInput, passwordInput, getCurrentDateTime());
+                        sqlDB.registerUser( email.getText().toString().trim(),password.getText().toString().trim(), firstname.getText().toString().trim(), lastname.getText().toString().trim(), uname.getText().toString().trim(), getDate());
+                        Log.d(registeractivity.class.getSimpleName(),email.getText().toString().trim());
                         Toast.makeText(getApplicationContext(), "User successfully added", Toast.LENGTH_LONG).show();
-                        Intent goBackToLoginScreen = new Intent(getApplicationContext(), loginactivity.class);
+                        Intent goBackToLoginScreen = new Intent(registeractivity.this, loginactivity.class);
                         startActivity(goBackToLoginScreen);
                     } else {
+
                         Toast.makeText(getApplicationContext(), "Password did not match", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "Please fill up required fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Invalid Details", Toast.LENGTH_SHORT).show();
                 }
 
             }
-        }
+
+
+        });
 
     }
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
 
+    public String getDate(){
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        String formattedDate = df.format(c.getTime());
+        return formattedDate;
+
+    }
+}
