@@ -70,7 +70,7 @@ public class registeractivity extends AppCompatActivity {
 
 
         });
-
+//hi
     }
     protected void onPause() {
         super.onPause();
