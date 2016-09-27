@@ -27,6 +27,9 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.signup);
         loginDataBaseAdapter=new DatabaseAdapter(this);
         loginDataBaseAdapter=loginDataBaseAdapter.open();
+        final EditText fname = (EditText) findViewById(R.id.fname);
+        final EditText Lname = (EditText) findViewById(R.id.Lname);
+        final EditText uname = (EditText) findViewById(R.id.Username);
         final EditText email = (EditText) findViewById(R.id.email);
         final EditText password = (EditText) findViewById(R.id.password);
         final EditText confirmpass = (EditText) findViewById(R.id.confpassword);
@@ -36,6 +39,9 @@ public class SignUp extends AppCompatActivity {
         validate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String fn = fname.getText().toString();
+                String ln = Lname.getText().toString();
+                String un = uname.getText().toString();
                 String em = email.getText().toString();
                 String p = password.getText().toString();
                 String cp = confirmpass.getText().toString();
@@ -54,15 +60,19 @@ public class SignUp extends AppCompatActivity {
                 if (!password.getText().toString().equals(confirmpass.getText().toString()))
                     {Toast.makeText(SignUp.this, "Password does not match the confirm password.", Toast.LENGTH_SHORT).show();}
 
-                else
+                if (validateEmail(em) && p == cp)
                     {Toast.makeText(SignUp.this, "Password Match.", Toast.LENGTH_SHORT).show();
-                     loginDataBaseAdapter.insertEntry(em, p);
+                     loginDataBaseAdapter.insertEntry(em, p,fn,ln,un);
                      Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_SHORT).show();
                      Intent intent = new Intent(SignUp.this,MainActivity.class );
                      startActivity(intent);}
-
             }
         });
+
+
+
+
+
 
 
     }
@@ -86,6 +96,7 @@ public class SignUp extends AppCompatActivity {
         }
         return true;
     }
+
     private boolean validatePassword(String password){
         if(password!=null && password.length()>7){
             return true;

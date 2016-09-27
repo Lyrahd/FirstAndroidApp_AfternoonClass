@@ -39,11 +39,14 @@ public class DatabaseAdapter {
         return db;
     }
 
-    public void insertEntry(String userName, String password) {
+    public void insertEntry(String userName, String password,String First,String Last,String user) {
         ContentValues newValues = new ContentValues();
         // Assign values for each row.
         newValues.put("USERNAME", userName);
         newValues.put("PASSWORD", password);
+        newValues.put("FIRSTNAME", First);
+        newValues.put("LASTNAME", Last);
+        newValues.put("USER", user);
 
         // Insert the row into your table
         db.insert("LOGIN", null, newValues);
