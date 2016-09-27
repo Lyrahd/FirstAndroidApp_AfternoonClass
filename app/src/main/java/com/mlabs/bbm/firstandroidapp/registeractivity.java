@@ -59,7 +59,7 @@ public class registeractivity extends AppCompatActivity {
                         Intent goBackToLoginScreen = new Intent(registeractivity.this, loginactivity.class);
                         startActivity(goBackToLoginScreen);
                     } else {
-
+//hi
                         Toast.makeText(getApplicationContext(), "Password did not match", Toast.LENGTH_SHORT).show();
                     }
                 } else {
