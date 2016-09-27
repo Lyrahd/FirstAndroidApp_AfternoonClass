@@ -14,8 +14,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Email"
         android:id="@+id/l_Email"
-        android:layout_marginTop="35dp"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/S_email"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -25,8 +24,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Password"
         android:id="@+id/l_Pword"
-        android:layout_marginTop="47dp"
-        android:layout_below="@+id/l_Email"
+        android:layout_above="@+id/S_pword"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -36,7 +34,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Confirm Password"
         android:id="@+id/l_Cpword"
-        android:layout_below="@+id/S_pword"
+        android:layout_above="@+id/S_Cpword"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -47,9 +47,10 @@
         android:ems="10"
         android:id="@+id/S_email"
         android:singleLine="true"
-        android:layout_below="@+id/l_Email"
+        android:layout_above="@+id/l_Pword"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_marginBottom="29dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -60,11 +61,12 @@
         android:ems="10"
         android:id="@+id/S_pword"
         android:singleLine="true"
-        android:layout_below="@+id/l_Pword"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_above="@+id/l_Cpword"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="35dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -72,7 +74,7 @@
         android:layout_height="wrap_content"
         android:text="Sign up"
         android:id="@+id/btnsignup"
-        android:layout_centerVertical="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
     <EditText
@@ -82,9 +84,75 @@
         android:ems="10"
         android:id="@+id/S_Cpword"
         android:singleLine="true"
-        android:layout_below="@+id/l_Cpword"
+        android:layout_above="@+id/btnsignup"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="First Name"
+        android:singleLine="true"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/S_fname"
+        android:singleLine="true"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/S_email"
+        android:layout_alignEnd="@+id/S_email" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Last Name"
+        android:singleLine="true"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/S_fname"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/S_lname"
+        android:singleLine="true"
+        android:layout_below="@+id/textView3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Username"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/S_lname"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/S_username"
+        android:singleLine="true"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/S_lname"
+        android:layout_alignEnd="@+id/S_lname" />
 </RelativeLayout>

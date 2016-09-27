@@ -38,13 +38,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // get The User name and Password
-                String uname=email.getText().toString();
-                String pword=password.getText().toString();
+                String main_email=email.getText().toString();
+                String pword2=password.getText().toString();
 
                 // fetch the Password form database for respective user name
-                String storedPassword=loginDataBaseAdapter.getSinlgeEntry(uname);
+                String storedPassword=loginDataBaseAdapter.getSinlgeEntry(main_email);
 
-                if(pword.equals(storedPassword))
+                if(pword2.equals(storedPassword))
                 {
                     Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                     Intent i=new Intent(getApplicationContext(),Main2Activity.class);

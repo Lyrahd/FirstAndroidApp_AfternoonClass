@@ -53,7 +53,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
-<!---        android:drawableLeft="@drawable/lock"-->
+    <!---        android:drawableLeft="@drawable/lock"-->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
