@@ -38,23 +38,24 @@ public class login extends AppCompatActivity {
         SignUp = (TextView) findViewById(R.id.TvSignUp);
 
         LogIn.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Pattern.compile("^\\w+.*\\w*@[a-zA-Z_]+?\\.[0-9a-zA-Z]{2,}$").matcher(Email.getText()).matches() && Password.length() >= 8){
-                    AccountRepo repo = new AccountRepo(getApplicationContext());
-                    boolean res = false;
-                    res = repo.validateLogin(Email.getText().toString(), Password.getText().toString());
-                    if(res == true){
-                        Intent intent = new Intent(login.this, MainActivity.class);
-                        startActivity(intent);}
-                    else  {
-                        Toast.makeText(getBaseContext(), "Account does not exist.",Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(getBaseContext(), "Email or Password is Incorrect", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }
+                                     @Override
+                                     public void onClick(View v) {
+                                         //if (Pattern.compile("^\\w+.*\\w*@[a-zA-Z_]+?\\.[0-9a-zA-Z]{2,}$").matcher(Email.getText()).matches() && Password.length() >= 8){
+                                         AccountRepo repo = new AccountRepo(getApplicationContext());
+                                         boolean res = false;
+                                         res = repo.validateLogin(Email.getText().toString(), Password.getText().toString());
+                                         if(res == true){
+                                             Intent intent = new Intent(login.this, MainActivity.class);
+                                             intent.putExtra("username", repo.getName(Email.getText().toString(),Password.getText().toString()));
+                                             startActivity(intent);}
+                                         else  {
+                                             Toast.makeText(getBaseContext(), "Username/Email or password is incorrect.",Toast.LENGTH_SHORT).show();
+                                         }
+                                         //} else {
+                                         //    Toast.makeText(getBaseContext(), "Email or Password is Incorrect", Toast.LENGTH_SHORT).show();
+                                         //}
+                                     }
+                                 }
         );
 
         Show.setOnTouchListener(new View.OnTouchListener() {

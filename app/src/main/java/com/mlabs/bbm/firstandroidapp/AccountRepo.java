@@ -85,6 +85,27 @@ public class AccountRepo {
 
 
     }
+
+    public String getName(String email, String password){
+        String res = "";
+        HashMap<String, String> user = new HashMap<String, String>();
+
+        String selectQuery = "SELECT " + Account.KEY_email + ", " + Account.KEY_password  + ", " + Account.KEY_username + " FROM " + Account.TABLE + " WHERE " + Account.KEY_email + " = \"" + email.toString() +  "\"" + " OR " + Account.KEY_username + " = \"" + email.toString() + "\"" + " AND " + Account.KEY_password + " = \"" + password.toString() +"\"";
+
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        cursor.moveToFirst();
+        if(cursor.getCount()>0){
+            user.put(Account.KEY_email, cursor.getString(0));
+            user.put(Account.KEY_password, cursor.getString(1));
+            res = cursor.getString(2);
+        }
+
+        cursor.close();
+        db.close();
+
+        return res;
+    }
     public boolean isExisting (Account acct){
 
         //Latest edit

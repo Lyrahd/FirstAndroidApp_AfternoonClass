@@ -30,6 +30,7 @@
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="42dp"
-        android:textSize="35dp"
-        android:textColor="@color/abc_primary_text_disable_only_material_dark" />
+        android:textSize="70dp"
+        android:textColor="@color/accent_material_light"
+        android:textAlignment="center" />
 </RelativeLayout>

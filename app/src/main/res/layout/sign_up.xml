@@ -12,9 +12,8 @@
         android:id="@+id/TvNewEmail"
         android:hint="E-mail"
         android:textSize="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="136dp" />
+        android:layout_below="@+id/TvUName"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="300dp"
@@ -24,8 +23,9 @@
         android:id="@+id/TvNewPass"
         android:hint="Password"
         android:textSize="20dp"
-        android:layout_above="@+id/TvNewEmail"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/TvNewEmail"
+        android:layout_alignLeft="@+id/TvNewEmail"
+        android:layout_alignStart="@+id/TvNewEmail" />
 
     <EditText
         android:layout_width="300dp"
@@ -35,8 +35,9 @@
         android:id="@+id/TvConfirmNewPass"
         android:hint="Confirm Password"
         android:textSize="20dp"
-        android:layout_above="@+id/TvNewPass"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/TvNewPass"
+        android:layout_alignLeft="@+id/TvNewPass"
+        android:layout_alignStart="@+id/TvNewPass" />
 
     <Button
         android:layout_width="wrap_content"
@@ -84,9 +85,10 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/TvUName"
-        android:layout_above="@+id/TvConfirmNewPass"
-        android:layout_alignLeft="@+id/TvConfirmNewPass"
         android:hint="Username"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:layout_below="@+id/TvLName"
+        android:layout_alignLeft="@+id/TvLName"
+        android:layout_alignStart="@+id/TvLName" />
 
 </RelativeLayout>
