@@ -79,6 +79,7 @@ public class DatabaseAdapter {
         return password;
     }
 
+
     public String getUsernameforsignup(String uname) {
 
 
