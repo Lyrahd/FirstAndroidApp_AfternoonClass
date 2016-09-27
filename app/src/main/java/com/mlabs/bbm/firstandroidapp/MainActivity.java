@@ -50,9 +50,11 @@ public class MainActivity extends AppCompatActivity {
                 } else {**/
                     String email = editext1.getText().toString();
                     String pword = editext2.getText().toString();
-                    String savePassword = DatabaseAdapter.getSinlgeEntry(email);
+                String uname = editext1.getText().toString();
+                String savePassword = DatabaseAdapter.getSinlgeEntry(email);
+                String savePassword1 = DatabaseAdapter.getUsername(uname);
 
-                    if (pword.equals(savePassword)) {
+                   /** if (pword.equals(savePassword)) {
                         Toast.makeText(MainActivity.this, email + " has logged in. \n Password: " + pword, Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(MainActivity.this, BlankHomePage.class);
                         startActivity(intent);
@@ -61,8 +63,15 @@ public class MainActivity extends AppCompatActivity {
                     }
                 else{
                        Toast.makeText(MainActivity.this, "invalid email or password ", Toast.LENGTH_LONG).show();
-                    }
-
+                    }**/
+                if (pword.equals(savePassword1)|pword.equals(savePassword)) {
+                    Toast.makeText(MainActivity.this, uname + " has logged in. \n Password: " + pword, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(MainActivity.this, BlankHomePage.class);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "invalid email or password ", Toast.LENGTH_LONG).show();
+                }
                 }
 
             });
@@ -101,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                                                 editext2.setSelection(cursor);
                                                 break;
                                             /**case MotionEvent.ACTION_CANCEL:
-                                                editext2.setTransformationMethod(new PasswordTransformationMethod());**/
+                                             editext2.setTransformationMethod(new PasswordTransformationMethod());**/
                                         }
 
                                         return false;

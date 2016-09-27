@@ -11,7 +11,7 @@ public class DatabaseAdapter {
     static final int DATABASE_VERSION = 1;
     static final String DATABASE_CREATE = "Create Table " + "USERS" +
             "( " + "ID" + " Integer Primary Key Autoincrement," +
-            "EMAIL  text,PASSWORD text); ";
+            "FNAME text,LNAME text,UNAME text,EMAIL  text,PASSWORD text); ";
     public SQLiteDatabase db;
     private final Context context;
     private DatabaseHelper dbHelper;
@@ -34,8 +34,11 @@ public class DatabaseAdapter {
         return db;
     }
 
-    public void insertEntry(String email, String pword) {
+    public void insertEntry(String fname, String lname, String uname,String email, String pword) {
         ContentValues newValues = new ContentValues();
+        newValues.put("FNAME", fname);
+        newValues.put("LNAME", lname);
+        newValues.put("UNAME", uname);
         newValues.put("EMAIL", email);
         newValues.put("PASSWORD", pword);
         db.insert("USERS", null, newValues);
@@ -58,6 +61,51 @@ public class DatabaseAdapter {
         }
         cursor.moveToFirst();
         String password = cursor.getString(cursor.getColumnIndex("PASSWORD"));
+        cursor.close();
+        return password;
+    }
+    public String getUsername(String uname) {
+
+
+        Cursor cursor = db.query("USERS", null, " UNAME=?", new String[]{uname}, null, null, null);
+        if (cursor.getCount() < 1)
+        {
+            cursor.close();
+            return "NOT EXIST";
+        }
+        cursor.moveToFirst();
+        String password = cursor.getString(cursor.getColumnIndex("PASSWORD"));
+        cursor.close();
+        return password;
+    }
+
+    public String getUsernameforsignup(String uname) {
+
+
+        Cursor cursor = db.query("USERS", null, " UNAME=?", new String[]{uname}, null, null, null);
+        if (cursor.getCount() < 1)
+        {
+            cursor.close();
+            return "NOT EXIST";
+        }
+        cursor.moveToFirst();
+        String password = cursor.getString(cursor.getColumnIndex("UNAME"));
+        cursor.close();
+        return password;
+    }
+
+    public String getEmailforsignup(String email) {
+
+
+        Cursor cursor = db.query("USERS", null, " EMAIL=?", new String[]{email}, null, null, null);
+        if (cursor.getCount() < 1)
+        {
+
+            cursor.close();
+            return "NOT EXIST";
+        }
+        cursor.moveToFirst();
+        String password = cursor.getString(cursor.getColumnIndex("EMAIL"));
         cursor.close();
         return password;
     }
