@@ -80,6 +80,7 @@ public class DatabaseAdapter {
     }
 
 
+
     public String getUsernameforsignup(String uname) {
 
 
