@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by androidstudio on 17/09/16.
  */
+
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
@@ -20,12 +21,16 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db){
 
+        //Latest edit
         String CREATE_TABLE_ACCOUNT = "CREATE TABLE " + Account.TABLE + "("
                 + Account.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
-                + Account.KEY_email + " TEXT, "
+                + Account.KEY_firstname + " TEXT,"
+                + Account.KEY_lastname + " TEXT,"
+                + Account.KEY_username + " TEXT UNIQUE,"
+                + Account.KEY_email + " TEXT UNIQUE, "
                 + Account.KEY_password + " TEXT, "
                 + Account.KEY_datecreated + " TEXT)";
-
+        //
         db.execSQL(CREATE_TABLE_ACCOUNT);
     }
 
