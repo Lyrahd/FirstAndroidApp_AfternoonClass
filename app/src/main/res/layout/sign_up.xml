@@ -29,59 +29,139 @@
         android:layout_alignParentStart="true"
         android:id="@+id/linearLayout">
         <!--  Email Label -->
-        <TextView android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_orange_dark"
-            android:text="Email:"
-            android:textSize="15dp"
-            android:autoText="false" />
-        <EditText android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
-            android:layout_marginBottom="20dip"
-            android:singleLine="true"
-            android:textSize="15dp"
-            android:textColor="@android:color/holo_orange_dark"
-            android:id="@+id/editEmail" />
         <!--  Password Label -->
-        <TextView android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_orange_dark"
-            android:text="Password"
-            android:textSize="15dp" />
 
-        <EditText android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
-            android:singleLine="true"
-            android:password="true"
-            android:textSize="15dp"
-            android:textColor="@android:color/holo_orange_dark"
-            android:id="@+id/editPassSU" />
-
-        <TextView android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_orange_dark"
-            android:text="Confirm Password"
-            android:textSize="15dp" />
-
-        <EditText android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
-            android:singleLine="true"
-            android:password="true"
-            android:textSize="15dp"
-            android:textColor="@android:color/holo_orange_dark"
-            android:id="@+id/editPassCon" />
         <!-- Login button -->
     </LinearLayout>
+
+    <EditText android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textSize="15dp"
+        android:textColor="@android:color/holo_orange_dark"
+        android:id="@+id/editEmail"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_orange_dark"
+        android:text="Password"
+        android:textSize="15dp"
+        android:layout_below="@+id/editLastname"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView3" />
+
+    <EditText android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:password="true"
+        android:textSize="15dp"
+        android:textColor="@android:color/holo_orange_dark"
+        android:id="@+id/editPassSU"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true" />
+
+    <TextView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_orange_dark"
+        android:text="Confirm Password"
+        android:textSize="15dp"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/editPassSU"
+        android:layout_centerHorizontal="true" />
+
+    <EditText android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:password="true"
+        android:textSize="15dp"
+        android:textColor="@android:color/holo_orange_dark"
+        android:id="@+id/editPassCon"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_orange_dark"
+        android:text="Username:"
+        android:textSize="15dp"
+        android:autoText="false"
+        android:id="@+id/textViewUsername"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <EditText android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:password="false"
+        android:textSize="15dp"
+        android:textColor="@android:color/holo_orange_dark"
+        android:id="@+id/editUsername"
+        android:layout_below="@+id/textViewUsername"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <TextView android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_orange_dark"
+        android:text="Firstname:"
+        android:textSize="15dp"
+        android:autoText="false"
+        android:id="@+id/textViewFirstName"
+        android:layout_below="@+id/editEmail"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <EditText android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:password="false"
+        android:textSize="15dp"
+        android:textColor="@android:color/holo_orange_dark"
+        android:id="@+id/editFirstname"
+        android:layout_below="@+id/textViewFirstName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <TextView android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_orange_dark"
+        android:text="Lastname:"
+        android:textSize="15dp"
+        android:autoText="false"
+        android:id="@+id/textViewLastname"
+        android:layout_below="@+id/editFirstname"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <EditText android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:password="false"
+        android:textSize="15dp"
+        android:textColor="@android:color/holo_orange_dark"
+        android:id="@+id/editLastname"
+        android:layout_below="@+id/textViewLastname"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_orange_dark"
+        android:text="Email:"
+        android:textSize="15dp"
+        android:autoText="false"
+        android:id="@+id/textView"
+        android:layout_below="@+id/editUsername"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
     <Button android:id="@+id/btnRegister"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:text="Sign Up Now"
-        android:layout_below="@+id/linearLayout"
+        android:onClick="onButtonClick"
+        android:layout_below="@+id/editPassCon"
         android:layout_centerHorizontal="true"
-        android:onClick="onButtonClick" />
+        android:layout_marginTop="37dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -90,7 +170,6 @@
         android:text="SIGN UP"
         android:textColor="@android:color/holo_orange_dark"
         android:id="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/linearLayout" />
-
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
