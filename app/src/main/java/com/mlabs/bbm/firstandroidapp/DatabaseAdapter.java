@@ -7,18 +7,13 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 public class DatabaseAdapter {
-    static final String DATABASE_NAME = "login.db";
+    static final String DATABASE_NAME = "users.db";
     static final int DATABASE_VERSION = 1;
-    public static final int NAME_COLUMN = 1;
-    // TODO: Create public field for each column in your table.
-    // SQL Statement to create a new database.
-    static final String DATABASE_CREATE = "create table " + "LOGIN" +
-            "( " + "ID" + " integer primary key autoincrement," + "USERNAME  text,PASSWORD text); ";
-    // Variable to hold the database instance
-    public SQLiteDatabase db;
-    // Context of the application using the database.
+    static final String DATABASE_CREATE = "Create Table " + "USERS" +
+            "( " + "ID" + " Integer Primary Key Autoincrement," +
+            "FNAME text,LNAME text,UNAME text,EMAIL  text,PASSWORD text); ";
+    public static SQLiteDatabase db;
     private final Context context;
-    // Database open/upgrade helper
     private DataBaseHelper dbHelper;
 
     public DatabaseAdapter(Context _context) {
@@ -39,31 +34,22 @@ public class DatabaseAdapter {
         return db;
     }
 
-    public void insertEntry(String userName, String password,String First,String Last,String user) {
+    public static void insertEntry(String fname, String lname, String uname, String email, String pword) {
         ContentValues newValues = new ContentValues();
-        // Assign values for each row.
-        newValues.put("USERNAME", userName);
-        newValues.put("PASSWORD", password);
-        newValues.put("FIRSTNAME", First);
-        newValues.put("LASTNAME", Last);
-        newValues.put("USER", user);
+        newValues.put("FNAME", fname);
+        newValues.put("LNAME", lname);
+        newValues.put("UNAME", uname);
+        newValues.put("EMAIL", email);
+        newValues.put("PASSWORD", pword);
+        db.insert("USERS", null, newValues);
 
-        // Insert the row into your table
-        db.insert("LOGIN", null, newValues);
-        ///Toast.makeText(context, "Reminder Is Successfully Saved", Toast.LENGTH_LONG).show();
     }
 
-    public int deleteEntry(String UserName) {
-        //String id=String.valueOf(ID);
-        String where = "USERNAME=?";
-        int numberOFEntriesDeleted = db.delete("LOGIN", where, new String[]{UserName});
-        // Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
-        return numberOFEntriesDeleted;
-    }
+    public static String getSinlgeEntry(String email) {
 
-    public String getSinlgeEntry(String userName) {
-        Cursor cursor = db.query("LOGIN", null, " USERNAME=?", new String[]{userName}, null, null, null);
-        if (cursor.getCount() < 1) // UserName Not Exist
+
+        Cursor cursor = db.query("USERS", null, " EMAIL=?", new String[]{email}, null, null, null);
+        if (cursor.getCount() < 1)
         {
             cursor.close();
             return "NOT EXIST";
@@ -74,14 +60,61 @@ public class DatabaseAdapter {
         return password;
     }
 
-    public void updateEntry(String userName, String password) {
-        // Define the updated row content.
-        ContentValues updatedValues = new ContentValues();
-        // Assign values for each row.
-        updatedValues.put("USERNAME", userName);
-        updatedValues.put("PASSWORD", password);
+    public static String getUsername(String uname) {
 
-        String where = "USERNAME = ?";
-        db.update("LOGIN", updatedValues, where, new String[]{userName});
+
+        Cursor cursor = db.query("USERS", null, " UNAME=?", new String[]{uname}, null, null, null);
+        if (cursor.getCount() < 1)
+        {
+            cursor.close();
+            return "NOT EXIST";
+        }
+        cursor.moveToFirst();
+        String password = cursor.getString(cursor.getColumnIndex("PASSWORD"));
+        cursor.close();
+        return password;
+    }
+
+    public static String getUsernameforsignup(String uname) {
+
+
+        Cursor cursor = db.query("USERS", null, " UNAME=?", new String[]{uname}, null, null, null);
+        if (cursor.getCount() < 1)
+        {
+            cursor.close();
+            return "NOT EXIST";
+        }
+        cursor.moveToFirst();
+        String password = cursor.getString(cursor.getColumnIndex("UNAME"));
+        cursor.close();
+        return password;
+    }
+
+    public static String getEmailforsignup(String email) {
+
+
+        Cursor cursor = db.query("USERS", null, " EMAIL=?", new String[]{email}, null, null, null);
+        if (cursor.getCount() < 1)
+        {
+
+            cursor.close();
+            return "NOT EXIST";
+        }
+        cursor.moveToFirst();
+        String password = cursor.getString(cursor.getColumnIndex("EMAIL"));
+        cursor.close();
+        return password;
+    }
+
+    public void updateEntry(String fname, String lname, String uname,String email, String pword) {
+        ContentValues updatedValues = new ContentValues();
+        updatedValues.put("FNAME", fname);
+        updatedValues.put("LNAME", lname);
+        updatedValues.put("UNAME", uname);
+        updatedValues.put("EMAIL", email);
+        updatedValues.put("PASSWORD", pword);
+
+        String where = "EMAIL = ?";
+        db.update("USERS", updatedValues, where, new String[]{email});
     }
 }

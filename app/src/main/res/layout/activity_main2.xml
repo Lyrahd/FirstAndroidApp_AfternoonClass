@@ -8,25 +8,15 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mlabs.bbm.firstandroidapp.Main2Activity"
-    android:background="#d48551">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome"
-        android:id="@+id/textView"
-        android:textSize="50dp"
-        android:layout_above="@+id/ontch"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="47dp" />
+    android:background="#ffffff">
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
         android:text="Ontouch"
         android:id="@+id/ontch"
         android:textSize="18dp"
-        android:backgroundTint="#d48551"
+        android:background="#c2986b"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

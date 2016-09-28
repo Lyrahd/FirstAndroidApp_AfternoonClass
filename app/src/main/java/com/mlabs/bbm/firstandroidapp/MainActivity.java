@@ -29,11 +29,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // create a instance of SQLite Database
+
         loginDataBaseAdapter=new DatabaseAdapter(this);
         loginDataBaseAdapter=loginDataBaseAdapter.open();
 
-        // Get The Refference Of Buttons
+
         btnSignIn=(Button)findViewById(R.id.buttonL);
         btnSignUp=(TextView)findViewById(R.id.signup);
         showpass=(TextView)findViewById(R.id.show);
@@ -54,26 +54,31 @@ public class MainActivity extends AppCompatActivity {
         Button btnSignIn=(Button)findViewById(R.id.buttonL);
 
         // Set On ClickListener
+        assert btnSignIn != null;
         btnSignIn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 // get The User name and Password
-                String userName=editTextEmail.getText().toString();
-                String password=editTextPassword.getText().toString();
+                String email = editTextEmail.getText().toString();
+                String pword = editTextPassword.getText().toString();
+                String uname = editTextEmail.getText().toString();
 
-                // fetch the Password form database for respective user name
-                String storedPassword=loginDataBaseAdapter.getSinlgeEntry(userName);
+                String savePassword = DatabaseAdapter.getSinlgeEntry(email);
+                String savePassword1 = DatabaseAdapter.getUsername(uname);
+
+
+
 
                 // check if the Stored password matches with  Password entered by user
-                if(password.equals(storedPassword))
+                if(pword.equals(savePassword)|pword.equals(savePassword1))
                 {
-                    Toast.makeText(MainActivity.this, "Congrats: Login Successfull", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
                     Intent intentSignUP=new Intent(getApplicationContext(),Main2Activity.class);
                     startActivity(intentSignUP);
                 }
                 else
                 {
-                    Toast.makeText(MainActivity.this, "User Name or Password does not match", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Usernaame or Password does not match", Toast.LENGTH_SHORT).show();
                 }
             }
         });

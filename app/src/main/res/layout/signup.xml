@@ -2,191 +2,93 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#d48551">
+    android:background="#ffffff">
 
-    <TableRow android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="First Name: "
-            android:id="@+id/textview8"
-            android:textSize="20dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="20dp"
-            />
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:id="@+id/imageView2"
+        android:background="@drawable/obs_logo"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"/>
 
         <EditText
-            android:layout_width="180dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:textSize="20dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="35dp"
-            android:text=""
+            android:layout_marginTop="200dp"
+            android:layout_marginLeft="20dp"
+            android:hint="First Name"
             android:id="@+id/fname"
             />
 
-
-    </TableRow>
-
-    <TableRow android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Last Name: "
-            android:id="@+id/textview7"
-            android:textSize="20dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginLeft="20dp"
-            />
-
         <EditText
-            android:layout_width="180dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:textSize="20dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginLeft="35dp"
-            android:text=""
+            android:layout_marginTop="250dp"
+            android:layout_marginLeft="20dp"
+            android:hint="Last Name"
             android:id="@+id/Lname"
             />
 
-
-    </TableRow>
-
-    <TableRow android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Username: "
-            android:id="@+id/textview5"
-            android:textSize="20dp"
-            android:layout_marginTop="150dp"
-            android:layout_marginLeft="20dp"
-            />
-
         <EditText
-            android:layout_width="180dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:textSize="20dp"
-            android:layout_marginTop="150dp"
-            android:layout_marginLeft="40dp"
-            android:text=""
+            android:layout_marginTop="300dp"
+            android:layout_marginLeft="20dp"
+            android:hint="Username"
             android:id="@+id/Username"
             />
 
 
-    </TableRow>
-
-
-    <TableRow android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email: "
-            android:id="@+id/textView1"
-            android:textSize="20dp"
-            android:layout_marginTop="200dp"
-            android:layout_marginLeft="20dp"
-            />
-
         <EditText
-            android:layout_width="180dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:textSize="20dp"
-            android:layout_marginTop="200dp"
-            android:layout_marginLeft="80dp"
+            android:layout_marginTop="350dp"
+            android:layout_marginLeft="20dp"
             android:text=""
             android:id="@+id/email"
-            />
-
-
-    </TableRow>
-
-    <TableRow android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Password: "
-            android:id="@+id/textView2"
-            android:textSize="20dp"
-            android:layout_marginTop="250dp"
-            android:layout_marginLeft="20dp"
+            android:hint="Email"
             />
 
         <EditText
-            android:layout_width="180dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:textSize="20dp"
-            android:layout_marginTop="250dp"
-            android:layout_marginLeft="45dp"
-            android:text=""
+            android:layout_marginTop="400dp"
+            android:layout_marginLeft="20dp"
+            android:hint="Password"
             android:id="@+id/password"
             />
 
-
-    </TableRow>
-
-
-
-    <TableRow android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Confirm Pass: "
-            android:id="@+id/textView3"
-            android:textSize="20dp"
-            android:layout_marginTop="300dp"
-            android:layout_marginLeft="15dp"
-            />
-
-        <EditText
-            android:layout_width="180dp"
+    <EditText
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:textSize="20dp"
-            android:layout_marginTop="300dp"
-            android:layout_marginLeft="10dp"
-            android:text=""
-            android:id="@+id/confpassword"
-            />
+            android:layout_marginTop="450dp"
+            android:layout_marginLeft="20dp"
+           android:hint="Confirm Password"
+            android:id="@+id/confpassword" />
 
-
-    </TableRow>
     <Button
-        android:layout_width="120dp"
-        android:layout_height="60dp"
-        android:text="OK"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:text="Sign Up"
         android:textSize="25dp"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="520dp"
         android:layout_marginLeft="120dp"
         android:id="@+id/okbtn"
+        android:background="#c2986b"
+        android:layout_centerHorizontal="true"
         />
 
 </RelativeLayout>

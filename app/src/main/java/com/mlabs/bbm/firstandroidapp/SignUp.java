@@ -21,12 +21,16 @@ import java.util.regex.Pattern;
 public class SignUp extends AppCompatActivity {
 
     DatabaseAdapter loginDataBaseAdapter;
+    private Toast popToast;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
+
         loginDataBaseAdapter=new DatabaseAdapter(this);
         loginDataBaseAdapter=loginDataBaseAdapter.open();
+
         final EditText fname = (EditText) findViewById(R.id.fname);
         final EditText Lname = (EditText) findViewById(R.id.Lname);
         final EditText uname = (EditText) findViewById(R.id.Username);
@@ -39,43 +43,46 @@ public class SignUp extends AppCompatActivity {
         validate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fn = fname.getText().toString();
-                String ln = Lname.getText().toString();
-                String un = uname.getText().toString();
-                String em = email.getText().toString();
-                String p = password.getText().toString();
-                String cp = confirmpass.getText().toString();
-                if(em.equals("")||p.equals("")||cp.equals(""))
-                    {Toast.makeText(getApplicationContext(), "Field Vaccant", Toast.LENGTH_SHORT).show();
-                    return;}
+                String emails = email.getText().toString();
+                String username = uname.getText().toString();
+                String savePassword = DatabaseAdapter.getEmailforsignup(emails);
+                String savePassword1 = DatabaseAdapter.getUsernameforsignup(username);
 
-                if (!validateEmail(em))
-                    {email.setError("Invalid Email!");
-                     email.requestFocus();}
 
-                if(!validatePassword(password.getText().toString()))
-                    {password.setError("Invalid Password!");
-                     password.requestFocus();}
+                if(!validateEmail(email.getText().toString())) {
+                    Toast.makeText(SignUp.this,"Invalid Email",Toast.LENGTH_LONG).show();
 
-                if (!password.getText().toString().equals(confirmpass.getText().toString()))
-                    {Toast.makeText(SignUp.this, "Password does not match the confirm password.", Toast.LENGTH_SHORT).show();}
+                } else if(!validatePassword(password.getText().toString())) {
+                    Toast.makeText(SignUp.this, "Password Length needs to be at least 8 characters", Toast.LENGTH_LONG).show();
+                }
+                else if (!password.getText().toString().equals(confirmpass.getText().toString())) {
+                    Toast.makeText(SignUp.this, "Password does not match", Toast.LENGTH_LONG).show();
+                }
+                else if(!validateFname(fname.getText().toString())) {
+                    Toast.makeText(SignUp.this,"Invalid Firstname",Toast.LENGTH_LONG).show();
+                }
+                else if(!validateLname(Lname.getText().toString())) {
+                    Toast.makeText(SignUp.this,"Invalid Lastname",Toast.LENGTH_LONG).show();
+                }
+                else if(username.equals(savePassword1)|emails.equals(savePassword)){
+                    Toast.makeText(SignUp.this,"Username or Email already exists",Toast.LENGTH_LONG).show();
+                }
 
-                if (validateEmail(em) && p == cp)
-                    {Toast.makeText(SignUp.this, "Password Match.", Toast.LENGTH_SHORT).show();
-                     loginDataBaseAdapter.insertEntry(em, p,fn,ln,un);
-                     Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_SHORT).show();
-                     Intent intent = new Intent(SignUp.this,MainActivity.class );
-                     startActivity(intent);}
+                else {
+                    DatabaseAdapter.insertEntry(fname.getText().toString(),Lname.getText().toString(),uname.getText().toString(),email.getText().toString(),password.getText().toString());
+                    popToast = Toast.makeText(getApplicationContext(), null, Toast.LENGTH_SHORT);
+                    popToast.setText("Account Successfully Created ");
+                    popToast.show();
+
+                    Intent intent = new Intent(SignUp.this,MainActivity.class );
+                    startActivity(intent);
+                }
             }
         });
-
-
-
-
-
-
-
     }
+
+
+
     @Override
     protected void onDestroy() {
         // TODO Auto-generated method stub
@@ -83,6 +90,7 @@ public class SignUp extends AppCompatActivity {
 
         loginDataBaseAdapter.close();
     }
+
     private boolean validateEmail(String email) {
         String emailRegex;
         Pattern pattern;
@@ -105,4 +113,22 @@ public class SignUp extends AppCompatActivity {
             return false;
         }
     }
+
+    private boolean validateFname(String fname){
+
+        String FNAME_PATTERN = "^([A-Za-z] *)+$";
+        Pattern pattern = Pattern.compile(FNAME_PATTERN);
+        Matcher matcher = pattern.matcher(fname);
+        return matcher.matches();
+    }
+
+    private boolean validateLname(String Lname){
+
+        String LNAME_PATTERN = "^([A-Za-z] *)+$";
+        Pattern pattern = Pattern.compile(LNAME_PATTERN);
+        Matcher matcher = pattern.matcher(Lname);
+        return matcher.matches();
+    }
+
+
 }
