@@ -21,46 +21,45 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
-
-    TextView show, SignUp;
     LoginDatabaseAdapter LoginDatabaseAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R .layout.activity_login);
 
-        LoginDatabaseAdapter=new LoginDatabaseAdapter(this);
-        LoginDatabaseAdapter=LoginDatabaseAdapter.open();
-
-        final EditText email_ad = (EditText) findViewById(R.id.editText);
+        final EditText email_uname = (EditText) findViewById(R.id.editText);
         final EditText password_tu = (EditText) findViewById(R.id.editText2);
-        show = (TextView) findViewById(R.id.show);
 
-        SignUp = (TextView) findViewById(R.id.SignUp);
-        Button go = (Button) findViewById(R.id.buttonok);
+        final TextView show = (TextView) findViewById(R.id.show);
+        final TextView SignUp = (TextView) findViewById(R.id.SignUp);
 
+        final Button go = (Button) findViewById(R.id.buttonok);
+
+        LoginDatabaseAdapter = new LoginDatabaseAdapter(this);
+        LoginDatabaseAdapter = LoginDatabaseAdapter.open();
 
         assert go != null;
         go.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
 
-                String userName = email_ad.getText().toString();
+                String email = email_uname.getText().toString();
+                String uname = email_uname.getText().toString();
                 String password = password_tu.getText().toString();
 
-                String storedPassword=LoginDatabaseAdapter.getSinlgeEntry(userName);
+                String checkUname = LoginDatabaseAdapter.getSingleEntryUname(uname);
+                String checkEmail = LoginDatabaseAdapter.getSingleEntryEmail(email);
 
-                if(password.equals(storedPassword))
+                if(password.equals(checkUname)|password.equals(checkEmail))
                 {
-                    Toast.makeText(LoginActivity.this, "Login", Toast.LENGTH_SHORT).show();
-                    Intent intentSignUP=new Intent(getApplicationContext(),Home.class);
+                    Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    Intent intentSignUP = new Intent(getApplicationContext(),Home.class);
                     startActivity(intentSignUP);
                 }
                 else
                 {
-                    Toast.makeText(LoginActivity.this, "Account does not exist", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Invalid email or password", Toast.LENGTH_SHORT).show();
                 }
             }
         });

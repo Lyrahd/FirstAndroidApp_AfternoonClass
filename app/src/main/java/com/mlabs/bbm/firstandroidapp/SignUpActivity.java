@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 
 public class SignUpActivity extends android.app.Activity {
-    TextView member, show1, show2;
     LoginDatabaseAdapter LoginDatabaseAdapter;
 
     @Override
@@ -23,16 +22,21 @@ public class SignUpActivity extends android.app.Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        LoginDatabaseAdapter=new LoginDatabaseAdapter(this);
-        LoginDatabaseAdapter=LoginDatabaseAdapter.open();
+        final EditText NewFname = (EditText) findViewById(R.id.txt_FName);
+        final EditText NewLname = (EditText) findViewById(R.id.txt_LName);
+        final EditText NewUname = (EditText) findViewById(R.id.txt_UName);
+        final EditText NewEmail = (EditText) findViewById(R.id.txt_Email);
+        final EditText NewPassword = (EditText) findViewById(R.id.txt_Password);
+        final EditText ConfirmPassword = (EditText) findViewById(R.id.txt_CPassword);
 
+        final TextView show1 = (TextView) findViewById(R.id.showCPW);
+        final TextView show2 = (TextView) findViewById(R.id.textView2);
+        final TextView member = (TextView) findViewById(R.id.link_member);
 
-        final EditText NewEmail= (EditText) findViewById(R.id.txt_Email);
-        final EditText NewPassword= (EditText) findViewById(R.id.txt_Password);
-        final EditText ConfirmPassword= (EditText) findViewById(R.id.txt_CPassword);
-        show1 = (TextView) findViewById(R.id.showCPW);
-        show2 = (TextView) findViewById(R.id.textView2);
-        member = (TextView) findViewById(R.id.link_member);
+        final Button CreateAcct = (Button) findViewById(R.id.btn_CreateAcct);
+
+        LoginDatabaseAdapter = new LoginDatabaseAdapter(this);
+        LoginDatabaseAdapter = LoginDatabaseAdapter.open();
 
         member.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +46,7 @@ public class SignUpActivity extends android.app.Activity {
             }
         });
 
+        //Show "password"
         show1.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
@@ -61,6 +66,7 @@ public class SignUpActivity extends android.app.Activity {
             }
         });
 
+        //Show "confirm password"
         show2.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
@@ -79,43 +85,63 @@ public class SignUpActivity extends android.app.Activity {
                 return true;
             }
         });
-        final Button CreateAcct = (Button) findViewById(R.id.btn_CreateAcct);
 
         assert CreateAcct != null;
         CreateAcct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String nFname = NewFname.getText().toString();
+                String nLname = NewLname.getText().toString();
+                String nUname = NewUname.getText().toString();
                 String nEmail = NewEmail.getText().toString();
                 String nPass = NewPassword.getText().toString();
                 String conPass = ConfirmPassword.getText().toString();
-                if(nEmail.equals("")||nPass.equals("")||conPass.equals(""))
+
+                String checkSUUname = LoginDatabaseAdapter.getSignUpUsername(nUname);
+                String checkSUEmail = LoginDatabaseAdapter.getSignUpEmail(nEmail);
+
+                if(nFname.equals("")||nLname.equals("")||nUname.equals("")||nEmail.equals("")||nPass.equals("")||conPass.equals(""))
                 {Toast.makeText(getApplicationContext(), "No Empty Fields", Toast.LENGTH_SHORT).show();
                     return;}
 
-                if (!validateEmail(nEmail))
-                {NewEmail.setError("Invalid Email");
-                    NewEmail.requestFocus();}
-
-                if(!validatePassword(NewPassword.getText().toString()))
+                //VALIDATION
+                if (!validateFName(NewFname.getText().toString())){
+                    NewFname.setError("Invalid First Name");
+                    NewFname.requestFocus();
+                }
+                else if (!validateLName(NewLname.getText().toString())){
+                    NewLname.setError("Invalid Last Name");
+                    NewLname.requestFocus();
+                }
+                else if (!validateEmail(NewEmail.getText().toString())){
+                    NewEmail.setError("Invalid Email");
+                    NewEmail.requestFocus();
+                }
+                else if(!validatePassword(NewPassword.getText().toString()))
                 {NewPassword.setError("Invalid Password");
-                    NewPassword.requestFocus();}
+                    NewPassword.requestFocus();
+                }
+                else if (!NewPassword.getText().toString().equals(ConfirmPassword.getText().toString())){
+                    Toast.makeText(SignUpActivity.this, "Password does not match", Toast.LENGTH_SHORT).show();
+                }
+                else if(nUname.equals(checkSUUname)){
+                    NewUname.setError("Username exists");
+                    NewUname.requestFocus();
+                }
+                else if(nEmail.equals(checkSUEmail)){
+                    NewEmail.setError("Email exists");
+                    NewEmail.requestFocus();
+                }
+                else {
+                    LoginDatabaseAdapter.insertEntry(nFname, nLname, nUname, nEmail, nPass);
+                    Toast.makeText(getApplicationContext(), "Account successfully created", Toast.LENGTH_SHORT).show();
 
-                if (!NewPassword.getText().toString().equals(ConfirmPassword.getText().toString()))
-                {Toast.makeText(SignUpActivity.this, "Password does not match", Toast.LENGTH_SHORT).show();}
-
-                else
-                {Toast.makeText(SignUpActivity.this, "Processing....", Toast.LENGTH_SHORT).show();
-                    LoginDatabaseAdapter.insertEntry(nEmail, nPass);
-                    Toast.makeText(getApplicationContext(), "Account Created", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(SignUpActivity.this,LoginActivity.class );
                     startActivity(intent);}
-
             }
         });
-
-
-
     }
+
     @Override
     protected void onDestroy() {
         // TODO Auto-generated method stub
@@ -123,25 +149,30 @@ public class SignUpActivity extends android.app.Activity {
 
         LoginDatabaseAdapter.close();
     }
+
+    //VALIDATION FUNCTIONS
+    private boolean validateFName(String fname){
+        String fnamePattern = "^([A-Za-z] *)+$";
+        Pattern pattern = Pattern.compile(fnamePattern);
+        Matcher matcher = pattern.matcher(fname);
+        return matcher.matches();
+    }
+    private boolean validateLName(String lname){
+        String lnamePattern = "^([A-Za-z] *)+$";
+        Pattern pattern = Pattern.compile(lnamePattern);
+        Matcher matcher = pattern.matcher(lname);
+        return matcher.matches();
+    }
     private boolean validateEmail(String email) {
-        String emailRegex;
-        Pattern pattern;
-
-        emailRegex = "^[A-Za-z0-9._%+\\-]+@[A-Za-z0-9.\\-]+\\.[A-Za-z]{2,4}$";
-        pattern = Pattern.compile(emailRegex);
-
+        String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        Pattern pattern = Pattern.compile(emailPattern);
         Matcher matcher = pattern.matcher(email);
-        if (!matcher.find()) {
-            return false;
-        }
-        return true;
+        return matcher.matches();
     }
     private boolean validatePassword(String password){
-        if(password!=null && password.length()>7){
+        if (password != null && password.length() >= 8) {
             return true;
         }
-        else {
-            return false;
-        }
+        return false;
     }
 }
