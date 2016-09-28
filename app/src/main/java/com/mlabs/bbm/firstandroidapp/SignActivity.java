@@ -38,7 +38,7 @@ public class SignActivity extends AppCompatActivity{
             public void onClick(View v) {
                 if (etemail != null && etpass != null && etfirstname != null && etlastname != null && etun !=null) {
                     if (Pattern.compile("[a-zA-Z]+").matcher(etfirstname.getText()).matches() && Pattern.compile("[a-zA-Z]+").matcher(etlastname.getText()).matches()) {
-                        if (Pattern.compile("[^([a-zA-Z0-9]+_?)+@[a-zA-Z0-9/.]+]").matcher(etun.getText()).matches()){
+                        if (Pattern.compile("[([a-zA-Z0-9]+_?)+]").matcher(etun.getText()).matches()){
                             Toast.makeText(getBaseContext(), "Invalid Username", Toast.LENGTH_SHORT).show();
                         }
                         else

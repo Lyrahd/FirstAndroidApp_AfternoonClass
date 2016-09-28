@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 /**
  * Created by User on 9/23/2016.
@@ -72,17 +73,21 @@ public class LogInCRUD {
 
     public String getSinlgeEntry(String userName) {
         Cursor cursor = db.query("LOGIN", null, " USERNAME=?", new String[]{userName}, null, null, null);
+        Log.d(String.valueOf(this),"username =" + userName);
         if (cursor.getCount() < 1) // UserName Not Exist
         {
+            Log.d(String.valueOf(this),"email entry");
             cursor.close();
             Cursor cursor1 = db.query("LOGIN", null, "Email=?", new String[]{userName}, null, null, null);
             if (cursor1.getCount() < 1) // UserName Not Exist
             {
+                Log.d(String.valueOf(this),"email fail");
                 cursor1.close();
                 return "Not Exist";
             }
+            Log.d(String.valueOf(this),"email =" + userName);
             cursor1.moveToFirst();
-            String password1 = cursor.getString(cursor.getColumnIndex("PASSWORD"));
+            String password1 = cursor1.getString(cursor1.getColumnIndex("PASSWORD"));
             cursor1.close();
             return password1;
         }
@@ -97,10 +102,11 @@ public class LogInCRUD {
         if (cursor.getCount() < 1) // UserName Not Exist
         {
             cursor.close();
-            return false;
+            return true;
         }
         else {
-            return true;
+            cursor.close();
+            return false;
         }
     }
     public boolean getEmailEntry(String email) {
@@ -108,10 +114,11 @@ public class LogInCRUD {
         if (cursor.getCount() < 1) // UserName Not Exist
         {
             cursor.close();
-            return false;
+            return true;
         }
         else {
-            return true;
+            cursor.close();
+            return false;
         }
     }
 
