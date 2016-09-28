@@ -48,22 +48,12 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
-                android:id="@+id/txt_pw"
+                android:id="@+id/txt_pwd"
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:background="#ffffff"
                 android:singleLine="true"
                 android:password="true" />
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="134dp"
-                android:layout_height="wrap_content"
-                android:text="SHOW"
-                android:id="@+id/show_btn"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="4.95" />
-
         </LinearLayout>
 
     </LinearLayout>

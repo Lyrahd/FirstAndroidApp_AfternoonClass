@@ -3,8 +3,6 @@ package com.mlabs.bbm.firstandroidapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,140 +11,118 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
+    Button button1;
+    EditText username, password;
+    TextView txtview;
+    Button show;
+    LoginDataBaseAdapter LoginDataBaseAdapter;
 
-    LoginDataBaseAdapter loginDataBaseAdapter;
 
-    public static boolean validationEm(CharSequence email) {
-        if (TextUtils.isEmpty(email)) {
-            return false;
-        } else {
-            return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
-        }
-    }
 
-    Button btn1, show_btn;
-    EditText txt_mail,txt_pw;
-    TextView btnSignUp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
-        loginDataBaseAdapter = new LoginDataBaseAdapter(this);
-        loginDataBaseAdapter = loginDataBaseAdapter.open();
-
-
         setContentView(R.layout.activity_main);
-        btn1=(Button)findViewById(R.id.button);
-        txt_mail=(EditText)findViewById(R.id.txt_email);
-        txt_pw=(EditText)findViewById(R.id.txt_pw);
-        show_btn=(Button)findViewById(R.id.show_btn);
-        btnSignUp =(TextView)findViewById(R.id.signup);
+        button1=(Button)findViewById(R.id.button);
+        username=(EditText)findViewById(R.id.txt_email);
+        password=(EditText)findViewById(R.id.txt_pwd);
+        txtview=(TextView)findViewById(R.id.textView3);
+        show = (Button)findViewById(R.id.button);
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
+        LoginDataBaseAdapter = new LoginDataBaseAdapter(this);
+        LoginDataBaseAdapter = LoginDataBaseAdapter.open();
+
+
+        assert button1 != null;
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String email = username.getText().toString();
+                String pword = password.getText().toString();
+                String uname = username.getText().toString();
+                String savePassword = LoginDataBaseAdapter.getSinlgeEntry(email);
+                String savePassword1 = LoginDataBaseAdapter.getUsername(uname);
+
+
+                if (pword.equals(savePassword1)|pword.equals(savePassword)) {
+                    Toast.makeText(MainActivity.this, uname + " has logged in. \n Password: " + pword, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(MainActivity.this, Activity.class);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "invalid email or password ", Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+        });
+
+        txtview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i;
                 i = new Intent(MainActivity.this, SignUp.class);
                 startActivity(i);
             }
-            });
-
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                txt_mail.setError(null);
-                txt_pw.setError(null);
-
-                if(validationEm(txt_mail.getText())==true && txt_pw.getText().length()>8)
-                {
-                    Intent i;
-                    i = new Intent(MainActivity.this, Activity.class);
-                    startActivity(i);
-                }
-
-                if(validationEm(txt_mail.getText())==false)
-                {
-                    txt_mail.setError(getString(R.string.error_em));
-                }
-
-
-                else if(txt_mail.getText().toString().equals("") &&
-
-                        txt_pw.getText().toString().equals("")) {
-                    txt_mail.setError(getString(R.string.error));
-                    txt_pw.setError(getString(R.string.error));
-                }
-
-                else if(txt_mail.getText().toString().equals("")) {
-                    txt_mail.setError(getString(R.string.error));
-
-                }
-
-                else if(txt_pw.getText().toString().equals("")) {
-                    txt_pw.setError(getString(R.string.error));
-                }
-                else
-
-                {  String userName = txt_mail.getText().toString();
-                    String password = txt_pw.getText().toString();
-
-                    // fetch the Password form database for respective user name
-                    String storedPassword = loginDataBaseAdapter.getSinlgeEntry(userName);
-
-                    // check if the Stored password matches with  Password entered by user
-                    if (password.equals(storedPassword)) {
-                        Toast.makeText(MainActivity.this, userName + " has logged in. \n Password: " + password, Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(MainActivity.this, Activity.class );
-                        startActivity(intent);
-
-                        //dialog.dismiss();
-                    } else {
-                        Toast.makeText(MainActivity.this, "User Name or Password is incorrect", Toast.LENGTH_LONG).show();
-                    }
-
-                }
-
-            }
-        });
-        show_btn.setOnTouchListener(new View.OnTouchListener()
-        {
-
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent)
-            {
-                int event = motionEvent.getAction();
-               /// if (event == MotionEvent.ACTION_DOWN)
-                //{
-                //    txt_pw.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-              //  }
-               // else if (event == MotionEvent.ACTION_UP)
-               // {
-                  //  txt_pw.setTransformationMethod(PasswordTransformationMethod.getInstance());
-               // }
-
-               // return false;
-
-                switch(event)
-                    {
-                        case MotionEvent.ACTION_DOWN:
-                        txt_pw.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                        break;
-                        case MotionEvent.ACTION_UP:
-                        txt_pw.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                        break;
-
-                    }
-                return true;
-            }
 
         });
 
+        show.setOnTouchListener(new View.OnTouchListener() {
+                                    @Override
+                                    public boolean onTouch(View view, MotionEvent motionEvent) {
+                                        final int cursor = password.getSelectionStart();
+                                        int event = motionEvent.getAction();
 
+
+                                        switch (event) {
+                                            case MotionEvent.ACTION_DOWN:
+                                                password.setTransformationMethod(null);
+                                                password.setSelection(cursor);
+                                                break;
+                                            case MotionEvent.ACTION_UP:
+                                                password.setTransformationMethod(new PasswordTransformationMethod());
+                                                password.setSelection(cursor);
+                                                break;
+
+                                        }
+
+                                        return false;
+                                    }
+                                }
+        );
     }
 
 
+    private boolean isValidEmail(String email) {
+
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    private boolean isValidPassword(String pass) {
+        if (pass != null && pass.length() >= 6) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isValidUsername(String uname) {
+
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(uname);
+        return matcher.matches();
+    }
+
 }
+
+
+
+

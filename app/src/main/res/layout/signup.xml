@@ -8,15 +8,57 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Email"
-        android:id="@+id/textView"
-        android:layout_marginTop="30dp"
+        android:text="First Name"
+        android:id="@+id/firstName"
+        android:foregroundTint="#f6f2f2"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fname"
+        android:layout_gravity="center_horizontal"
+        android:singleLine="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Last Name"
+        android:id="@+id/surname"
+        android:foregroundTint="#f6f2f2" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lname"
+        android:layout_gravity="center_horizontal"
+        android:singleLine="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Username"
+        android:id="@+id/uname"
         android:foregroundTint="#f6f2f2" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/email"
+        android:id="@+id/username_id"
+        android:layout_gravity="center_horizontal"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Email"
+        android:id="@+id/textView"
+        android:foregroundTint="#f6f2f2" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/email_id"
         android:layout_gravity="center_horizontal"
         android:singleLine="true" />
 
@@ -26,7 +68,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Password"
         android:id="@+id/textView2"
-        android:layout_marginTop="30dp"/>
+        />
     />
 
     <EditText
@@ -43,7 +85,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Confirm Password"
         android:id="@+id/textView4"
-        android:layout_marginTop="30dp"/>
+        />
     />
 
     <EditText
@@ -60,6 +102,6 @@
         android:text="Register"
         android:id="@+id/btnReg"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="20dp"/>
     />
 </LinearLayout>
