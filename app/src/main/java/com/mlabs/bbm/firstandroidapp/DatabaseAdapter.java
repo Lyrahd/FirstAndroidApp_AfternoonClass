@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.HashMap;
+
 public class DatabaseAdapter {
     static final String DATABASE_NAME = "login.db";
     static final int DATABASE_VERSION = 1;
@@ -12,7 +14,7 @@ public class DatabaseAdapter {
     // TODO: Create public field for each column in your table.
     // SQL Statement to create a new database.
     static final String DATABASE_CREATE = "create table " + "LOGIN" +
-            "( " + "ID" + " integer primary key autoincrement," + "USERNAME  text,PASSWORD text); " + "USERID text" + "FIRSTNAME text, LASTNAME text";
+            "( " + "ID" + " integer primary key autoincrement," + "USERNAME  text Unique, EMAIL text Unique, PASSWORD text, FIRSTNAME text, LASTNAME text); ";
     // Variable to hold the database instance
     public SQLiteDatabase db;
     // Context of the application using the database.
@@ -38,12 +40,12 @@ public class DatabaseAdapter {
         return db;
     }
 
-    public void insertEntry(String email, String password, String userid, String fname, String lname) {
+    public void insertEntry(String email, String password, String userName, String fname, String lname) {
         ContentValues newValues = new ContentValues();
         // Assign values for each row.
-        newValues.put("USERNAME", email);
+        newValues.put("USERNAME", userName);
         newValues.put("PASSWORD", password);
-        newValues.put("USERID", userid);
+        newValues.put("EMAIL", email);
         newValues.put("FIRSTNAME", fname);
         newValues.put("LASTNAME", lname);
 
@@ -61,11 +63,11 @@ public class DatabaseAdapter {
     }
 
     public String getSinlgeEntry(String userName) {
-        Cursor cursor = db.query("LOGIN", null, " USERNAME=?", new String[]{userName}, null, null, null);
+        Cursor cursor = db.query("LOGIN", null, "USERNAME=?", new String[]{userName}, null, null, null);
         if (cursor.getCount() < 1) // UserName Not Exist
         {
-            cursor.close();
-            return "NOT EXIST";
+                cursor.close();
+                return "Not Exist";
         }
         cursor.moveToFirst();
         String password = cursor.getString(cursor.getColumnIndex("PASSWORD"));
@@ -73,13 +75,54 @@ public class DatabaseAdapter {
         return password;
     }
 
+    public String getSinlgeEntryEmail(String userName) {
+            Cursor cursor1 = db.query("LOGIN", null, "EMAIL=?", new String[]{userName}, null, null, null);
+            if (cursor1.getCount() < 1) // UserName Not Exist
+            {
+                cursor1.close();
+                return "Not Exist";
+            }
+            cursor1.moveToFirst();
+            String password1 = cursor1.getString(cursor1.getColumnIndex("PASSWORD"));
+            cursor1.close();
+            return password1;
+    }
 
-    public void updateEntry(String userName, String password) {
+
+
+    public boolean getUsernameEntry(String userName) {
+        Cursor cursor = db.query("LOGIN", null, " USERNAME=?", new String[]{userName}, null, null, null);
+        if (cursor.getCount() < 1) // UserName Not Exist
+        {
+            cursor.close();
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public boolean getEmailEntry(String email) {
+        Cursor cursor = db.query("LOGIN", null, " EMAIL=?", new String[]{email}, null, null, null);
+        if (cursor.getCount() < 1) // UserName Not Exist
+        {
+            cursor.close();
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public void updateEntry(String userName, String password, String fname, String lname, String email) {
         // Define the updated row content.
         ContentValues updatedValues = new ContentValues();
         // Assign values for each row.
         updatedValues.put("USERNAME", userName);
         updatedValues.put("PASSWORD", password);
+        updatedValues.put("EMAIL", email);
+        updatedValues.put("FIRSTNAME", fname);
+        updatedValues.put("LASTNAME", lname);
 
         String where = "USERNAME = ?";
         db.update("LOGIN", updatedValues, where, new String[]{userName});

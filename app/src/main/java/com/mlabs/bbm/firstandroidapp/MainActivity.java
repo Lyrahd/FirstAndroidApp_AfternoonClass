@@ -65,35 +65,45 @@ public class MainActivity extends AppCompatActivity {
                 /**
                  * for user name validation ONLY + password
                  *
-                if (Pattern.compile("([a-zA-Z0-9]+_?)+").matcher(editUser.getText()).matches() && editPass.length()>=6)
-                {
-                    Intent i = new Intent(MainActivity.this,Display.class);
-                    startActivity(i);
-                    Toast.makeText(getBaseContext(), "Welcome back Agent!",Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getBaseContext(), "Transmission's jammed. Proximity Coverage Only",Toast.LENGTH_LONG).show();
-                }
-                /**
+                 if (Pattern.compile("([a-zA-Z0-9]+_?)+").matcher(editUser.getText()).matches() && editPass.length()>=6)
+                 {
+                 Intent i = new Intent(MainActivity.this,Display.class);
+                 startActivity(i);
+                 Toast.makeText(getBaseContext(), "Welcome back Agent!",Toast.LENGTH_SHORT).show();
+                 Toast.makeText(getBaseContext(), "Transmission's jammed. Proximity Coverage Only",Toast.LENGTH_LONG).show();
+                 }
+                 /**
                  * for email validation ONLY + password
                  */
                 /**
-                if (Pattern.compile("^\\w+.*\\w*@[a-zA-Z_]+?\\.[0-9a-zA-Z]{2,}$").matcher(editUser.getText()).matches() && editPass.length()>=6){
-                    Intent i = new Intent(MainActivity.this,Display.class);
-                    startActivity(i);
-                    Toast.makeText(getBaseContext(), "Welcome back Agent!",Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(getBaseContext(),"Email or Password is Incorrect",Toast.LENGTH_SHORT).show();
-                }
+                 if (Pattern.compile("^\\w+.*\\w*@[a-zA-Z_]+?\\.[0-9a-zA-Z]{2,}$").matcher(editUser.getText()).matches() && editPass.length()>=6){
+                 Intent i = new Intent(MainActivity.this,Display.class);
+                 startActivity(i);
+                 Toast.makeText(getBaseContext(), "Welcome back Agent!",Toast.LENGTH_SHORT).show();
+                 }
+                 else{
+                 Toast.makeText(getBaseContext(),"Email or Password is Incorrect",Toast.LENGTH_SHORT).show();
+                 }
                  */
                 String email = editUser.getText().toString();
+                //String userName = editUser.getText().toString();
                 String pw = editPass.getText().toString();
                 String strpw = loginDatabaseAdapter.getSinlgeEntry(email);
+                String strpw1 = loginDatabaseAdapter.getSinlgeEntryEmail(email);
 
-                if (pw.equals(strpw)){
+                if (pw.equals(strpw))
+                {
                     Toast.makeText(MainActivity.this, "Welcome Back Agent!", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(getApplicationContext(), Display.class);
                     startActivity(i);
                 }
+                else if (pw.equals(strpw1))
+                {
+                    Toast.makeText(MainActivity.this, "Welcome Back Agent!", Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(getApplicationContext(), Display.class);
+                    startActivity(i);
+                }
+
                 else {
                     if (email.equals("") && pw.equals(""))
                     {
@@ -105,18 +115,18 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Please fill out the field.", Toast.LENGTH_LONG).show();
                         return;
                     }
-                    Toast.makeText(MainActivity.this, "Incorrect Email or Password.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Incorrect Email/Username or Password.", Toast.LENGTH_LONG).show();
 
                 }
             }
         });
     }
     //Exit automatically code
-    @Override
-    protected void onPause() {
-        super.onPause();
-        finish();
-    }
+    //@Override
+    //protected void onPause() {
+    //    super.onPause();
+    //    finish();
+    //}
     //end of exit code --------------
     @Override
     protected void onDestroy() {
