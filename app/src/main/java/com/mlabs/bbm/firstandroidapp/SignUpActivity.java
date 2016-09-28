@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 public class SignUpActivity extends android.app.Activity {
     TextView member, show1, show2;
     LoginDatabaseAdapter LoginDatabaseAdapter;
@@ -26,10 +25,13 @@ public class SignUpActivity extends android.app.Activity {
         LoginDatabaseAdapter=new LoginDatabaseAdapter(this);
         LoginDatabaseAdapter=LoginDatabaseAdapter.open();
 
-
+        final EditText FirstName= (EditText) findViewById(R.id.txt_FName);
+        final EditText LastName= (EditText) findViewById(R.id.txt_LName);
+        final EditText Username= (EditText) findViewById(R.id.txt_UName);
         final EditText NewEmail= (EditText) findViewById(R.id.txt_Email);
         final EditText NewPassword= (EditText) findViewById(R.id.txt_Password);
         final EditText ConfirmPassword= (EditText) findViewById(R.id.txt_CPassword);
+
         show1 = (TextView) findViewById(R.id.showCPW);
         show2 = (TextView) findViewById(R.id.textView2);
         member = (TextView) findViewById(R.id.link_member);
@@ -85,12 +87,16 @@ public class SignUpActivity extends android.app.Activity {
         CreateAcct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String frName = FirstName.getText().toString();
+                String lsName = LastName.getText().toString();
+                String usName = Username.getText().toString();
                 String nEmail = NewEmail.getText().toString();
                 String nPass = NewPassword.getText().toString();
                 String conPass = ConfirmPassword.getText().toString();
-                if(nEmail.equals("")||nPass.equals("")||conPass.equals(""))
+                if(frName.equals("")||lsName.equals("")||usName.equals("")||nEmail.equals("")||nPass.equals("")||conPass.equals(""))
                 {Toast.makeText(getApplicationContext(), "No Empty Fields", Toast.LENGTH_SHORT).show();
                     return;}
+
 
                 if (!validateEmail(nEmail))
                 {NewEmail.setError("Invalid Email");
@@ -103,9 +109,21 @@ public class SignUpActivity extends android.app.Activity {
                 if (!NewPassword.getText().toString().equals(ConfirmPassword.getText().toString()))
                 {Toast.makeText(SignUpActivity.this, "Password does not match", Toast.LENGTH_SHORT).show();}
 
+
+
+
+                if (!validateFirstName(frName))
+                {   FirstName.setError("Invalid=");
+                    FirstName.requestFocus();
+                    FirstName.getSelectionStart();}
+
+                if (!validateLastName(lsName))
+                {LastName.setError("Invalid");
+                    LastName.requestFocus();}
+
                 else
                 {Toast.makeText(SignUpActivity.this, "Processing....", Toast.LENGTH_SHORT).show();
-                    LoginDatabaseAdapter.insertEntry(nEmail, nPass);
+                    LoginDatabaseAdapter.insertEntry(frName,lsName,usName,nEmail,nPass);
                     Toast.makeText(getApplicationContext(), "Account Created", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(SignUpActivity.this,LoginActivity.class );
                     startActivity(intent);}
@@ -131,6 +149,32 @@ public class SignUpActivity extends android.app.Activity {
         pattern = Pattern.compile(emailRegex);
 
         Matcher matcher = pattern.matcher(email);
+        if (!matcher.find()) {
+            return false;
+        }
+        return true;
+    }
+    private boolean validateFirstName(String fName) {
+        String fNameRegex;
+        Pattern pattern;
+
+        fNameRegex = "^([A-Za-z]*)+$";
+        pattern = Pattern.compile(fNameRegex);
+
+        Matcher matcher = pattern.matcher(fName);
+        if (!matcher.find()) {
+            return false;
+        }
+        return true;
+    }
+    private boolean validateLastName(String fName) {
+        String fNameRegex;
+        Pattern pattern;
+
+        fNameRegex = "^([A-Za-z]*)+$";
+        pattern = Pattern.compile(fNameRegex);
+
+        Matcher matcher = pattern.matcher(fName);
         if (!matcher.find()) {
             return false;
         }

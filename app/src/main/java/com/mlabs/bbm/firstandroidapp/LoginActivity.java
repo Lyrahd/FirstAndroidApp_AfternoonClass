@@ -13,10 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 import android.view.View.OnTouchListener;
-import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,14 +48,22 @@ public class LoginActivity extends AppCompatActivity {
                 String userName = email_ad.getText().toString();
                 String password = password_tu.getText().toString();
 
-                String storedPassword=LoginDatabaseAdapter.getSinlgeEntry(userName);
+                String storedPassword=LoginDatabaseAdapter.getSingleEntry(userName);
+                String storedPassword2=LoginDatabaseAdapter.getSingleEntry2(userName);
 
-                if(password.equals(storedPassword))
+                if(password.equals(storedPassword) || password.equals(storedPassword2))
                 {
-                    Toast.makeText(LoginActivity.this, "Login", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Logged In", Toast.LENGTH_SHORT).show();
                     Intent intentSignUP=new Intent(getApplicationContext(),Home.class);
                     startActivity(intentSignUP);
                 }
+                else if(password.equals(storedPassword2))
+                {
+                    Toast.makeText(LoginActivity.this, "Logged In", Toast.LENGTH_SHORT).show();
+                    Intent intentSignUP=new Intent(getApplicationContext(),Home.class);
+                    startActivity(intentSignUP);
+                }
+
                 else
                 {
                     Toast.makeText(LoginActivity.this, "Account does not exist", Toast.LENGTH_SHORT).show();
@@ -69,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
                 final int cursor= password_tu.getSelectionStart();
-               switch (event.getAction()) {
+                switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         password_tu.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                         password_tu.setSelection(cursor);
@@ -88,23 +94,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                    Intent intent = new Intent(LoginActivity.this,SignUpActivity.class );
-                    startActivity(intent);
+                Intent intent = new Intent(LoginActivity.this,SignUpActivity.class );
+                startActivity(intent);
 
-                }
-
-
-
-        });
-    }
-
+            }
+        });}
     @Override
     protected void onDestroy() {
         super.onDestroy();
         LoginDatabaseAdapter.close();
     }
 }
-
-
-
-

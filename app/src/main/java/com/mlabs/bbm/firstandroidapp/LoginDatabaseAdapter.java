@@ -16,7 +16,7 @@ public class LoginDatabaseAdapter {
 
 
     static final String DATABASE_CREATE = "create table " + "LOGIN" +
-            "( " + "ID" + " integer primary key autoincrement," + "USERNAME  text,PASSWORD text); ";
+            "( " + "ID" + " integer primary key autoincrement," + " FIRSTNAME text,LASTNAME text,USERNAME text UNIQUE,EMAIL text,PASSWORD text); ";
 
     public SQLiteDatabase db;
 
@@ -42,27 +42,42 @@ public class LoginDatabaseAdapter {
         return db;
     }
 
-    public void insertEntry(String userName, String password) {
+    public void insertEntry(String fName, String lName, String uName, String email, String password) {
         ContentValues newValues = new ContentValues();
         // Assign values for each row.
-        newValues.put("USERNAME", userName);
+        newValues.put("FIRSTNAME", fName);
+        newValues.put("LASTNAME", lName);
+        newValues.put("USERNAME", uName);
+        newValues.put("EMAIL", email);
         newValues.put("PASSWORD", password);
 
         // Insert the row into your table
         db.insert("LOGIN", null, newValues);
-        ///Toast.makeText(context, "Reminder Is Successfully Saved", Toast.LENGTH_LONG).show();
-    }
+          }
 
-    public int deleteEntry(String UserName) {
+    public int deleteEntry(String email) {
         //String id=String.valueOf(ID);
         String where = "USERNAME=?";
-        int numberOFEntriesDeleted = db.delete("LOGIN", where, new String[]{UserName});
+        int numberOFEntriesDeleted = db.delete("LOGIN", where, new String[]{email});
         // Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
         return numberOFEntriesDeleted;
     }
 
-    public String getSinlgeEntry(String userName) {
-        Cursor cursor = db.query("LOGIN", null, " USERNAME=?", new String[]{userName}, null, null, null);
+
+    public String getSingleEntry(String uName) {
+        Cursor cursor = db.query("LOGIN", null, " USERNAME=?", new String[]{uName}, null, null, null);
+        if (cursor.getCount() < 1) // UserName Not Exist
+        {
+            cursor.close();
+            return "NOT EXIST";
+        }
+        cursor.moveToFirst();
+        String password = cursor.getString(cursor.getColumnIndex("PASSWORD"));
+        cursor.close();
+        return password;
+    }
+    public String getSingleEntry2(String email) {
+        Cursor cursor = db.query("LOGIN", null, " EMAIL=?", new String[]{email}, null, null, null);
         if (cursor.getCount() < 1) // UserName Not Exist
         {
             cursor.close();
@@ -74,14 +89,15 @@ public class LoginDatabaseAdapter {
         return password;
     }
 
-    public void updateEntry(String userName, String password) {
+
+    public void updateEntry(String email, String password) {
         // Define the updated row content.
         ContentValues updatedValues = new ContentValues();
         // Assign values for each row.
-        updatedValues.put("USERNAME", userName);
+        updatedValues.put("USERNAME", email);
         updatedValues.put("PASSWORD", password);
 
         String where = "USERNAME = ?";
-        db.update("LOGIN", updatedValues, where, new String[]{userName});
+        db.update("LOGIN", updatedValues, where, new String[]{email});
     }
 }

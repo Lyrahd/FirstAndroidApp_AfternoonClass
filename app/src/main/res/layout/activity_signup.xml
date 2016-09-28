@@ -17,8 +17,7 @@
         android:background="@drawable/plashtu"
         android:id="@+id/imageView"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="39dp" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -27,9 +26,8 @@
         android:id="@+id/textView"
         android:textSize="20dp"
         android:textColor="#ffffff"
-        android:layout_above="@+id/txt_Email"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="46dp" />
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="280dp"
@@ -126,4 +124,43 @@
         android:layout_alignBottom="@+id/txt_CPassword"
         android:layout_alignRight="@+id/txt_CPassword"
         android:layout_alignEnd="@+id/txt_CPassword" />
+
+    <EditText
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="Username"
+        android:ems="10"
+        android:id="@+id/txt_UName"
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff"
+        android:layout_above="@+id/txt_Email"
+        android:layout_alignLeft="@+id/txt_Email"
+        android:layout_alignStart="@+id/txt_Email" />
+
+    <EditText
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="LastName"
+        android:ems="10"
+        android:id="@+id/txt_LName"
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff"
+        android:layout_above="@+id/txt_UName"
+        android:layout_alignLeft="@+id/txt_UName"
+        android:layout_alignStart="@+id/txt_UName" />
+
+    <EditText
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="First Name"
+        android:ems="10"
+        android:id="@+id/txt_FName"
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/txt_LName"
+        android:layout_alignStart="@+id/txt_LName" />
 </RelativeLayout>
