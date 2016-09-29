@@ -3,11 +3,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center_vertical"
     android:background="#3c769b"
     android:weightSum="1"
     android:paddingRight="20dp"
-    android:paddingLeft="20dp">
+    android:paddingLeft="20dp"
+    android:gravity="center">
+
+    <EditText
+        android:id="@+id/fname"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:hint="First Name"
+        android:background="#79a0ba"
+        android:layout_weight="0.05"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:singleLine="true"
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff">
+
+        <requestFocus />
+    </EditText>
+
+    <Space
+        android:layout_width="20px"
+        android:layout_height="20px" />
+
+    <EditText
+        android:id="@+id/lname"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:hint="Last Name"
+        android:background="#79a0ba"
+        android:layout_weight="0.05"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:singleLine="true"
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff" />
+
+    <Space
+        android:layout_width="20px"
+        android:layout_height="20px" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:hint="Username"
+        android:background="#79a0ba"
+        android:layout_weight="0.05"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:singleLine="true"
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff" />
+
+    <Space
+        android:layout_width="20px"
+        android:layout_height="20px" />
 
     <EditText
         android:id="@+id/email"
@@ -17,9 +71,12 @@
         android:background="#79a0ba"
         android:layout_weight="0.04"
         android:paddingLeft="15dp"
-        android:paddingRight="15dp">
+        android:paddingRight="15dp"
+        android:singleLine="true"
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff">
 
-        <requestFocus />
+
     </EditText>
 
     <Space
@@ -35,7 +92,10 @@
         android:background="#79a0ba"
         android:layout_weight="0.05"
         android:paddingLeft="15dp"
-        android:paddingRight="15dp" />
+        android:paddingRight="15dp"
+        android:singleLine="true"
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff" />
 
     <Space
         android:layout_width="20px"
@@ -50,7 +110,10 @@
         android:background="#79a0ba"
         android:layout_weight="0.05"
         android:paddingLeft="15dp"
-        android:paddingRight="15dp" />
+        android:paddingRight="15dp"
+        android:singleLine="true"
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff" />
 
     <Space
         android:layout_width="20px"

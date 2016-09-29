@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-    Button btnLogIn, btnSignUp;
+    Button btnLogIn;
+    TextView btnSignUp;
     LoginDataBaseAdapter loginDataBaseAdapter;
 
     @Override
@@ -21,7 +23,7 @@ public class MainActivity extends Activity {
         loginDataBaseAdapter = new LoginDataBaseAdapter(this);
         loginDataBaseAdapter = loginDataBaseAdapter.open();
 
-        btnSignUp = (Button) findViewById(R.id.SignUp);
+        btnSignUp = (TextView) findViewById(R.id.SignUp);
         btnLogIn = (Button) findViewById(R.id.btn_login);
 
 
