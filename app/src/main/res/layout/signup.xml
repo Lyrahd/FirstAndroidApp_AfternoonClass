@@ -5,29 +5,11 @@
     android:gravity="center"
     android:background="#00a585"
     >
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:paddingBottom="30dp"
-        android:weightSum="1">
-
-        <ImageView
-            android:layout_width="258dp"
-            android:layout_height="200dp"
-            android:id="@+id/imageView"
-            android:src="@drawable/logo"
-            android:paddingTop="50dp"
-            android:layout_weight="0.62" />
-
-
-    </LinearLayout>
 
     <EditText
-        android:layout_width="331dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/email"
+        android:id="@+id/fname"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:gravity="bottom"
@@ -36,33 +18,88 @@
         android:textColorHint="#efefef"
         android:layout_marginBottom="10dp"
         android:singleLine="true"
-        android:hint="Email" />
+        android:hint="First Name"
+        android:layout_gravity="center_horizontal" />
 
-    <EditText
-        android:layout_width="331dp"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/pwd"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:textSize="20dp"
-        android:textColor="#efefef"
-        android:textColorHint="#efefef"
-        android:layout_marginBottom="10dp"
-        android:singleLine="true"
-        android:hint="Password" />
+        android:gravity="center_horizontal"
+        android:paddingBottom="30dp"
+        android:weightSum="1">
 
-    <EditText
-        android:layout_width="331dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/cpwd"
-        android:textSize="20dp"
-        android:textColor="#efefef"
-        android:textColorHint="#efefef"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:singleLine="true"
-        android:hint="Confirm Password" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lname"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:gravity="bottom"
+            android:textSize="20dp"
+            android:textColor="#efefef"
+            android:textColorHint="#efefef"
+            android:layout_marginBottom="10dp"
+            android:singleLine="true"
+            android:hint="Last Name" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/uname"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:gravity="bottom"
+            android:textSize="20dp"
+            android:textColor="#efefef"
+            android:textColorHint="#efefef"
+            android:layout_marginBottom="10dp"
+            android:singleLine="true"
+            android:hint="Username" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/email"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:gravity="bottom"
+            android:textSize="20dp"
+            android:textColor="#efefef"
+            android:textColorHint="#efefef"
+            android:layout_marginBottom="10dp"
+            android:singleLine="true"
+            android:hint="Email" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pwd"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:textSize="20dp"
+            android:textColor="#efefef"
+            android:textColorHint="#efefef"
+            android:layout_marginBottom="10dp"
+            android:singleLine="true"
+            android:hint="Password"
+            android:password="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cpwd"
+            android:textSize="20dp"
+            android:textColor="#efefef"
+            android:textColorHint="#efefef"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:singleLine="true"
+            android:hint="Confirm Password"
+            android:password="true" />
+    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
