@@ -32,6 +32,9 @@ public class Register extends AppCompatActivity {
         loginDataBaseAdapter=loginDataBaseAdapter.open();
 
         final EditText remail = (EditText) findViewById(R.id.remail);
+        final EditText rfname = (EditText) findViewById(R.id.rfname);
+        final EditText rlname = (EditText) findViewById(R.id.rlname);
+        final EditText runame = (EditText) findViewById(R.id.runame);
         final EditText rpass = (EditText) findViewById(R.id.rpass);
         final EditText rconfpass = (EditText) findViewById(R.id.rconfpass);
         final Button register = (Button) findViewById(R.id.register);
@@ -52,11 +55,17 @@ public class Register extends AppCompatActivity {
                 {
                     rpass.setError("Minimum password length is at least 8 characters.");
                 }
+                else if(loginDataBaseAdapter.ifExist(runame.getText().toString()))
+                {
+                    runame.setError("Existing Username.");
+                }
+                else if(loginDataBaseAdapter.ifExist(remail.getText().toString()))
+                {
+                    remail.setError("Existing Email Address.");
+                }
                 else if(rpass.getText().toString().equals(rconfpass.getText().toString()))
                 {
-
-
-                    loginDataBaseAdapter.insertEntry(remail.getText().toString(),rpass.getText().toString());
+                    loginDataBaseAdapter.insertEntry(rfname.getText().toString(),rlname.getText().toString(),runame.getText().toString(),remail.getText().toString(),rpass.getText().toString());
                     popToast = Toast.makeText(getApplicationContext(), null, Toast.LENGTH_SHORT);
                     popToast.setText("Account Successfully Created ");
                     popToast.show();

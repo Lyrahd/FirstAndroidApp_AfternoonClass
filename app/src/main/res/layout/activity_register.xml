@@ -11,6 +11,112 @@
     android:background="#272727">
 
 
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="43dp"
+        android:background="@drawable/button_background"
+        android:text="Register"
+        android:textStyle="bold"
+        android:textColor="#FFFF"
+        android:id="@+id/register"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="First Name:"
+        android:id="@+id/tv1"
+        android:textColor="#ffffff"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/rounded_edittext"
+        android:id="@+id/rfname"
+        android:typeface="normal"
+        android:inputType="textPersonName"
+        android:singleLine="true"
+        android:layout_below="@+id/tv1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Last Name:"
+        android:id="@+id/tv2"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/rfname"
+        android:layout_alignRight="@+id/tv1"
+        android:layout_alignEnd="@+id/tv1"
+        android:layout_marginTop="17dp" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:background="@drawable/rounded_edittext"
+        android:id="@+id/rlname"
+        android:typeface="normal"
+        android:singleLine="true"
+        android:layout_below="@+id/tv2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Username:"
+        android:id="@+id/tv3"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/rlname"
+        android:layout_alignRight="@+id/tv2"
+        android:layout_alignEnd="@+id/tv2"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/rounded_edittext"
+        android:id="@+id/runame"
+        android:typeface="normal"
+        android:inputType="textPersonName"
+        android:singleLine="true"
+        android:layout_below="@+id/tv3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Email:"
+        android:id="@+id/tv4"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/runame"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="18dp" />
+
     <EditText
         android:layout_width="250dp"
         android:layout_height="wrap_content"
@@ -18,13 +124,25 @@
         android:padding="10dp"
         android:background="@drawable/rounded_edittext"
         android:id="@+id/remail"
-        android:layout_marginTop="37dp"
         android:typeface="normal"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:singleLine="true"
+        android:layout_below="@+id/tv4"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Password:"
+        android:id="@+id/tv5"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/remail"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp" />
 
     <EditText
         android:layout_width="250dp"
@@ -34,28 +152,13 @@
         android:background="@drawable/rounded_edittext"
         android:id="@+id/rpass"
         android:password = "true"
-        android:layout_marginTop="67dp"
         android:typeface="normal"
-        android:layout_below="@+id/remail"
-        android:layout_alignRight="@+id/remail"
-        android:layout_alignEnd="@+id/remail"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="250dp"
-        android:layout_height="43dp"
-        android:background="@drawable/button_background"
-        android:text="Register"
-        android:textStyle="bold"
-        android:textColor="#FFFF"
-        android:id="@+id/register"
-        android:layout_marginBottom="58dp"
-        android:layout_alignParentBottom="true"
+        android:singleLine="true"
+        android:layout_below="@+id/tv5"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/rconfpass"
-        android:layout_alignEnd="@+id/rconfpass" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="250dp"
@@ -66,31 +169,11 @@
         android:id="@+id/rconfpass"
         android:password="true"
         android:typeface="normal"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/rpass"
-        android:layout_alignStart="@+id/rpass"
-        android:layout_alignRight="@+id/rpass"
-        android:layout_alignEnd="@+id/rpass" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Email"
-        android:id="@+id/textView3"
-        android:textColor="#ffffff"
-        android:layout_below="@+id/remail"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Password"
-        android:id="@+id/textView4"
-        android:textColor="#ffffff"
-        android:layout_below="@+id/rpass"
+        android:singleLine="true"
+        android:layout_marginBottom="28dp"
+        android:layout_above="@+id/register"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -99,12 +182,12 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Confirm Password:"
-        android:id="@+id/textView5"
+        android:id="@+id/tv6"
         android:textColor="#ffffff"
         android:singleLine="false"
-        android:layout_below="@+id/rconfpass"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_above="@+id/rconfpass"
+        android:layout_alignLeft="@+id/tv2"
+        android:layout_alignStart="@+id/tv2" />
 
 
 </RelativeLayout>

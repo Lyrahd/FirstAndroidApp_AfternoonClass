@@ -6,13 +6,13 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 public class LoginDataBaseAdapter {
-    static final String DATABASE_NAME = "login.db";
+    static final String DATABASE_NAME = "user.db";
     static final int DATABASE_VERSION = 1;
-    public static final int NAME_COLUMN = 1;
+    public static final String NAME_COLUMN = "user";
     // TODO: Create public field for each column in your table.
     // SQL Statement to create a new database.
     static final String DATABASE_CREATE = "create table " + "LOGIN" +
-            "( " + "ID" + " integer primary key autoincrement," + "USERNAME  text,PASSWORD text); ";
+            "( " + "ID" + " integer primary key autoincrement," + "USERNAME  text UNIQUE,PASSWORD text, FIRSTNAME text, LASTNAME text, EMAIL text UNIQUE); ";
     // Variable to hold the database instance
     public SQLiteDatabase db;
     // Context of the application using the database.
@@ -38,10 +38,14 @@ public class LoginDataBaseAdapter {
         return db;
     }
 
-    public void insertEntry(String userName, String password) {
+    public void insertEntry(String fname, String lname, String uname, String email, String password) {
         ContentValues newValues = new ContentValues();
         // Assign values for each row.
-        newValues.put("USERNAME", userName);
+
+        newValues.put("FIRSTNAME", fname);
+        newValues.put("LASTNAME", lname);
+        newValues.put("USERNAME", uname);
+        newValues.put("EMAIL", email);
         newValues.put("PASSWORD", password);
 
         // Insert the row into your table
@@ -49,20 +53,23 @@ public class LoginDataBaseAdapter {
         ///Toast.makeText(context, "Reminder Is Successfully Saved", Toast.LENGTH_LONG).show();
     }
 
-    public int deleteEntry(String UserName) {
-        //String id=String.valueOf(ID);
-        String where = "USERNAME=?";
-        int numberOFEntriesDeleted = db.delete("LOGIN", where, new String[]{UserName});
-        // Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
-        return numberOFEntriesDeleted;
-    }
-
-    public String getSinlgeEntry(String userName) {
-        Cursor cursor = db.query("LOGIN", null, " USERNAME=?", new String[]{userName}, null, null, null);
+    public String getSinlgeEntry(String em) {
+        Cursor cursor = db.query("LOGIN", null, " USERNAME=?", new String[]{em}, null, null, null);
         if (cursor.getCount() < 1) // UserName Not Exist
         {
+
+            cursor = db.query("LOGIN", null, " EMAIL=?", new String[]{em}, null, null, null);
+            if (cursor.getCount() < 1) // UserName Not Exist
+            {
+                cursor.close();
+                return "NOT EXIST";
+            }
+
+            cursor.moveToFirst();
+            String password2 = cursor.getString(cursor.getColumnIndex("PASSWORD"));
             cursor.close();
-            return "NOT EXIST";
+            return password2;
+
         }
         cursor.moveToFirst();
         String password = cursor.getString(cursor.getColumnIndex("PASSWORD"));
@@ -70,14 +77,46 @@ public class LoginDataBaseAdapter {
         return password;
     }
 
-    public void updateEntry(String userName, String password) {
-        // Define the updated row content.
-        ContentValues updatedValues = new ContentValues();
-        // Assign values for each row.
-        updatedValues.put("USERNAME", userName);
-        updatedValues.put("PASSWORD", password);
+    public String getInfo(String em) {
+        Cursor cursor = db.query("LOGIN", null, " USERNAME=?", new String[]{em}, null, null, null);
+        if (cursor.getCount() < 1) // UserName Not Exist
+        {
+            cursor = db.query("LOGIN", null, " EMAIL=?", new String[]{em}, null, null, null);
+            if (cursor.getCount() < 1) // UserName Not Exist
+            {
+                cursor.close();
+                return "NOT EXIST";
+            }
 
-        String where = "USERNAME = ?";
-        db.update("LOGIN", updatedValues, where, new String[]{userName});
+            cursor.moveToFirst();
+            String info = "First Name: " + cursor.getString(cursor.getColumnIndex("FIRSTNAME")) + "\nLast Name: " + cursor.getString(cursor.getColumnIndex("LASTNAME")) + "\nUSERNAME: " + cursor.getString(cursor.getColumnIndex("USERNAME")) + "\nEMAIL: " + cursor.getString(cursor.getColumnIndex("EMAIL")) + "\nPASSWORD: " + cursor.getString(cursor.getColumnIndex("PASSWORD"));
+            cursor.close();
+            return info;
+        }
+        cursor.moveToFirst();
+        String info = "First Name: " + cursor.getString(cursor.getColumnIndex("FIRSTNAME")) + "\nLast Name: " + cursor.getString(cursor.getColumnIndex("LASTNAME")) + "\nUSERNAME: " + cursor.getString(cursor.getColumnIndex("USERNAME")) + "\nEMAIL: " + cursor.getString(cursor.getColumnIndex("EMAIL")) + "\nPASSWORD: " + cursor.getString(cursor.getColumnIndex("PASSWORD"));
+        cursor.close();
+        return info;
+    }
+
+    public boolean ifExist(String em) {
+        Cursor cursor = db.query("LOGIN", null, " USERNAME=?", new String[]{em}, null, null, null);
+        if (cursor.getCount() < 1) // UserName Not Exist
+        {
+            cursor = db.query("LOGIN", null, " EMAIL=?", new String[]{em}, null, null, null);
+            if (cursor.getCount()< 1) // UserName Not Exist
+            {
+                cursor.close();
+                return false;
+                //not exist
+            }
+            cursor.moveToFirst();
+            cursor.close();
+            return true;
+
+        }
+        cursor.moveToFirst();
+        cursor.close();
+        return true;
     }
 }

@@ -52,16 +52,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v)
             {
 
-                if(isValidEmail(email.getText())==false)
-                {
-                    email.setError("Please enter a valid email address.");
-                }
-                else if(pass.getText().length()<8)
-                {
-                    pass.setError("Minimum password length is at least 8 characters.");
-                }
-                else
-                {
                     String userName = email.getText().toString();
                     String password = pass.getText().toString();
 
@@ -70,15 +60,15 @@ public class MainActivity extends AppCompatActivity {
 
                     // check if the Stored password matches with  Password entered by user
                     if (password.equals(storedPassword)) {
-                        Toast.makeText(MainActivity.this, userName + " has logged in. \n Password: " + password, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(MainActivity.this, "Logged in!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, loginDataBaseAdapter.getInfo(userName), Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(MainActivity.this,MainScreen.class );
                         startActivity(intent);
 
                         //dialog.dismiss();
                     } else {
-                        Toast.makeText(MainActivity.this, "User Name or Password is incorrect", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "Username or Password is incorrect", Toast.LENGTH_LONG).show();
                     }
-                }
 
             }
 
