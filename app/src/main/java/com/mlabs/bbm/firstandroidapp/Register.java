@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Register extends AppCompatActivity {
     LoginDataBaseAdapter loginDataBaseAdapter;
@@ -19,6 +21,14 @@ public class Register extends AppCompatActivity {
             return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
         }
     }
+
+    boolean isName(String name) {
+        String pat = "[A-Za-z]{1,}$";
+        Pattern pattern = Pattern.compile(pat);
+        Matcher matcher = pattern.matcher(name);
+        return matcher.matches();
+    }
+
 
     private Toast popToast;
 
@@ -47,27 +57,44 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                if(isValidEmail(remail.getText())==false)
+
+                if(rfname.getText().toString().equals("")||rlname.getText().toString().equals("")||runame.getText().toString().equals("")||remail.getText().toString().equals("")||rpass.getText().toString().equals("")||rconfpass.getText().toString().equals(""))
                 {
-                    remail.setError("Please enter a valid email address.");
+                    popToast.setText("Fill out all the remaining fields.");
+                    popToast.show();
                 }
-                else if(rpass.getText().length()<8)
+                else if(!isName(rfname.getText().toString()))
                 {
-                    rpass.setError("Minimum password length is at least 8 characters.");
+                    rfname.setError("Numbers and Special Characters are not allowed.");
+                }
+                else if(!isName(rlname.getText().toString()))
+                {
+                    rlname.setError("Numbers and Special Characters are not allowed.");
+                }
+                else if(isValidEmail(runame.getText()))
+                {
+                    runame.setError("Invalid Username.");
                 }
                 else if(loginDataBaseAdapter.ifExist(runame.getText().toString()))
                 {
                     runame.setError("Existing Username.");
                 }
+                else if(!isValidEmail(remail.getText()))
+                {
+                    remail.setError("Please enter a valid email address.");
+                }
                 else if(loginDataBaseAdapter.ifExist(remail.getText().toString()))
                 {
                     remail.setError("Existing Email Address.");
                 }
+                else if(rpass.getText().length()<8)
+                {
+                    rpass.setError("Minimum password length is at least 8 characters.");
+                }
                 else if(rpass.getText().toString().equals(rconfpass.getText().toString()))
                 {
                     loginDataBaseAdapter.insertEntry(rfname.getText().toString(),rlname.getText().toString(),runame.getText().toString(),remail.getText().toString(),rpass.getText().toString());
-                    popToast = Toast.makeText(getApplicationContext(), null, Toast.LENGTH_SHORT);
-                    popToast.setText("Account Successfully Created ");
+                    popToast.setText("Account Successfully Created.");
                     popToast.show();
 
                     Intent intent = new Intent(Register.this,MainActivity.class );
@@ -75,7 +102,7 @@ public class Register extends AppCompatActivity {
                 }
                 else
                 {
-                    rconfpass.setError("Passwords does not match");
+                    rconfpass.setError("Passwords do not match.");
                 }
             }
 
