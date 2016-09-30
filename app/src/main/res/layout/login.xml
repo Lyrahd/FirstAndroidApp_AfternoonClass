@@ -17,7 +17,7 @@
         android:layout_above="@+id/pwdTxt"
         android:layout_alignLeft="@+id/pwdTxt"
         android:layout_alignStart="@+id/pwdTxt"
-        android:hint="Email"/>
+        android:hint="Email or Username"/>
 
     <EditText
         android:id="@+id/pwdTxt"

@@ -3,17 +3,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/transparent"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="Show"
-        android:id="@+id/showbtn1"
-        android:layout_alignTop="@+id/passText"
-        android:layout_toRightOf="@+id/passText"
-        android:layout_toEndOf="@+id/passText" />
 
 
     <TextView
@@ -22,12 +11,10 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Email Address:"
         android:id="@+id/txtEmail"
-        android:layout_marginTop="81dp"
         android:textSize="15dp"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-       />
+        android:layout_centerVertical="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,12 +22,10 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Password:"
         android:id="@+id/txtPass"
-        android:layout_marginTop="35dp"
-        android:layout_below="@+id/txtEmail"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:textSize="15dp"
-         />
+        android:layout_alignBottom="@+id/confirmText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -48,36 +33,76 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Confirm Pass:"
         android:id="@+id/txtConfirm"
-        android:layout_marginTop="35dp"
-        android:layout_below="@+id/txtPass"
-        android:layout_alignLeft="@+id/txtPass"
-        android:layout_alignStart="@+id/txtPass"
         android:textSize="15dp"
-      />
+        android:layout_marginTop="91dp"
+        android:layout_below="@+id/emailText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="register"
-        android:text="OK"
-        android:id="@+id/btnOK"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="UserName:"
+        android:id="@+id/textView"
+        android:textSize="15dp"
+        android:layout_above="@+id/emailText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:id="@+id/Usertxt"
+        android:layout_above="@+id/emailText"
+        android:layout_alignLeft="@+id/emailText"
+        android:layout_alignStart="@+id/emailText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Last Name:"
+        android:id="@+id/textView2"
+        android:textSize="15dp"
+        android:layout_alignBottom="@+id/Lnametxt"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:id="@+id/Lnametxt"
+        android:layout_above="@+id/Usertxt"
+        android:layout_alignLeft="@+id/Usertxt"
+        android:layout_alignStart="@+id/Usertxt"
+        android:layout_marginBottom="28dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="First Name:"
+        android:id="@+id/textView3"
+        android:textSize="15dp"
+        android:layout_above="@+id/Lnametxt"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:id="@+id/Fname"
+        android:layout_above="@+id/Lnametxt"
+        android:layout_alignLeft="@+id/Lnametxt"
+        android:layout_alignStart="@+id/Lnametxt" />
 
     <EditText
         android:layout_width="200sp"
         android:layout_height="wrap_content"
         android:id="@+id/emailText"
         android:layout_alignBottom="@+id/txtEmail"
-        android:layout_toRightOf="@+id/txtEmail" />
-
-    <EditText
-        android:layout_width="200sp"
-        android:layout_height="wrap_content"
-        android:id="@+id/passText"
-        android:layout_above="@+id/txtConfirm"
         android:layout_toRightOf="@+id/txtEmail"
-        android:inputType="textPassword"
         android:layout_toEndOf="@+id/txtEmail" />
 
     <EditText
@@ -85,19 +110,51 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:id="@+id/confirmText"
+        android:layout_above="@+id/passText"
+        android:layout_toRightOf="@+id/txtEmail"
+        android:layout_toEndOf="@+id/txtEmail" />
+
+    <EditText
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:id="@+id/passText"
+        android:inputType="textPassword"
         android:layout_alignBottom="@+id/txtConfirm"
-        android:layout_alignLeft="@+id/passText"
-        android:layout_alignStart="@+id/passText" />
+        android:layout_alignLeft="@+id/confirmText"
+        android:layout_alignStart="@+id/confirmText" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="register"
+        android:text="OK"
+        android:id="@+id/btnOK"
+        android:layout_below="@+id/showbtn2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="33dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/transparent"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Show"
+        android:id="@+id/showbtn1"
+
+        android:layout_alignTop="@+id/confirmText"
+        android:layout_toRightOf="@+id/confirmText"
+        android:layout_toEndOf="@+id/confirmText" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="sans-serif-smallcaps"
         android:text="Show"
         android:id="@+id/showbtn2"
-        android:layout_alignTop="@+id/confirmText"
-        android:layout_alignLeft="@+id/showbtn1"
-        android:layout_alignStart="@+id/showbtn1" />
+        android:layout_below="@+id/confirmText"
+        android:layout_toRightOf="@+id/passText"
+        android:layout_toEndOf="@+id/passText" />
+
 </RelativeLayout>

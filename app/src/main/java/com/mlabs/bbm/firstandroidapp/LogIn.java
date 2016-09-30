@@ -71,10 +71,7 @@ public class LogIn extends Activity {
         final DataBaseAdapter sqlDB = new DataBaseAdapter(getApplicationContext());
 
 
-        if (!validateEmail(emailTxt.getText().toString())) {
-            emailTxt.setError("Invalid Email");
-            emailTxt.requestFocus();
-        } else if (!validatePwd(pwdTxt.getText().toString())) {
+       if (!validatePwd(pwdTxt.getText().toString())) {
             pwdTxt.setError("Invalid Password");
             pwdTxt.requestFocus();
         }
@@ -90,14 +87,6 @@ public class LogIn extends Activity {
     }
 
 
-
-        private Boolean validateEmail(String emailAdd) {
-            if (emailAdd == null || !Patterns.EMAIL_ADDRESS.matcher(emailAdd).matches()) {
-                return false;
-            } else {
-                return true;
-            }
-        }
 
         private Boolean validatePwd(String password) {
             if (password != null && password.length() >= 8) {
