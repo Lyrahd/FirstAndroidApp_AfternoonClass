@@ -16,7 +16,7 @@ public class DBAdapter {
     static final int DATABASE_VERSION = 1;
     static final String DATABASE_CREATE = "Create Table " + "USERS" +
             "( " + "ID" + " Integer Primary Key Autoincrement," +
-            "EMAIL  text,PASSWORD text); ";
+            "FIRSTNAME text,SURNAME text,USERNAME text,EMAIL  text,PASSWORD text); ";
     public SQLiteDatabase db;
     private final Context context;
     private DBHelper dbHelper;
@@ -39,10 +39,13 @@ public class DBAdapter {
         return db;
     }
 
-    public void insertEntry(String email, String password) {
+    public void insertEntry(String email, String password, String fname, String surname, String uname) {
         ContentValues newValues = new ContentValues();
         newValues.put("EMAIL", email);
         newValues.put("PASSWORD", password);
+        newValues.put("FIRSTNAME", fname);
+        newValues.put("SURNAME", surname);
+        newValues.put("USERNAME", uname);
         db.insert("USERS", null, newValues);
     }
 
@@ -58,7 +61,7 @@ public class DBAdapter {
         if (cursor.getCount() < 1)
         {
             cursor.close();
-            return "Account do not Exist";
+            return "Account do not ExistT";
         }
         cursor.moveToFirst();
         String password = cursor.getString(cursor.getColumnIndex("PASSWORD"));
@@ -73,5 +76,11 @@ public class DBAdapter {
 
         String where = "EMAIL = ?";
         db.update("USERS", updatedValues, where, new String[]{email});
+    }
+
+    public Cursor getAllData() {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from "+"USERS",null);
+        return res;
     }
 }

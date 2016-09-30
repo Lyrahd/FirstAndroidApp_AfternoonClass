@@ -101,9 +101,20 @@
         android:background="@android:color/holo_orange_dark"
         android:text="Register"
         android:id="@+id/btnRegister"
+        android:layout_alignTop="@+id/btnViewAll"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="50px" />
+
+    <Button
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_orange_dark"
+        android:text="ViewAll"
+        android:id="@+id/btnViewAll"
         android:layout_below="@+id/txtPass2"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_alignEnd="@+id/textView2"
-        android:layout_marginTop="20px" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="50px" />
 
 </RelativeLayout>

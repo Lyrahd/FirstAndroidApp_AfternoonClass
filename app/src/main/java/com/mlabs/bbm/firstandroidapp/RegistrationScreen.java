@@ -1,12 +1,14 @@
 package com.mlabs.bbm.firstandroidapp;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.app.AlertDialog;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,8 +17,8 @@ import java.util.regex.Pattern;
  * Created by androidstudio on 17/09/16.
  */
 public class RegistrationScreen extends AppCompatActivity {
-    EditText email, password, password2;
-    Button btnRegister;
+    EditText fname,surname,uname,email, password, password2;
+    Button btnRegister,btnviewAll;
     DBAdapter DatabaseAdapter;
 
     private Toast popToast;
@@ -26,17 +28,22 @@ public class RegistrationScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration_screen);
 
-
+        fname = (EditText) findViewById(R.id.txtFirstName);
+        surname = (EditText) findViewById(R.id.txtSurname);
+        uname = (EditText) findViewById(R.id.txtUsername);
         email = (EditText) findViewById(R.id.txtEmail);
         password = (EditText) findViewById(R.id.txtPass);
         password2 = (EditText) findViewById(R.id.txtPass2);
         btnRegister = (Button) findViewById(R.id.btnRegister);
+        btnviewAll = (Button) findViewById(R.id.btnViewAll);
 
         DatabaseAdapter = new DBAdapter(this);
         DatabaseAdapter = DatabaseAdapter.open();
+        viewAll();
 
         assert btnRegister != null;
        btnRegister.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 if(!isValidEmail(email.getText().toString())) {
@@ -47,7 +54,11 @@ public class RegistrationScreen extends AppCompatActivity {
                     Toast.makeText(RegistrationScreen.this, "Password do not match", Toast.LENGTH_LONG).show();
                 }
                 else if(password.getText().toString().equals(password2.getText().toString())){
-                    DatabaseAdapter.insertEntry(email.getText().toString(), password.getText().toString());
+                    DatabaseAdapter.insertEntry(email.getText().toString(),
+                                                password.getText().toString(),
+                                                fname.getText().toString(),
+                                                surname.getText().toString(),
+                                                uname.getText().toString());
                     popToast = Toast.makeText(getApplicationContext(), null, Toast.LENGTH_SHORT);
                     popToast.setText("Account Successfully Created ");
                     popToast.show();
@@ -80,6 +91,45 @@ public class RegistrationScreen extends AppCompatActivity {
         }
         return false;
 
+    }
+
+    public void viewAll() {
+
+        btnviewAll.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Cursor res = DatabaseAdapter.getAllData();
+                        if(res.getCount() == 0) {
+                            // show message
+                            showMessage("Error","Nothing found");
+                            return;
+                        }
+
+                        StringBuffer buffer = new StringBuffer();
+                        while (res.moveToNext()) {
+                            buffer.append("Id :"+ res.getString(0)+"\n");
+                            buffer.append("First Name:"+ res.getString(1)+"\n");
+                            buffer.append("Surname:"+ res.getString(2)+"\n");
+                            buffer.append("Username:"+ res.getString(3)+"\n");
+                            buffer.append("Email:"+ res.getString(4)+"\n");
+                            buffer.append("Password:"+ res.getString(5)+"\n");
+
+                        }
+
+                        // Show all data
+                        showMessage("Data",buffer.toString());
+                    }
+                }
+        );
+    }
+
+    public void showMessage(String title,String Message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(Message);
+        builder.show();
     }
 
     @Override
