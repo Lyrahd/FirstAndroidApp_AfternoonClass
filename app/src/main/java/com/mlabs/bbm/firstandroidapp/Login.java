@@ -72,12 +72,20 @@ public class Login extends Activity {
             pwdTxt.requestFocus();
         }
 
-        if (sqlDB.validateUser(emailTxt.getText().toString(),pwdTxt.getText().toString())) {
+        if (sqlDB.validateEmail(emailTxt.getText().toString(),pwdTxt.getText().toString())) {
             Intent intent = new Intent(Login.this, MainActivity.class);
             startActivity(intent);
+            emailTxt.setText("");
+            pwdTxt.setText("");
         } else{
+            if (sqlDB.validateUsername(emailTxt.getText().toString(),pwdTxt.getText().toString())) {
+                Intent intent = new Intent(Login.this, MainActivity.class);
+                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "Welcome", Toast.LENGTH_SHORT).show();
+            }
+            else{
             Toast.makeText(getApplicationContext(), "Invalid email or password", Toast.LENGTH_SHORT).show();
-        }
+        }}
 
 
     }
@@ -86,7 +94,7 @@ public class Login extends Activity {
 
     @NonNull
     private Boolean validateEmail(String emailAdd) {
-        if (emailAdd == null || !Patterns.EMAIL_ADDRESS.matcher(emailAdd).matches()) {
+        if (emailAdd == null) {
             return false;
         } else {
             return true;
