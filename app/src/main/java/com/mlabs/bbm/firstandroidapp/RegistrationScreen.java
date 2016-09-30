@@ -39,16 +39,15 @@ public class RegistrationScreen extends AppCompatActivity {
        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ((isValidPassword(password.getText().toString()))!=(isValidConPassword(password2.getText().toString())))  {
-                    Toast.makeText(RegistrationScreen.this, "Password do not match", Toast.LENGTH_LONG).show(); }
-                else if(!isValidEmail(email.getText().toString())) {
+                if(!isValidEmail(email.getText().toString())) {
                     Toast.makeText(RegistrationScreen.this,"Invalid Email",Toast.LENGTH_LONG).show();
                 } else if(!isValidPassword(password.getText().toString())) {
                     Toast.makeText(RegistrationScreen.this, "Invalid Password", Toast.LENGTH_LONG).show();
+                } else if ((isValidPassword(password.getText().toString()))!=(isValidConPassword(password2.getText().toString()))){
+                    Toast.makeText(RegistrationScreen.this, "Password do not match", Toast.LENGTH_LONG).show();
                 }
-
                 else if(password.getText().toString().equals(password2.getText().toString())){
-                    DatabaseAdapter.insertEntry(email.getText().toString(),password.getText().toString());
+                    DatabaseAdapter.insertEntry(email.getText().toString(), password.getText().toString());
                     popToast = Toast.makeText(getApplicationContext(), null, Toast.LENGTH_SHORT);
                     popToast.setText("Account Successfully Created ");
                     popToast.show();
@@ -83,6 +82,10 @@ public class RegistrationScreen extends AppCompatActivity {
 
     }
 
-
+    @Override
+    protected  void onPause(){
+        super.onPause();
+        finish();
+    }
 
 }

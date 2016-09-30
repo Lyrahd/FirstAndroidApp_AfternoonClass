@@ -67,7 +67,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="No account yet? Sign up here"
         android:id="@+id/lblSignUp"
         android:textColor="#cacaca"
         android:layout_alignParentBottom="true"
@@ -83,4 +82,18 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignBottom="@+id/lblPass" />
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_orange_dark"
+        android:textColor="@android:color/black"
+        android:text="SIGN UP"
+        android:shadowColor="#ffffff"
+        android:textStyle="bold"
+        android:layout_below="@+id/btnLogin"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20px" />
 </RelativeLayout>

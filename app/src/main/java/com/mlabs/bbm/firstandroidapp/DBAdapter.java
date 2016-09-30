@@ -44,13 +44,12 @@ public class DBAdapter {
         newValues.put("EMAIL", email);
         newValues.put("PASSWORD", password);
         db.insert("USERS", null, newValues);
-        Toast.makeText(context, "Reminder Is Successfully Saved", Toast.LENGTH_LONG).show();
     }
 
     public int deleteEntry(String email) {
         String where = "EMAIL=?";
         int numberOFEntriesDeleted = db.delete("USERS", where, new String[]{email});
-        Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Number for Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
         return numberOFEntriesDeleted;
     }
 
@@ -59,7 +58,7 @@ public class DBAdapter {
         if (cursor.getCount() < 1)
         {
             cursor.close();
-            return "NOT EXIST";
+            return "Account do not Exist";
         }
         cursor.moveToFirst();
         String password = cursor.getString(cursor.getColumnIndex("PASSWORD"));

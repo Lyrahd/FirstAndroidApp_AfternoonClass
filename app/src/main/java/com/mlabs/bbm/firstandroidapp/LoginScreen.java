@@ -33,7 +33,7 @@ public class LoginScreen extends AppCompatActivity {
         Button login = (Button) findViewById(R.id.btnLogin);
         final Button btnShow = (Button) findViewById(R.id.btnShow);
 
-        final TextView SignUp = (TextView) findViewById(R.id.lblSignUp);
+        final Button SignUp = (Button) findViewById(R.id.btnSignUp);
 
         login.setOnClickListener(new View.OnClickListener() {
 
@@ -52,10 +52,10 @@ public class LoginScreen extends AppCompatActivity {
                     String Pass = password.getText().toString();
 
                     String passdb = DBAdapter.getSingleEntry(User);
-                    Toast.makeText(LoginScreen.this, passdb, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(LoginScreen.this, passdb, Toast.LENGTH_SHORT).show();
 
                     if (Pass.equals(passdb)){
-                        Toast.makeText(LoginScreen.this, User + "has logged in.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginScreen.this, User + " has logged in.", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginScreen.this,MainActivity.class );
                         startActivity(intent);
                     }else{
