@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -26,6 +28,7 @@ public class loginactivity extends AppCompatActivity {
         Button btnlogin;
         final EditText EmailAdd, PassW;
         TextView txtsign;
+        DataBaseAdapter DatabaseAdapter;
 
 
         EmailAdd = (EditText) findViewById(R.id.editText);
@@ -35,7 +38,32 @@ public class loginactivity extends AppCompatActivity {
         txtsign = (TextView) findViewById(R.id.txtsignup);
 
 
+        DatabaseAdapter = new DataBaseAdapter(this);
+        DatabaseAdapter = DatabaseAdapter.open();
 
+        assert btnlogin != null;
+        btnlogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = EmailAdd.getText().toString();
+                String pword = PassW.getText().toString();
+                String uname = EmailAdd.getText().toString();
+                String pass1 = DataBaseAdapter.getSinlgeEntry(email);
+                String pass2 = DataBaseAdapter.getUsername(uname);
+
+                if (pword.equals(pass2)|pword.equals(pass1)) {
+                    Intent intent = new Intent(loginactivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(loginactivity.this, "invalid email or password ", Toast.LENGTH_LONG).show();
+                }
+            }
+            });
+
+
+
+    /**
         if (btnlogin != null) {
             btnlogin.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -53,7 +81,7 @@ public class loginactivity extends AppCompatActivity {
                 }
             });
         }
-
+**/
         btn1.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -77,7 +105,7 @@ public class loginactivity extends AppCompatActivity {
             }
         });
     }
-
+/**
     public static boolean isValidEmail(CharSequence target) {
         if (TextUtils.isEmpty(target)) {
             return false;
@@ -85,7 +113,24 @@ public class loginactivity extends AppCompatActivity {
             return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
         }
 
+
     }
+ **/
+    private boolean isValidEmail(String email) {
+
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    private boolean isValidPassword(String pass) {
+        if (pass != null && pass.length() >= 6) {
+            return true;
+        }
+        return false;
+    }
+
 
 
 

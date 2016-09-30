@@ -13,20 +13,23 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
 public class registeractivity extends AppCompatActivity {
     private loginactivity loginactivity;
+    private Toast popToast;
 
+    private DataBaseAdapter DatabaseAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_acc);
 
-        final DataBaseAdapter sqlDB = new DataBaseAdapter(getApplicationContext());
 
-        final EditText email = (EditText) findViewById(R.id.email);
+
+        final EditText[] email = {(EditText) findViewById(R.id.email)};
         final EditText password = (EditText) findViewById(R.id.password);
         final EditText uname = (EditText) findViewById(R.id.uname);
         final EditText firstname = (EditText) findViewById(R.id.firstname);
@@ -35,26 +38,61 @@ public class registeractivity extends AppCompatActivity {
 
         final Button btn_reg = (Button) findViewById(R.id.btn_reg);
 
-        final String emailInput = email.getText().toString().trim();
+        final Toast[] popToast = new Toast[1];
+
+        DatabaseAdapter = new DataBaseAdapter(this);
+        DatabaseAdapter = DatabaseAdapter.open();
+
+
+        final String emailInput = email[0].getText().toString().trim();
         final String passwordInput = password.getText().toString().trim();
         final String passwordInputVerify = confirmpass.getText().toString().trim();
         final String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+
 
 
         //EmailMatcher = "([a-zA-Z0-9]+_?)+@[a-zA-Z0-9]+\\.com";
         // PassMatcher = "([a-zA-Z0-9])";
 
 
+        assert btn_reg != null;
         btn_reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String emailadd = email[0].getText().toString();
+                String username = uname.getText().toString();
+                String pass1 = DatabaseAdapter.getEmailforsignup(emailadd);
+                String pass2 = DatabaseAdapter.getUsernameforsignup(username);
+
+                if (!(Pattern.compile("([a-zA-Z0-9]+_?)+@[a-zA-Z0-9]+\\.([a-zA-Z0-9])+(\\.([a-zA-Z0-9])+)?").matcher(email[0].getText()).matches())) {
+                    Toast.makeText(registeractivity.this, "Invalid Email", Toast.LENGTH_LONG).show();
+                } else if (!(Pattern.compile("([a-zA-Z0-9]+)").matcher(password.getText()).matches() && password.getText().length() >= 8)) {
+                    Toast.makeText(registeractivity.this, "Password Length needs to be at least 8 characters", Toast.LENGTH_LONG).show();
+                } else if (!password.getText().toString().equals(confirmpass.getText().toString())) {
+                    Toast.makeText(registeractivity.this, "Password does not match!", Toast.LENGTH_LONG).show();
+                } else if (!(Pattern.compile("^([A-Za-z]*)+$").matcher(firstname.getText()).matches())) {
+                    Toast.makeText(registeractivity.this, "Invalid Firstname", Toast.LENGTH_LONG).show();
+                } else if (!(Pattern.compile("^([A-Za-z]*)+$").matcher(lastname.getText()).matches())) {
+                    Toast.makeText(registeractivity.this, "Invalid Firstname", Toast.LENGTH_LONG).show();
+                } else if (username.equals(pass2) | emailadd.equals(pass1)) {
+                    Toast.makeText(registeractivity.this, "Username or Email already exists", Toast.LENGTH_LONG).show();
+                } else  {
+                    DataBaseAdapter.insertEntry(firstname.getText().toString(), lastname.getText().toString(), uname.getText().toString(), email[0].getText().toString(), password.getText().toString());
+                    popToast[0] = Toast.makeText(getApplicationContext(), null, Toast.LENGTH_SHORT);
+                    popToast[0].setText("Account Successfully Created ");
+                    popToast[0].show();
+
+                    Intent intent = new Intent(registeractivity.this, loginactivity.class);
+                    startActivity(intent);
+
+/**
                 Log.d(getApplicationContext().toString(), "CLICK");
-                if (Pattern.compile("([a-zA-Z0-9]+_?)+@[a-zA-Z0-9]+\\.([a-zA-Z0-9])+(\\.([a-zA-Z0-9])+)?").matcher(email.getText()).matches() && (Pattern.compile("([a-zA-Z0-9]+)").matcher(password.getText()).matches()) && password.getText().length() >= 8) {
+                if (Pattern.compile("([a-zA-Z0-9]+_?)+@[a-zA-Z0-9]+\\.([a-zA-Z0-9])+(\\.([a-zA-Z0-9])+)?").matcher(email[0].getText()).matches() && (Pattern.compile("([a-zA-Z0-9]+)").matcher(password.getText()).matches()) && password.getText().length() >= 8) {
                     Log.d(getApplicationContext().toString(), "PAU");
                     if (password.getText().toString().equals(confirmpass.getText().toString())) {
                         Log.d(registeractivity.this.toString(), "Signing Up..");
-                        sqlDB.registerUser( email.getText().toString().trim(),password.getText().toString().trim(), firstname.getText().toString().trim(), lastname.getText().toString().trim(), uname.getText().toString().trim(), getDate());
-                        Log.d(registeractivity.class.getSimpleName(),email.getText().toString().trim());
+                        sqlDB.registerUser( email[0].getText().toString().trim(),password.getText().toString().trim(), firstname.getText().toString().trim(), lastname.getText().toString().trim(), uname.getText().toString().trim(), getDate());
+                        Log.d(registeractivity.class.getSimpleName(), email[0].getText().toString().trim());
                         Toast.makeText(getApplicationContext(), "User successfully added", Toast.LENGTH_LONG).show();
                         Intent goBackToLoginScreen = new Intent(registeractivity.this, loginactivity.class);
                         startActivity(goBackToLoginScreen);
@@ -65,13 +103,20 @@ public class registeractivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Invalid Details", Toast.LENGTH_SHORT).show();
                 }
+**/
 
             }
 
 
-        });
-//hi
-    }
+
+        }
+
+
+    });
+            }
+
+
+
     protected void onPause() {
         super.onPause();
         finish();
@@ -84,4 +129,8 @@ public class registeractivity extends AppCompatActivity {
         return formattedDate;
 
     }
-}
+
+
+    }
+
+
