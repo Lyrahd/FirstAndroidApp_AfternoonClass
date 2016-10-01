@@ -92,17 +92,6 @@ public class LogInCRUD {
             Log.d(String.valueOf(this),"email =" + userName);
             cursor1.moveToFirst();
             String password1 = cursor1.getString(cursor1.getColumnIndex("PASSWORD"));
-
-            Cursor cursor1 = db.query("LOGIN", null, "EMAIL=?", new String[]{userName}, null, null, null);
-            if (cursor1.getCount() < 1) // UserName Not Exist
-            {
-                cursor1.close();
-                return "Not Exist";
-            }
-            cursor1.moveToFirst();
-            String password1 = cursor.getString(cursor.getColumnIndex("PASSWORD"));
-
-            cursor1.close();
             return password1;
         }
         cursor.moveToFirst();

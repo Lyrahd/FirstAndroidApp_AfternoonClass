@@ -47,38 +47,6 @@ public class SignActivity extends AppCompatActivity{
                             boolean loginun;
                             loginun = logInCRUD.getUsernameEntry(etun.getText().toString());
                             if (loginun == true){
-								
-                            if (Pattern.compile("([a-zA-Z0-9]+_?)+@[a-zA-Z0-9/.]+").matcher(etemail.getText()).matches()) {
-                                boolean loginemail;
-                                loginemail = logInCRUD.getUsernameEntry(etemail.getText().toString());
-                                if (loginemail == true) {
-                                    if (etpass.length() > 8) {
-                                        String etpass1 = etpass.getText().toString();
-                                        String etcp1 = etcp.getText().toString();
-                                        if (etpass1.equals(etcp1)) {
-                                            logInCRUD.insertEntry(String.valueOf(etun.getText()), String.valueOf(etpass.getText()), String.valueOf(etemail.getText()), String.valueOf(etfirstname.getText()), String.valueOf(etlastname.getText()));
-
-                                            Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_SHORT).show();
-                                            Intent a = new Intent(SignActivity.this, LogInActivity.class);
-                                            startActivity(a);
-                                            finish();
-                                        } else {
-                                            Toast.makeText(getBaseContext(), "Password Does not Match", Toast.LENGTH_SHORT).show();
-                                        }
-                                    } else {
-                                        Toast.makeText(getBaseContext(), "Password too short", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                                else{
-                                    Toast.makeText(getBaseContext(), "Email is not Availabele", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                            else
-                            {
-                                Toast.makeText(getBaseContext(), "Invalid Email address", Toast.LENGTH_SHORT).show();
-                            }
-                            }
-
                                 if (Pattern.compile("([a-zA-Z0-9]+_?)+@[a-zA-Z0-9/.]+").matcher(etemail.getText()).matches()) {
                                     boolean loginemail;
                                     loginemail = logInCRUD.getEmailEntry(etemail.getText().toString());
@@ -101,7 +69,7 @@ public class SignActivity extends AppCompatActivity{
                                         }
                                     }
                                     else{
-                                        Toast.makeText(getBaseContext(), "Email is not Available", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getBaseContext(), "Email is not Availabele", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                                 else
@@ -109,7 +77,6 @@ public class SignActivity extends AppCompatActivity{
                                     Toast.makeText(getBaseContext(), "Invalid Email address", Toast.LENGTH_SHORT).show();
                                 }
                             }
-							
                             else{
                                 Toast.makeText(getBaseContext(), "Username is not available", Toast.LENGTH_SHORT).show();
                             }
