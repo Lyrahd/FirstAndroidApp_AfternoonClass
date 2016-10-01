@@ -39,8 +39,8 @@ public class LoginScreen extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                if (!validateEmail(email.getText().toString())) {
-                    email.setError("Invalid Email");
+                if (!validateEmail(email.getText().toString())&&!isValidUser(email.getText().toString())) {
+                    email.setError("Invalid Email/Username");
                     email.requestFocus();
                 } else if (!validatePassword(password.getText().toString())) {
                     password.setError("Invalid Password");
@@ -73,6 +73,13 @@ public class LoginScreen extends AppCompatActivity {
                 } else {
                     return false;
                 }
+            }
+
+            public boolean isValidUser(String user) {
+                String pat = "^[a-z0-9_-]{3,15}$";
+                Pattern pattern = Pattern.compile(pat);
+                Matcher matcher = pattern.matcher(user);
+                return matcher.matches();
             }
 
             //Return true if password is valid and false if password is invalid.

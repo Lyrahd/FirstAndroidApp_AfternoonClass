@@ -60,8 +60,11 @@ public class DBAdapter {
         Cursor cursor = db.query("USERS", null, " EMAIL=?", new String[]{email}, null, null, null);
         if (cursor.getCount() < 1)
         {
-            cursor.close();
-            return "Account do not ExistT";
+            cursor = db.query("USERS", null, " USERNAME=?", new String[]{email}, null, null, null);
+            if (cursor.getCount() < 1) {
+                cursor.close();
+                return "Account do not ExistT";
+            }
         }
         cursor.moveToFirst();
         String password = cursor.getString(cursor.getColumnIndex("PASSWORD"));
@@ -76,6 +79,27 @@ public class DBAdapter {
 
         String where = "EMAIL = ?";
         db.update("USERS", updatedValues, where, new String[]{email});
+    }
+
+    public boolean ifExists(String input){
+        Cursor cursor = db.query("USERS", null, " USERNAME=?", new String[]{input}, null, null, null);
+        if (cursor.getCount() < 1) // UserName Not Exist
+        {
+            cursor = db.query("USERS", null, " EMAIL=?", new String[]{input}, null, null, null);
+            if (cursor.getCount()< 1) // UserName Not Exist
+            {
+                cursor.close();
+                return false;
+                //not exist
+            }
+            cursor.moveToFirst();
+            cursor.close();
+            return true;
+
+        }
+        cursor.moveToFirst();
+        cursor.close();
+        return true;
     }
 
     public Cursor getAllData() {

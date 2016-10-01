@@ -46,8 +46,20 @@ public class RegistrationScreen extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                if(!isValidEmail(email.getText().toString())) {
-                    Toast.makeText(RegistrationScreen.this,"Invalid Email",Toast.LENGTH_LONG).show();
+                if (fname.getText().toString().equals("")||surname.getText().toString().equals("")||uname.getText().toString().equals("")||email.getText().toString().equals("")||password.getText().toString().equals("")||password2.getText().toString().equals("")){
+                    Toast.makeText(RegistrationScreen.this, "Fill out all Remaining Fields", Toast.LENGTH_LONG).show();
+                } else if (!isValidName(fname.getText().toString())){
+                    fname.setError("Numbers and Special Numbers are Not Allowed");
+                } else if (!isValidName(surname.getText().toString())){
+                    surname.setError("Numbers and Special Numbers are Not Allowed");
+                } else if(!isValidEmail(email.getText().toString())) {
+                    email.setError("Invalid Email");
+                } else if (DatabaseAdapter.ifExists(email.getText().toString())){
+                    email.setError("Email Already Exists");
+                } else if (!isValidUser(uname.getText().toString())) {
+                    uname.setError("Invalid Username");
+                } else if (DatabaseAdapter.ifExists(uname.getText().toString())){
+                    uname.setError("Username Already Exists");
                 } else if(!isValidPassword(password.getText().toString())) {
                     Toast.makeText(RegistrationScreen.this, "Invalid Password", Toast.LENGTH_LONG).show();
                 } else if ((isValidPassword(password.getText().toString()))!=(isValidConPassword(password2.getText().toString()))){
@@ -91,6 +103,20 @@ public class RegistrationScreen extends AppCompatActivity {
         }
         return false;
 
+    }
+
+    private boolean isValidName(String name) {
+        String pat = "[A-Za-z]{1,}$";
+        Pattern pattern = Pattern.compile(pat);
+        Matcher matcher = pattern.matcher(name);
+        return matcher.matches();
+    }
+
+    public boolean isValidUser(String user) {
+        String pat = "^[a-z0-9_-]{3,15}$";
+        Pattern pattern = Pattern.compile(pat);
+        Matcher matcher = pattern.matcher(user);
+        return matcher.matches();
     }
 
     public void viewAll() {
